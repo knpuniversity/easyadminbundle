@@ -1,0 +1,43 @@
+AppBundle\Entity\Genus:
+    genus_{1..10}:
+        name: <genus()>
+        subFamily: '@subfamily_*'
+        speciesCount: <numberBetween(100, 100000)>
+        funFact: <sentence()>
+        isPublished: <boolean(75)>
+        firstDiscoveredAt: <dateTimeBetween('-200 years', 'now')>
+        # genusScientists: '3x @user.aquanaut_*'
+
+AppBundle\Entity\GenusNote:
+    genus.note_{1..100}:
+        username: <userName()>
+        userAvatarFilename: '50%? leanna.jpeg : ryan.jpeg'
+        note: <paragraph()>
+        createdAt: <dateTimeBetween('-6 months', 'now')>
+        genus: '@genus_*'
+
+AppBundle\Entity\SubFamily:
+    subfamily_{1..10}:
+        # use some fake data for this
+        name: <lastName()>
+
+AppBundle\Entity\User:
+    user_{1..10}:
+        email: weaverryan+<current()>@gmail.com
+        plainPassword: iliketurtles
+        roles: ['ROLE_ADMIN']
+        avatarUri: <imageUrl(100, 100, 'abstract')>
+    user.aquanaut_{1..10}:
+        email: aquanaut<current()>@example.org
+        plainPassword: aquanote
+        isScientist: true
+        firstName: <firstName()>
+        lastName: <lastName()>
+        universityName: <company()> University
+        avatarUri: <imageUrl(100, 100, 'abstract')>
+
+AppBundle\Entity\GenusScientist:
+    genus.scientist_{1..50}:
+        user: '@user.aquanaut_*'
+        genus: '@genus_*'
+        yearsStudied: <numberBetween(1, 30)>

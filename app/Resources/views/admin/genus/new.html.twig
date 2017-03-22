@@ -1,0 +1,19 @@
+{% extends 'admin/genus/formLayout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/GenusAdminForm.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>New Genus</h1>
+
+                {{ include('admin/genus/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
