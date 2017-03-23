@@ -1,0 +1,10 @@
+diff --git a/app/config/security.yml b/app/config/security.yml
+index b03a7bd..37e5434 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -36,4 +36,4 @@ security:
+             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+ 
+     access_control:
+-        # - { path: ^/admin, roles: ROLE_ADMIN }
++         - { path: ^/easyadmin, roles: ROLE_ADMIN }

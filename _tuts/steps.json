@@ -1,0 +1,50 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "installing",
+            "name": "Installing",
+            "description": null
+        },
+        {
+            "id": "configuring-entities-for-back-end",
+            "name": "Configuring entities for back-end",
+            "description": null
+        },
+        {
+            "id": "fixing-php7-with-outdated-doctrine",
+            "name": "Fixing PHP7 with outdated Doctrine",
+            "description": null
+        },
+        {
+            "id": "configuration-name-of-back-end",
+            "name": "Configuration: name of back-end",
+            "description": null
+        },
+        {
+            "id": "configuration-stylish-name-of-back-end",
+            "name": "Configuration: stylish name of back-end",
+            "description": null
+        },
+        {
+            "id": "configuration-change-date-format",
+            "name": "Configuration: change date format",
+            "description": null
+        },
+        {
+            "id": "configuration-add-custom-assets",
+            "name": "Configuration: add custom assets",
+            "description": null
+        },
+        {
+            "id": "securing-access-to-back-end",
+            "name": "Securing access to back-end",
+            "description": null
+        }
+    ],
+    "sha": "596df8d86bd68589ee2c61ccd5b6d5c58a3c2348"
+}

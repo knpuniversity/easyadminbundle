@@ -1,0 +1,13 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 2a03b4f..c1b67fc 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -80,7 +80,7 @@ stof_doctrine_extensions:
+             sluggable: true
+ 
+ easy_admin:
+-    site_name: 'AquaNote'
++    site_name: 'Aqua<i>Note</i>'
+     entities:
+         - AppBundle\Entity\Genus
+         - AppBundle\Entity\GenusNote
