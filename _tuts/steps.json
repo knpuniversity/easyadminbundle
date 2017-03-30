@@ -59,7 +59,62 @@
             "id": "list-view-move-to-expanded-configuration-format",
             "name": "List view: move to expanded configuration format",
             "description": null
+        },
+        {
+            "id": "list-view-change-label-of-specific-entity",
+            "name": "List view: change label of specific entity",
+            "description": null
+        },
+        {
+            "id": "list-view-change-page-title-of-specific-entity",
+            "name": "List view: change page title of specific entity",
+            "description": null
+        },
+        {
+            "id": "list-view-add-global-help-message",
+            "name": "List view: add global help message",
+            "description": null
+        },
+        {
+            "id": "list-view-overwrite-global-help-message",
+            "name": "List view: overwrite global help message",
+            "description": null
+        },
+        {
+            "id": "search-view-disable-help-message",
+            "name": "Search view: disable help message",
+            "description": null
+        },
+        {
+            "id": "list-view-globally-change-available-actions",
+            "name": "List view: globally change available actions",
+            "description": null
+        },
+        {
+            "id": "show-view-add-tostring-method-to-all-entities",
+            "name": "Show view: add toString method to all entities",
+            "description": null
+        },
+        {
+            "id": "show-view-change-available-actions-for-an-entity",
+            "name": "Show view: change available actions for an entity",
+            "description": null
+        },
+        {
+            "id": "list-view-change-available-actions-for-an-entity",
+            "name": "List view: change available actions for an entity",
+            "description": null
+        },
+        {
+            "id": "list-view-disable-action-for-an-entity",
+            "name": "List view: disable action for an entity",
+            "description": null
+        },
+        {
+            "id": "list-view-customize-action-presentation",
+            "name": "List view: customize action presentation",
+            "description": null
         }
     ],
-    "sha": "e0ca0ad185f029e3eab8604d89398f95e0cf9972"
+    "sha": "4d884883bf6181bdfffd651e136c0d1a21ee0902"
 }
