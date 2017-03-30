@@ -44,7 +44,22 @@
             "id": "securing-access-to-back-end",
             "name": "Securing access to back-end",
             "description": null
+        },
+        {
+            "id": "list-view-change-page-title",
+            "name": "List view: change page title",
+            "description": null
+        },
+        {
+            "id": "list-view-change-page-title-using-special-variables",
+            "name": "List view: change page title using special variables",
+            "description": null
+        },
+        {
+            "id": "list-view-move-to-expanded-configuration-format",
+            "name": "List view: move to expanded configuration format",
+            "description": null
         }
     ],
-    "sha": "95bcaccd5849d3a1634143ee7caab35cda341cdd"
+    "sha": "e0ca0ad185f029e3eab8604d89398f95e0cf9972"
 }
