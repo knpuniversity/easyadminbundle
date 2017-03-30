@@ -31,8 +31,8 @@
             "description": null
         },
         {
-            "id": "configuration-change-date-format",
-            "name": "Configuration: change date format",
+            "id": "configuration-change-brand-color",
+            "name": "Configuration: change brand color",
             "description": null
         },
         {
@@ -46,5 +46,5 @@
             "description": null
         }
     ],
-    "sha": "596df8d86bd68589ee2c61ccd5b6d5c58a3c2348"
+    "sha": "95bcaccd5849d3a1634143ee7caab35cda341cdd"
 }
