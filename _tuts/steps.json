@@ -114,7 +114,57 @@
             "id": "list-view-customize-action-presentation",
             "name": "List view: customize action presentation",
             "description": null
+        },
+        {
+            "id": "list-view-customize-rows-to-display",
+            "name": "List view: customize rows to display",
+            "description": null
+        },
+        {
+            "id": "show-view-customize-rows-to-display",
+            "name": "Show view: customize rows to display",
+            "description": null
+        },
+        {
+            "id": "list-view-customize-the-properties-displayed",
+            "name": "List view: customize the properties displayed",
+            "description": null
+        },
+        {
+            "id": "search-view-customize-the-properties-displayed",
+            "name": "Search view: customize the properties displayed",
+            "description": null
+        },
+        {
+            "id": "list-view-change-is-scientist-property-appearance",
+            "name": "List view: change is scientist property appearance",
+            "description": null
+        },
+        {
+            "id": "list-view-add-virtual-property",
+            "name": "List view: add virtual property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-email-property",
+            "name": "List view: add email property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-url-property",
+            "name": "List view: add url property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-image-property",
+            "name": "List view: add image property",
+            "description": null
+        },
+        {
+            "id": "list-view-fix-image-property",
+            "name": "List view: fix image property",
+            "description": null
         }
     ],
-    "sha": "4d884883bf6181bdfffd651e136c0d1a21ee0902"
+    "sha": "1b2ae9923a3d13a22a93caf4d8e95709a9071b89"
 }

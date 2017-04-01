@@ -1,0 +1,12 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 65327ae..3d1fe82 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -88,6 +88,7 @@ easy_admin:
+     list:
+         title: 'List of %%entity_label%%'
+         actions: ['show']
++        max_results: 5
+     entities:
+         Genus:
+             class: AppBundle\Entity\Genus
