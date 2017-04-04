@@ -164,7 +164,67 @@
             "id": "list-view-fix-image-property",
             "name": "List view: fix image property",
             "description": null
+        },
+        {
+            "id": "list-view-globally-set-date-format",
+            "name": "List view: globally set date format",
+            "description": null
+        },
+        {
+            "id": "list-view-change-date-format-for-property",
+            "name": "List view: change date format for property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-species-count-back",
+            "name": "List view: add species count back ",
+            "description": null
+        },
+        {
+            "id": "list-view-change-number-format-of-species-count-property",
+            "name": "List view: change number format of species count property",
+            "description": null
+        },
+        {
+            "id": "list-view-sort-genus-by-name",
+            "name": "List view: sort genus by name",
+            "description": null
+        },
+        {
+            "id": "list-view-sort-by-relation-property",
+            "name": "List view: sort by relation property",
+            "description": null
+        },
+        {
+            "id": "list-view-disable-sort-for-column",
+            "name": "List view: disable sort for column",
+            "description": null
+        },
+        {
+            "id": "list-view-preparing-for-filtering",
+            "name": "List view: preparing for filtering",
+            "description": null
+        },
+        {
+            "id": "list-view-filter-entities-by-property",
+            "name": "List view: filter entities by property",
+            "description": null
+        },
+        {
+            "id": "list-view-use-container-parameter-in-filter",
+            "name": "List view: use container parameter in filter",
+            "description": null
+        },
+        {
+            "id": "list-view-filter-with-multiple-conditions",
+            "name": "List view: filter with multiple conditions",
+            "description": null
+        },
+        {
+            "id": "search-view-use-different-filter-for-search",
+            "name": "Search view: use different filter for search",
+            "description": null
         }
     ],
-    "sha": "1b2ae9923a3d13a22a93caf4d8e95709a9071b89"
+    "sha": "6acccd2dd03388e67cbea8b44e469b55fc32d066"
 }
