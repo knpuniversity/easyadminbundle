@@ -259,7 +259,32 @@
             "id": "templates-custom-template-for-property",
             "name": "Templates: custom template for property",
             "description": null
+        },
+        {
+            "id": "form-change-title",
+            "name": "Form: change title",
+            "description": null
+        },
+        {
+            "id": "form-customize-available-fields",
+            "name": "Form: customize available fields",
+            "description": null
+        },
+        {
+            "id": "form-customize-fields",
+            "name": "Form: customize fields",
+            "description": null
+        },
+        {
+            "id": "form-customize-date-property",
+            "name": "Form: customize date property",
+            "description": null
+        },
+        {
+            "id": "form-autocomplete-sub-family",
+            "name": "Form: autocomplete sub family",
+            "description": null
         }
     ],
-    "sha": "42b3f18f937b3329d4412aa242fedbfab7c7bc81"
+    "sha": "aeb8b45e48d265b226d9c0dd29e051dd19453494"
 }

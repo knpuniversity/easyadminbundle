@@ -1,0 +1,22 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 1eb71f0..4a8a893 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -94,7 +94,7 @@ easy_admin:
+         actions: ['show']
+         max_results: 5
+     show:
+-        max_results: 15
++        max_results: 6
+     entities:
+         Genus:
+             class: AppBundle\Entity\Genus
+@@ -129,7 +129,7 @@ easy_admin:
+                     - funFact
+                     - isPublished
+                     - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
+-                    - subFamily
++                    - { property: 'subFamily', type: 'easyadmin_autocomplete' }
+                     - notes
+                     - genusScientists
+             new:
