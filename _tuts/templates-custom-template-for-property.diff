@@ -1,0 +1,22 @@
+diff --git a/app/Resources/views/easy_admin/scientist_fullname.html.twig b/app/Resources/views/easy_admin/scientist_fullname.html.twig
+new file mode 100644
+index 0000000..78b3005
+--- /dev/null
++++ b/app/Resources/views/easy_admin/scientist_fullname.html.twig
+@@ -0,0 +1,5 @@
++{% if item.isScientist %}
++    <i class="fa fa-graduation-cap"></i>
++{% endif %}
++
++{{ value|default('Stranger') }}
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 33219ea..fd3b549 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -153,5 +153,5 @@ easy_admin:
+                     - id
+                     - { property: 'email', type: 'email' }
+                     - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
+-                    - fullName
++                    - { property: 'fullName', template: 'scientist_fullname.html.twig' }
+                     - { property: 'avatarUri', type: 'url' }

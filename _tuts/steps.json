@@ -224,7 +224,42 @@
             "id": "search-view-use-different-filter-for-search",
             "name": "Search view: use different filter for search",
             "description": null
+        },
+        {
+            "id": "templates-override-for-entity-by-configuration",
+            "name": "Templates: override for entity by configuration",
+            "description": null
+        },
+        {
+            "id": "templates-override-globally-by-configuration",
+            "name": "Templates: override globally by configuration",
+            "description": null
+        },
+        {
+            "id": "templates-override-by-convention",
+            "name": "Templates: override by convention",
+            "description": null
+        },
+        {
+            "id": "templates-using-dump-to-learn-about-variables",
+            "name": "Templates: using dump to learn about variables",
+            "description": null
+        },
+        {
+            "id": "templates-remove-dump-call",
+            "name": "Templates: remove dump call",
+            "description": null
+        },
+        {
+            "id": "templates-extend-from-an-existing-template",
+            "name": "Templates: extend from an existing template",
+            "description": null
+        },
+        {
+            "id": "templates-custom-template-for-property",
+            "name": "Templates: custom template for property",
+            "description": null
         }
     ],
-    "sha": "6acccd2dd03388e67cbea8b44e469b55fc32d066"
+    "sha": "42b3f18f937b3329d4412aa242fedbfab7c7bc81"
 }
