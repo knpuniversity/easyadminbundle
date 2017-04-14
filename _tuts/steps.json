@@ -284,7 +284,22 @@
             "id": "form-autocomplete-sub-family",
             "name": "Form: autocomplete sub family",
             "description": null
+        },
+        {
+            "id": "form-use-collection-field-for-genus-scientists",
+            "name": "Form: use collection field for genus scientists",
+            "description": null
+        },
+        {
+            "id": "form-fix-missing-user-in-genus-scientists-form",
+            "name": "Form: fix missing user in genus scientists form",
+            "description": null
+        },
+        {
+            "id": "form-provide-more-information-for-genus-scientist-relation",
+            "name": "Form: provide more information for genus scientist relation",
+            "description": null
         }
     ],
-    "sha": "aeb8b45e48d265b226d9c0dd29e051dd19453494"
+    "sha": "939ebd7c4d176f078edba433e11f92d25c0a1175"
 }

@@ -1,0 +1,24 @@
+diff --git a/src/AppBundle/Form/GenusScientistEmbeddedForm.php b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
+index f6232dd..e4eea06 100644
+--- a/src/AppBundle/Form/GenusScientistEmbeddedForm.php
++++ b/src/AppBundle/Form/GenusScientistEmbeddedForm.php
+@@ -36,7 +36,11 @@ class GenusScientistEmbeddedForm extends AbstractType
+     {
+         if ($event->getData() && $event->getData()->getId()) {
+             $form = $event->getForm();
+-            unset($form['user']);
++            $fieldConfig = $form->get('user')->getConfig();
++            $fieldOptions = $fieldConfig->getOptions();
++            $fieldOptions['disabled'] = true;
++
++            $form->add('user', EntityType::class, $fieldOptions);
+         }
+     }
+ 
+@@ -48,4 +52,4 @@ class GenusScientistEmbeddedForm extends AbstractType
+     }
+ 
+ 
+-}
+\ No newline at end of file
++}
