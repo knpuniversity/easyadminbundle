@@ -299,7 +299,42 @@
             "id": "form-provide-more-information-for-genus-scientist-relation",
             "name": "Form: provide more information for genus scientist relation",
             "description": null
+        },
+        {
+            "id": "form-remove-notes-field-from-genus",
+            "name": "Form: remove notes field from genus",
+            "description": null
+        },
+        {
+            "id": "form-use-virtual-property",
+            "name": "Form: use virtual property",
+            "description": null
+        },
+        {
+            "id": "form-change-theme-to-vertical",
+            "name": "Form: change theme to vertical",
+            "description": null
+        },
+        {
+            "id": "form-add-dividers-to-user-form",
+            "name": "Form: add dividers to user form",
+            "description": null
+        },
+        {
+            "id": "form-add-sections-to-user-form",
+            "name": "Form: add sections to user form",
+            "description": null
+        },
+        {
+            "id": "form-add-groups-to-genus-form",
+            "name": "Form: add groups to genus form",
+            "description": null
+        },
+        {
+            "id": "form-force-multi-column-group-to-start-on-new-row",
+            "name": "Form: force multi-column group to start on new row",
+            "description": null
         }
     ],
-    "sha": "939ebd7c4d176f078edba433e11f92d25c0a1175"
+    "sha": "8b0fa1c4f539bc87bcf5281cd3910989b78923ea"
 }

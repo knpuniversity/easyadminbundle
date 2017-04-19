@@ -1,9 +1,9 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 9a82085..1248dfc 100644
+index 5e85259..fe293c1 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -122,10 +122,24 @@ easy_admin:
-                 field_id: '@App/admin/fields/_id.html.twig'
+                 field_id: 'admin/fields/_id.html.twig'
              form:
                  title: Add genus
 +                fields:

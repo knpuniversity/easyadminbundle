@@ -1,0 +1,39 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 76eba71..3f396fd 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -124,21 +124,31 @@ easy_admin:
+             form:
+                 title: Add genus
+                 fields:
+-                    - { property: 'id', type_options: { disabled: true }}
++                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
+                     - { property: 'name', type_options: { attr: { autofocus: true }}}
+                     - speciesCount
+-                    - funFact
+-                    - isPublished
+                     - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
+                     - { property: 'subFamily', type: 'easyadmin_autocomplete' }
++                    - { type: 'section', label: 'Optional' }
++                    - funFact
++                    - isPublished
++                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
+                     -
+                         property: 'genusScientists'
+                         type: 'collection'
++                        label: ' '
+                         type_options:
+                             entry_type: AppBundle\Form\GenusScientistEmbeddedForm
+                             allow_delete: true
+                             allow_add: true
+                             by_reference: false
++                    -
++                        type: 'group'
++                        css_class: 'col-sm-6'
++                        label: 'Identification'
++                        icon: 'id-card-o'
++                        help: 'For administrators'
++                    - { property: 'id', type_options: { disabled: true }}
+             new:
+                 # uses the `title` from `form` view configuration
+                 fields:

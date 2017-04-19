@@ -1,5 +1,12 @@
+diff --git a/app/Resources/views/admin/fields/_id_global.html.twig b/app/Resources/views/admin/fields/_id_global.html.twig
+new file mode 100644
+index 0000000..2c2801e
+--- /dev/null
++++ b/app/Resources/views/admin/fields/_id_global.html.twig
+@@ -0,0 +1 @@
++{{ value }} <i class="fa fa-key"></i>
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 578c3d8..33219ea 100644
+index f04e5e5..394f75a 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -87,6 +87,8 @@ easy_admin:
@@ -7,14 +14,7 @@ index 578c3d8..33219ea 100644
          assets:
              css: ['/css/custom_backend.css']
 +        templates:
-+            field_id: '@App/admin/fields/_id_global.html.twig'
++            field_id: 'admin/fields/_id_global.html.twig'
      list:
          title: 'List of %%entity_label%%'
          actions: ['show']
-diff --git a/src/AppBundle/Resources/views/admin/fields/_id_global.html.twig b/src/AppBundle/Resources/views/admin/fields/_id_global.html.twig
-new file mode 100644
-index 0000000..2c2801e
---- /dev/null
-+++ b/src/AppBundle/Resources/views/admin/fields/_id_global.html.twig
-@@ -0,0 +1 @@
-+{{ value }} <i class="fa fa-key"></i>

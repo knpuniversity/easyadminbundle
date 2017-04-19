@@ -1,3 +1,10 @@
+diff --git a/app/Resources/views/admin/fields/_id.html.twig b/app/Resources/views/admin/fields/_id.html.twig
+index 38bd411..b204edd 100644
+--- a/app/Resources/views/admin/fields/_id.html.twig
++++ b/app/Resources/views/admin/fields/_id.html.twig
+@@ -1 +1 @@
+-{{ dump() }}<i class="fa fa-key"></i> {{ value }}
++<i class="fa fa-key"></i> {{ value }}
 diff --git a/app/Resources/views/easy_admin/list.html.twig b/app/Resources/views/easy_admin/list.html.twig
 index 7e420b5..a9980c5 100644
 --- a/app/Resources/views/easy_admin/list.html.twig
@@ -10,10 +17,3 @@ index 7e420b5..a9980c5 100644
      <div class="row">
          <div class="col-sm-5">
              {% block content_title_wrapper %}
-diff --git a/src/AppBundle/Resources/views/admin/fields/_id.html.twig b/src/AppBundle/Resources/views/admin/fields/_id.html.twig
-index 38bd411..b204edd 100644
---- a/src/AppBundle/Resources/views/admin/fields/_id.html.twig
-+++ b/src/AppBundle/Resources/views/admin/fields/_id.html.twig
-@@ -1 +1 @@
--{{ dump() }}<i class="fa fa-key"></i> {{ value }}
-+<i class="fa fa-key"></i> {{ value }}

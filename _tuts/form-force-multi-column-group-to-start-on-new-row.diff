@@ -1,0 +1,18 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 3f396fd..6baf555 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -144,11 +144,12 @@ easy_admin:
+                             by_reference: false
+                     -
+                         type: 'group'
+-                        css_class: 'col-sm-6'
++                        css_class: 'col-sm-3 new-row'
+                         label: 'Identification'
+                         icon: 'id-card-o'
+                         help: 'For administrators'
+                     - { property: 'id', type_options: { disabled: true }}
++                    - { type: 'group', label: '... continued', css_class: 'col-sm-3', help: 'Ooops' }
+             new:
+                 # uses the `title` from `form` view configuration
+                 fields:
