@@ -1,0 +1,60 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 2d2cb4c..07ddd3f 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -87,6 +87,9 @@ easy_admin:
+         brand_color: '#81b9ba'
+         assets:
+             css: ['/css/custom_backend.css']
++            js:
++                - 'https://unpkg.com/snarkdown@1.2.2/dist/snarkdown.umd.js'
++                - '/js/custom_backend.js'
+         templates:
+             field_id: 'admin/fields/_id_global.html.twig'
+     list:
+@@ -125,7 +128,7 @@ easy_admin:
+                     - { property: 'id', type_options: { disabled: true }}
+                     - { property: 'name', type_options: { attr: { autofocus: true }}}
+                     - speciesCount
+-                    - funFact
++                    - { property: 'funFact', css_class: 'js-markdown-input' }
+                     - isPublished
+                     - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
+                     - { property: 'subFamily', type: 'easyadmin_autocomplete' }
+diff --git a/web/css/custom_backend.css b/web/css/custom_backend.css
+index d950614..52b5da3 100644
+--- a/web/css/custom_backend.css
++++ b/web/css/custom_backend.css
+@@ -1,3 +1,13 @@
+ .main-header .logo {
+     color: #3a3a3a;
+ }
++
++.markdown-preview {
++    margin-top: 10px;
++    border: 2px dashed #da3735;
++    padding: 5px;
++}
++
++.markdown-preview::before {
++    content: "Preview: ";
++}
+diff --git a/web/js/custom_backend.js b/web/js/custom_backend.js
+new file mode 100644
+index 0000000..ee167dc
+--- /dev/null
++++ b/web/js/custom_backend.js
+@@ -0,0 +1,13 @@
++$(document).ready(function () {
++    var $markdownInputs = $('.js-markdown-input .form-control')
++
++    $markdownInputs.after('<div class="markdown-preview"></div>');
++
++    $markdownInputs.on('keyup', function (e) {
++        var html = snarkdown(e.target.value);
++
++        e.target.nextElementSibling.innerHTML = html;
++    });
++
++    $markdownInputs.trigger('keyup');
++});

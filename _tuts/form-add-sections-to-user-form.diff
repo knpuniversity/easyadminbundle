@@ -1,14 +1,13 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 73a5a7a..2864597 100644
+index 0453d08..e1dc457 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -185,12 +185,18 @@ easy_admin:
+@@ -187,11 +187,17 @@ easy_admin:
+                     - { property: 'avatarUri', type: 'url' }
              form:
                  fields:
-                     - { property: 'fullName', type: 'text', help: 'First then Last' }
 +                    - { type: 'section', label: 'User details' }
-                     - { property: 'firstName', type_options: { disabled: true }}
-                     - { property: 'lastName', type_options: { disabled: true }}
+                     - { property: 'fullName', type: 'text', help: 'First then Last' }
                      - { type: 'divider' }
                      - avatarUri
 -                    - { type: 'divider' }

@@ -1,9 +1,9 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f646c31..044f7a5 100644
+index 07ddd3f..f1fc7c7 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -89,6 +89,7 @@ easy_admin:
-             css: ['/css/custom_backend.css']
+@@ -92,6 +92,7 @@ easy_admin:
+                 - '/js/custom_backend.js'
          templates:
              field_id: 'admin/fields/_id_global.html.twig'
 +        form_theme: vertical

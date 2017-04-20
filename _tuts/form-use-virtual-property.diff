@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2eb627d..f646c31 100644
+index 2eb627d..2d2cb4c 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -181,3 +181,12 @@ easy_admin:
+@@ -181,3 +181,10 @@ easy_admin:
                      - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
                      - { property: 'fullName', template: 'scientist_fullname.html.twig' }
                      - { property: 'avatarUri', type: 'url' }
@@ -11,8 +11,6 @@ index 2eb627d..f646c31 100644
 +                    - email
 +                    - isScientist
 +                    - { property: 'fullName', type: 'text', help: 'First then Last' }
-+                    - { property: 'firstName', type_options: { disabled: true }}
-+                    - { property: 'lastName', type_options: { disabled: true }}
 +                    - avatarUri
 +                    - universityName
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php

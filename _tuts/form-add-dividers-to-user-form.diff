@@ -1,16 +1,14 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 044f7a5..73a5a7a 100644
+index f1fc7c7..0453d08 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -184,10 +184,13 @@ easy_admin:
+@@ -187,8 +187,11 @@ easy_admin:
                      - { property: 'avatarUri', type: 'url' }
              form:
                  fields:
 -                    - email
 -                    - isScientist
                      - { property: 'fullName', type: 'text', help: 'First then Last' }
-                     - { property: 'firstName', type_options: { disabled: true }}
-                     - { property: 'lastName', type_options: { disabled: true }}
 +                    - { type: 'divider' }
                      - avatarUri
 +                    - { type: 'divider' }

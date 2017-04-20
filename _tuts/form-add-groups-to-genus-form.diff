@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2864597..1f355e8 100644
+index e1dc457..2de5e4e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -123,21 +123,31 @@ easy_admin:
+@@ -126,21 +126,31 @@ easy_admin:
                  field_id: 'admin/fields/_id.html.twig'
              form:
                  fields:
@@ -10,12 +10,12 @@ index 2864597..1f355e8 100644
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
                      - { property: 'name', type_options: { attr: { autofocus: true }}}
                      - speciesCount
--                    - funFact
+-                    - { property: 'funFact', css_class: 'js-markdown-input' }
 -                    - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
                      - { property: 'subFamily', type: 'easyadmin_autocomplete' }
 +                    - { type: 'section', label: 'Optional' }
-+                    - funFact
++                    - { property: 'funFact', css_class: 'js-markdown-input' }
 +                    - isPublished
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
                      -
