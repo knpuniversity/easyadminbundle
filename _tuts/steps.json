@@ -261,6 +261,11 @@
             "description": null
         },
         {
+            "id": "form-change-title",
+            "name": "Form: change title",
+            "description": null
+        },
+        {
             "id": "form-customize-available-fields",
             "name": "Form: customize available fields",
             "description": null
@@ -331,5 +336,5 @@
             "description": null
         }
     ],
-    "sha": "a1e9a91b0432368153444cd33e078289fc4c2cc3"
+    "sha": "72f00e4c6bbb2a945c38829496bd171bfcfa3b8f"
 }

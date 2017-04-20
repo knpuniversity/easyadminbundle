@@ -1,11 +1,11 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index be50282..d88ab4f 100644
+index 5024358..2eb627d 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -130,7 +130,14 @@ easy_admin:
+@@ -129,7 +129,14 @@ easy_admin:
+                     - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
                      - { property: 'subFamily', type: 'easyadmin_autocomplete' }
-                     - notes
 -                    - genusScientists
 +                    -
 +                        property: 'genusScientists'

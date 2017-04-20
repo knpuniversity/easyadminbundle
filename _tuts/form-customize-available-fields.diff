@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index d594d54..1a3ad73 100644
+index d594d54..27be35d 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -120,6 +120,23 @@ easy_admin:
+@@ -120,6 +120,22 @@ easy_admin:
                  actions: ['-delete']
              templates:
                  field_id: 'admin/fields/_id.html.twig'
@@ -15,7 +15,6 @@ index d594d54..1a3ad73 100644
 +                    - isPublished
 +                    - firstDiscoveredAt
 +                    - subFamily
-+                    - notes
 +                    - genusScientists
 +            new:
 +                fields:
