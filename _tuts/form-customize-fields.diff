@@ -1,10 +1,10 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index fe293c1..58dbbdf 100644
+index 1a3ad73..5343ec6 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -123,8 +123,8 @@ easy_admin:
+@@ -122,8 +122,8 @@ easy_admin:
+                 field_id: 'admin/fields/_id.html.twig'
              form:
-                 title: Add genus
                  fields:
 -                    - id
 -                    - name
@@ -13,9 +13,9 @@ index fe293c1..58dbbdf 100644
                      - speciesCount
                      - funFact
                      - isPublished
-@@ -139,7 +139,10 @@ easy_admin:
+@@ -136,7 +136,10 @@ easy_admin:
+                     - '-id'
              edit:
-                 title: Edit genus
                  fields:
 -                    - slug
 +                    -

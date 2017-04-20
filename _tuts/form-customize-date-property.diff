@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 58dbbdf..0bcc355 100644
+index 5343ec6..3410299 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -128,7 +128,7 @@ easy_admin:
+@@ -127,7 +127,7 @@ easy_admin:
                      - speciesCount
                      - funFact
                      - isPublished

@@ -1,11 +1,12 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 5e85259..fe293c1 100644
+index d594d54..1a3ad73 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -122,10 +122,24 @@ easy_admin:
+@@ -120,6 +120,23 @@ easy_admin:
+                 actions: ['-delete']
+             templates:
                  field_id: 'admin/fields/_id.html.twig'
-             form:
-                 title: Add genus
++            form:
 +                fields:
 +                    - id
 +                    - name
@@ -16,12 +17,10 @@ index 5e85259..fe293c1 100644
 +                    - subFamily
 +                    - notes
 +                    - genusScientists
-             new:
-                 # uses the `title` from `form` view configuration
++            new:
 +                fields:
 +                    - '-id'
-             edit:
-                 title: Edit genus
++            edit:
 +                fields:
 +                    - slug
          GenusHorde:

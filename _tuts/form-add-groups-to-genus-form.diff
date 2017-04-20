@@ -1,10 +1,10 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 76eba71..3f396fd 100644
+index 2864597..1f355e8 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -124,21 +124,31 @@ easy_admin:
+@@ -123,21 +123,31 @@ easy_admin:
+                 field_id: 'admin/fields/_id.html.twig'
              form:
-                 title: Add genus
                  fields:
 -                    - { property: 'id', type_options: { disabled: true }}
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
@@ -35,5 +35,5 @@ index 76eba71..3f396fd 100644
 +                        help: 'For administrators'
 +                    - { property: 'id', type_options: { disabled: true }}
              new:
-                 # uses the `title` from `form` view configuration
                  fields:
+                     - '-id'

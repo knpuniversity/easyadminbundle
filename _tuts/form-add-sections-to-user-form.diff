@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 3b97a8e..76eba71 100644
+index 73a5a7a..2864597 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -188,12 +188,18 @@ easy_admin:
+@@ -185,12 +185,18 @@ easy_admin:
              form:
                  fields:
                      - { property: 'fullName', type: 'text', help: 'First then Last' }

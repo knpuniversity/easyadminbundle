@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 4846fa4..53b9efa 100644
+index be50282..d88ab4f 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -131,7 +131,14 @@ easy_admin:
+@@ -130,7 +130,14 @@ easy_admin:
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
                      - { property: 'subFamily', type: 'easyadmin_autocomplete' }
                      - notes
@@ -16,5 +16,5 @@ index 4846fa4..53b9efa 100644
 +                            allow_add: true
 +                            by_reference: false
              new:
-                 # uses the `title` from `form` view configuration
                  fields:
+                     - '-id'

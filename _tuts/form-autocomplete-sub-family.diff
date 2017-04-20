@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 0bcc355..4846fa4 100644
+index 3410299..be50282 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -94,7 +94,7 @@ easy_admin:
@@ -11,7 +11,7 @@ index 0bcc355..4846fa4 100644
      entities:
          Genus:
              class: AppBundle\Entity\Genus
-@@ -129,7 +129,7 @@ easy_admin:
+@@ -128,7 +128,7 @@ easy_admin:
                      - funFact
                      - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}

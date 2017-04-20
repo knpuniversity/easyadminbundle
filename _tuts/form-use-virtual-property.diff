@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index e87a8d5..2fa55bf 100644
+index 2eb627d..f646c31 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -184,3 +184,12 @@ easy_admin:
+@@ -181,3 +181,12 @@ easy_admin:
                      - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
                      - { property: 'fullName', template: 'scientist_fullname.html.twig' }
                      - { property: 'avatarUri', type: 'url' }
