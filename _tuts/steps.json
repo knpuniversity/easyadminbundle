@@ -261,11 +261,6 @@
             "description": null
         },
         {
-            "id": "form-change-title",
-            "name": "Form: change title",
-            "description": null
-        },
-        {
             "id": "form-customize-available-fields",
             "name": "Form: customize available fields",
             "description": null
