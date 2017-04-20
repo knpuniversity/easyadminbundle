@@ -261,11 +261,6 @@
             "description": null
         },
         {
-            "id": "form-change-title",
-            "name": "Form: change title",
-            "description": null
-        },
-        {
             "id": "form-customize-available-fields",
             "name": "Form: customize available fields",
             "description": null
@@ -298,11 +293,6 @@
         {
             "id": "form-provide-more-information-for-genus-scientist-relation",
             "name": "Form: provide more information for genus scientist relation",
-            "description": null
-        },
-        {
-            "id": "form-remove-notes-field-from-genus",
-            "name": "Form: remove notes field from genus",
             "description": null
         },
         {
