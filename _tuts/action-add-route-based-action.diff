@@ -1,0 +1,57 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 07ddd3f..cb6d148 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -120,7 +120,14 @@ easy_admin:
+                 help: null
+                 fields: ['id', 'name']
+             show:
+-                actions: ['-delete']
++                actions:
++                    - '-delete'
++                    -
++                        name: 'genus_feed'
++                        type: 'route'
++                        label: 'Feed genus'
++                        css_class: 'btn btn-info'
++                        icon: 'cutlery'
+             templates:
+                 field_id: 'admin/fields/_id.html.twig'
+             form:
+diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
+index b2a01ef..8be8eb0 100644
+--- a/src/AppBundle/Controller/GenusController.php
++++ b/src/AppBundle/Controller/GenusController.php
+@@ -11,10 +11,32 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+ use Symfony\Component\HttpFoundation\JsonResponse;
++use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
+ 
+ class GenusController extends Controller
+ {
++    /**
++     * @Route("/genus/feed", name="genus_feed")
++     */
++    public function feedAction(Request $request)
++    {
++        $em = $this->getDoctrine()->getManager();
++        $id = $request->query->get('id');
++        $genus = $em->getRepository('AppBundle:Genus')->find($id);
++
++        $menu = ['shrimp', 'clams', 'lobsters', 'dolphin'];
++        $meal = $menu[random_int(0, 3)];
++
++        $this->addFlash('info', $genus->feed([$meal]));
++
++        return $this->redirectToRoute('easyadmin', [
++            'action' => 'show',
++            'entity' => $request->get('entity'),
++            'id' => $id
++        ]);
++    }
++
+     /**
+      * @Route("/genus/types-example")
+      */

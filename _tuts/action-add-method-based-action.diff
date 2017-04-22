@@ -1,0 +1,54 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index cb6d148..300bea8 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -128,6 +128,7 @@ easy_admin:
+                         label: 'Feed genus'
+                         css_class: 'btn btn-info'
+                         icon: 'cutlery'
++                    - { name: 'changePublishedStatus', css_class: 'btn' }
+             templates:
+                 field_id: 'admin/fields/_id.html.twig'
+             form:
+diff --git a/app/config/routing.yml b/app/config/routing.yml
+index 26e8209..4b56744 100644
+--- a/app/config/routing.yml
++++ b/app/config/routing.yml
+@@ -8,6 +8,6 @@ homepage:
+         _controller: AppBundle:Main:homepage
+ 
+ easy_admin_bundle:
+-    resource: "@EasyAdminBundle/Controller/"
++    resource: "@AppBundle/Controller/EasyAdmin/AdminController.php"
+     type: annotation
+     prefix: /easyadmin
+diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
+new file mode 100644
+index 0000000..1c6499a
+--- /dev/null
++++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
+@@ -0,0 +1,24 @@
++<?php
++
++namespace AppBundle\Controller\EasyAdmin;
++
++use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
++
++class AdminController extends BaseAdminController
++{
++    public function changePublishedStatusAction()
++    {
++        $id = $this->request->query->get('id');
++        $entity = $this->em->getRepository('AppBundle:Genus')->find($id);
++
++        $entity->setIsPublished(!$entity->getIsPublished());
++
++        $this->em->flush();
++
++        return $this->redirectToRoute('easyadmin', [
++            'action' => 'show',
++            'entity' => $this->request->query->get('entity'),
++            'id' => $id,
++        ]);
++    }
++}

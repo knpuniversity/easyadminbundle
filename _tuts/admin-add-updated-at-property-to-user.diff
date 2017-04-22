@@ -1,0 +1,108 @@
+diff --git a/app/DoctrineMigrations/Version20170422151056.php b/app/DoctrineMigrations/Version20170422151056.php
+new file mode 100644
+index 0000000..72f8945
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20170422151056.php
+@@ -0,0 +1,34 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20170422151056 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE user ADD updated_at DATETIME DEFAULT NULL');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE user DROP updated_at');
++    }
++}
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 300bea8..b478ec7 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -185,6 +185,7 @@ easy_admin:
+             disabled_actions: ['show']
+         User:
+             class: AppBundle\Entity\User
++            controller: AppBundle\Controller\EasyAdmin\UserController
+             list:
+                 fields:
+                     - id
+diff --git a/src/AppBundle/Controller/EasyAdmin/UserController.php b/src/AppBundle/Controller/EasyAdmin/UserController.php
+new file mode 100644
+index 0000000..1abaca5
+--- /dev/null
++++ b/src/AppBundle/Controller/EasyAdmin/UserController.php
+@@ -0,0 +1,13 @@
++<?php
++
++namespace AppBundle\Controller\EasyAdmin;
++
++use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
++
++class UserController extends BaseAdminController
++{
++    protected function preUpdateEntity($entity)
++    {
++        $entity->setUpdatedAt(new \DateTime());
++    }
++}
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 339db2b..7c82c51 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -80,6 +80,11 @@ class User implements UserInterface
+      */
+     private $studiedGenuses;
+ 
++    /**
++     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
++     */
++    private $updatedAt;
++
+     public function __construct()
+     {
+         $this->studiedGenuses = new ArrayCollection();
+@@ -234,4 +239,20 @@ class User implements UserInterface
+     {
+         return (string)$this->getFullName();
+     }
++
++    /**
++     * @return mixed
++     */
++    public function getUpdatedAt()
++    {
++        return $this->updatedAt;
++    }
++
++    /**
++     * @param mixed $updatedAt
++     */
++    public function setUpdatedAt($updatedAt)
++    {
++        $this->updatedAt = $updatedAt;
++    }
+ }
