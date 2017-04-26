@@ -1,0 +1,18 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index f6b9141..050ffeb 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -98,6 +98,13 @@ easy_admin:
+             -
+                 label: 'Genus'
+                 children:
++                    -
++                        entity: 'Genus'
++                        label: 'Pet genus'
++                        icon: 'paw'
++                        params:
++                            action: 'show'
++                            id: 2
+                     - { entity: 'Genus', default: true }
+                     -
+                         entity: 'Genus'

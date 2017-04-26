@@ -349,7 +349,62 @@
             "id": "form-force-multi-column-group-to-start-on-new-row",
             "name": "Form: force multi-column group to start on new row",
             "description": null
+        },
+        {
+            "id": "menu-reorder-items",
+            "name": "Menu: reorder items",
+            "description": null
+        },
+        {
+            "id": "menu-customize-labels",
+            "name": "Menu: customize labels",
+            "description": null
+        },
+        {
+            "id": "menu-customize-icons",
+            "name": "Menu: customize icons",
+            "description": null
+        },
+        {
+            "id": "menu-changing-the-back-end-index-page",
+            "name": "Menu: changing the back-end index page",
+            "description": null
+        },
+        {
+            "id": "menu-add-a-divider",
+            "name": "Menu: add a divider",
+            "description": null
+        },
+        {
+            "id": "menu-add-a-sub-menu",
+            "name": "Menu: add a sub-menu",
+            "description": null
+        },
+        {
+            "id": "menu-add-item-with-different-sort-parameters",
+            "name": "Menu: add item with different sort parameters",
+            "description": null
+        },
+        {
+            "id": "menu-add-an-item-to-an-entity-action",
+            "name": "Menu: add an item to an entity action",
+            "description": null
+        },
+        {
+            "id": "menu-add-an-item-with-symfony-route",
+            "name": "Menu: add an item with symfony route",
+            "description": null
+        },
+        {
+            "id": "menu-add-an-item-with-an-absolute-url",
+            "name": "Menu: add an item with an absolute url",
+            "description": null
+        },
+        {
+            "id": "configuration-move-configuration-to-separate-file",
+            "name": "Configuration: move configuration to separate file",
+            "description": null
         }
     ],
-    "sha": "b934b896d9214c2bcf481cb16f2fddc8010c762d"
+    "sha": "bd70428372ab088766642c73a67af7bd2eaed71a"
 }

@@ -1,0 +1,12 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 050ffeb..a86a3cb 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -94,6 +94,7 @@ easy_admin:
+             field_id: 'admin/fields/_id_global.html.twig'
+         form_theme: vertical
+         menu:
++            - { label: 'Open front-end', route: 'app_genus_list' }
+             - { entity: 'User', label: 'Users', icon: 'user' }
+             -
+                 label: 'Genus'

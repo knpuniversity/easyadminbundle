@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f025fc7..168325e 100644
+index f025fc7..d054a0e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -134,21 +134,31 @@ easy_admin:
+@@ -134,30 +134,41 @@ easy_admin:
                  field_id: 'admin/fields/_id.html.twig'
              form:
                  fields:
@@ -17,6 +17,7 @@ index f025fc7..168325e 100644
 +                    - { type: 'section', label: 'Optional' }
 +                    - { property: 'funFact', css_class: 'js-markdown-input' }
 +                    - isPublished
++
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
                      -
                          property: 'genusScientists'
@@ -27,6 +28,12 @@ index f025fc7..168325e 100644
                              allow_delete: true
                              allow_add: true
                              by_reference: false
+-            new:
+-                fields:
+-                    - '-id'
+-            edit:
+-                fields:
++
 +                    -
 +                        type: 'group'
 +                        css_class: 'col-sm-6'
@@ -34,6 +41,14 @@ index f025fc7..168325e 100644
 +                        icon: 'id-card-o'
 +                        help: 'For administrators'
 +                    - { property: 'id', type_options: { disabled: true }}
-             new:
-                 fields:
-                     - '-id'
+                     -
+                         property: 'slug'
+                         help: 'unique auto-generated value'
+                         type_options: { disabled: true }
++            new:
++                fields:
++                    - '-id'
++                    - '-slug'
+         GenusHorde:
+             class: AppBundle\Entity\Genus
+             label: HORDE of Genuses 😱 !!!

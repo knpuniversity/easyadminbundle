@@ -1,0 +1,19 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 9f628e0..6309436 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -94,11 +94,11 @@ easy_admin:
+             field_id: 'admin/fields/_id_global.html.twig'
+         form_theme: vertical
+         menu:
+-            - { entity: 'User', label: 'Users' }
++            - { entity: 'User', label: 'Users', icon: 'user' }
+             - 'Genus'
+             - 'GenusHorde'
+-            - { entity: 'GenusNote', label: 'Notes' }
+-            - { entity: 'SubFamily', label: 'Families' }
++            - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
++            - { entity: 'SubFamily', label: 'Families', icon: '' }
+     list:
+         title: 'List of %%entity_label%%'
+         actions: ['show']
