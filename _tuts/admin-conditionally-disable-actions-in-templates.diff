@@ -1,0 +1,99 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index cfce1e7..246df2b 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -36,3 +36,9 @@ services:
+         autowire: true
+         tags:
+             - { name: kernel.event_subscriber }
++
++    easyadmin.twig.extension:
++        class: AppBundle\Twig\Extension\EasyAdminExtension
++        autowire: true
++        tags:
++            - { name: twig.extension }
+diff --git a/src/AppBundle/Twig/Extension/EasyAdminExtension.php b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
+new file mode 100644
+index 0000000..5861d28
+--- /dev/null
++++ b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
+@@ -0,0 +1,79 @@
++<?php
++
++namespace AppBundle\Twig\Extension;
++
++use AppBundle\Entity\User;
++use JavierEguiluz\Bundle\EasyAdminBundle\Configuration\ConfigManager;
++use JavierEguiluz\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension;
++use Symfony\Component\PropertyAccess\PropertyAccessor;
++use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
++
++class EasyAdminExtension extends EasyAdminTwigExtension
++{
++    /** @var \Twig_Environment */
++    protected $twig;
++    /** @var ConfigManager */
++    protected $configManager;
++    /** @var PropertyAccessor */
++    protected $propertyAccessor;
++    /** @var bool */
++    protected $debug;
++
++    /**
++     * @var TokenStorageInterface
++     */
++    protected $tokenStorage;
++
++    public function __construct(ConfigManager $configManager, PropertyAccessor $propertyAccessor, TokenStorageInterface $tokenStorage, $debug = false)
++    {
++        $this->configManager = $configManager;
++        $this->propertyAccessor = $propertyAccessor;
++        $this->tokenStorage = $tokenStorage;
++        $this->debug = $debug;
++
++        parent::__construct($configManager, $propertyAccessor, $debug);
++    }
++
++    /**
++     * Returns the actions configured for each item displayed in the given view.
++     * This method is needed because some actions are displayed globally for the
++     * entire view (e.g. 'new' action in 'list' view).
++     *
++     * @param string $view
++     * @param string $entityName
++     *
++     * @return array
++     */
++    public function getActionsForItem($view, $entityName)
++    {
++        try {
++            $entityConfig = $this->configManager->getEntityConfig($entityName);
++        } catch (\Exception $e) {
++            return array();
++        }
++
++        $disabledActions = $entityConfig['disabled_actions'];
++        $viewActions = $entityConfig[$view]['actions'];
++
++        $actionsExcludedForItems = array(
++            'list' => array('new', 'search'),
++            'edit' => array(),
++            'new' => array(),
++            'show' => array(),
++        );
++        $excludedActions = $actionsExcludedForItems[$view];
++
++        if ($entityConfig['class'] === User::class) {
++            $user = $this->tokenStorage->getToken()->getUser();
++
++            if (!$user instanceof User || !$user->hasRole('SUPERADMIN')) {
++                $disabledActions[] = 'edit';
++                $disabledActions[] = 'delete';
++            }
++        }
++
++        return array_filter($viewActions, function ($action) use ($excludedActions, $disabledActions) {
++            return !in_array($action['name'], $excludedActions) && !in_array($action['name'], $disabledActions);
++        });
++    }
++}

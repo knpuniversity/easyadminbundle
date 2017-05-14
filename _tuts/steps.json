@@ -326,6 +326,16 @@
             "description": null
         },
         {
+            "id": "admin-conditionally-disable-actions-through-events",
+            "name": "Admin: conditionally disable actions through events",
+            "description": null
+        },
+        {
+            "id": "admin-conditionally-disable-actions-in-templates",
+            "name": "Admin: conditionally disable actions in templates",
+            "description": null
+        },
+        {
             "id": "form-change-theme-to-vertical",
             "name": "Form: change theme to vertical",
             "description": null
@@ -406,5 +416,5 @@
             "description": null
         }
     ],
-    "sha": "bd70428372ab088766642c73a67af7bd2eaed71a"
+    "sha": "9d0a3ee3c19f969e5325379ccc6aa8ceca4a13c1"
 }
