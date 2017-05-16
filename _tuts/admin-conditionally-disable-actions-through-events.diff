@@ -1,34 +1,46 @@
-diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index abaede7..0d067b8 100644
---- a/src/AppBundle/Entity/User.php
-+++ b/src/AppBundle/Entity/User.php
-@@ -108,6 +108,11 @@ class User implements UserInterface
-         return $this->email;
-     }
+diff --git a/app/config/security.yml b/app/config/security.yml
+index 37e5434..8506b97 100644
+--- a/app/config/security.yml
++++ b/app/config/security.yml
+@@ -6,6 +6,7 @@ security:
  
-+    public function hasRole($role)
-+    {
-+        return in_array('ROLE_'.$role, $this->getRoles(), true);
-+    }
-+
-     public function getRoles()
-     {
-         $roles = $this->roles;
+     role_hierarchy:
+         ROLE_ADMIN: [ROLE_MANAGE_GENUS, ROLE_ALLOWED_TO_SWITCH]
++        ROLE_SUPERADMIN: [ROLE_ADMIN]
+ 
+     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+     providers:
 diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
-index 017970a..5fac5e5 100644
+index 017970a..3b0b256 100644
 --- a/src/AppBundle/Event/EasyAdminSubscriber.php
 +++ b/src/AppBundle/Event/EasyAdminSubscriber.php
-@@ -6,7 +6,9 @@ use AppBundle\Entity\User;
+@@ -6,7 +6,10 @@ use AppBundle\Entity\User;
  use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
  use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  use Symfony\Component\EventDispatcher\GenericEvent;
 +use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
++use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 +use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  
  class EasyAdminSubscriber implements EventSubscriberInterface
  {
-@@ -23,10 +25,32 @@ class EasyAdminSubscriber implements EventSubscriberInterface
+@@ -15,18 +18,46 @@ class EasyAdminSubscriber implements EventSubscriberInterface
+      */
+     private $tokenStorage;
+ 
+-    public function __construct(TokenStorageInterface $tokenStorage)
++    /**
++     * @var AuthorizationCheckerInterface
++     */
++    private $authorizationChecker;
++
++    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker)
+     {
+         $this->tokenStorage = $tokenStorage;
++        $this->authorizationChecker = $authorizationChecker;
+     }
+ 
      public static function getSubscribedEvents()
      {
          return [
@@ -61,16 +73,14 @@ index 017970a..5fac5e5 100644
      public function preUpdate(GenericEvent $event)
      {
          $entity = $event->getSubject();
-@@ -40,4 +64,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
+@@ -40,4 +71,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
              $entity->setLastUpdatedBy($user);
          }
      }
 +
 +    private function denyUserActions(GenericEvent $event)
 +    {
-+        $user = $this->tokenStorage->getToken()->getUser();
-+
-+        if (!$user instanceof User || !$user->hasRole('SUPERADMIN')) {
++        if (!$this->authorizationChecker->isGranted('ROLE_SUPERADMIN')) {
 +            throw new AccessDeniedException();
 +        }
 +    }
