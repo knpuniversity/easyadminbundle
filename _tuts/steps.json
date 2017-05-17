@@ -336,6 +336,16 @@
             "description": null
         },
         {
+            "id": "admin-csv-export",
+            "name": "Admin: CSV export",
+            "description": null
+        },
+        {
+            "id": "admin-dashboard",
+            "name": "Admin: Dashboard",
+            "description": null
+        },
+        {
             "id": "form-change-theme-to-vertical",
             "name": "Form: change theme to vertical",
             "description": null
@@ -416,5 +426,5 @@
             "description": null
         }
     ],
-    "sha": "97b86cfc2fca8807812c4257be0e45fa8fd4abee"
+    "sha": "88ef922a9cb4bee622f69954ba72c20ffc2e3f12"
 }

@@ -1,0 +1,143 @@
+diff --git a/app/Resources/views/easy_admin/list.html.twig b/app/Resources/views/easy_admin/list.html.twig
+index 36f01c6..c3ec533 100644
+--- a/app/Resources/views/easy_admin/list.html.twig
++++ b/app/Resources/views/easy_admin/list.html.twig
+@@ -14,3 +14,20 @@
+ 
+     {{ parent() }}
+ {% endblock item_actions %}
++
++{% block global_actions %}
++    {{ parent() }}
++
++    {% if easyadmin_action_is_enabled_for_list_view('export', _entity_config.name) %}
++        {% set _action = easyadmin_get_action_for_list_view('export', _entity_config.name) %}
++
++        {% block export_action %}
++            <div class="button-action">
++                <a class="{{ _action.css_class|default('') }}" href="{{ path('easyadmin', _request_parameters|merge({ action: _action.name })) }}" target="{{ _action.target }}">
++                    {% if _action.icon %}<i class="fa fa-{{ _action.icon }}"></i>{% endif %}
++                    {{ _action.label is defined and not _action.label is empty ? _action.label|trans(_trans_parameters) }}
++                </a>
++            </div>
++        {% endblock export_action %}
++    {% endif %}
++{% endblock global_actions %}
+diff --git a/app/config/config.yml b/app/config/config.yml
+index b478ec7..c53cc99 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -94,7 +94,9 @@ easy_admin:
+             field_id: 'admin/fields/_id_global.html.twig'
+     list:
+         title: 'List of %%entity_label%%'
+-        actions: ['show']
++        actions:
++            - 'show'
++            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
+         max_results: 5
+     show:
+         max_results: 6
+diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
+index 1c6499a..122a70f 100644
+--- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
++++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
+@@ -2,7 +2,10 @@
+ 
+ namespace AppBundle\Controller\EasyAdmin;
+ 
++use AppBundle\Entity\Genus;
++use Doctrine\Common\Collections\ArrayCollection;
+ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
++use Symfony\Component\HttpFoundation\StreamedResponse;
+ 
+ class AdminController extends BaseAdminController
+ {
+@@ -21,4 +24,72 @@ class AdminController extends BaseAdminController
+             'id' => $id,
+         ]);
+     }
++
++    public function exportAction()
++    {
++        throw new \RuntimeException('Action for exporting an entity not defined');
++    }
++
++    public function exportGenusAction()
++    {
++        $sortDirection = $this->request->query->get('sortDirection');
++        if (empty($sortDirection) || !in_array(strtoupper($sortDirection), ['ASC', 'DESC'])) {
++            $sortDirection = 'DESC';
++        }
++
++        $queryBuilder = $this->createListQueryBuilder(
++            $this->entity['class'],
++            $sortDirection,
++            $this->request->query->get('sortField'),
++            $this->entity['list']['dql_filter']
++        );
++
++        $genuses = new ArrayCollection($queryBuilder->getQuery()->getResult());
++        $response = new StreamedResponse();
++
++        $response->setCallback(function () use ($genuses) {
++            $handle = fopen('php://output', 'w+');
++
++            $columns = [
++                'Genus ID' => function (Genus $genus) {
++                    return $genus->getId();
++                },
++                'Name' => function (Genus $genus) {
++                    return $genus->getName();
++                },
++                'Slug' => function (Genus $genus) {
++                    return $genus->getSlug();
++                },
++                'Sub Family' => function (Genus $genus) {
++                    return $genus->getSubFamily();
++                },
++                'Species count' => function (Genus $genus) {
++                    return $genus->getSpeciesCount();
++                },
++                // ...
++            ];
++
++            // Add header
++            fputcsv($handle, array_keys($columns));
++
++            while ($genus = $genuses->current()) {
++                $values = [];
++
++                foreach ($columns as $callback) {
++                    $values[] = $callback($genus);
++                }
++
++                fputcsv($handle, $values);
++
++                $genuses->next();
++            }
++
++            fclose($handle);
++        });
++
++        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
++        $response->headers->set('Content-Disposition', 'attachment; filename="genuses-export.csv"');
++
++        return $response;
++    }
+ }
+diff --git a/src/AppBundle/Twig/Extension/EasyAdminExtension.php b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
+index d4bf179..e628b74 100644
+--- a/src/AppBundle/Twig/Extension/EasyAdminExtension.php
++++ b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
+@@ -36,6 +36,10 @@ class EasyAdminExtension extends EasyAdminTwigExtension
+ 
+         $actions = parent::getActionsForItem($view, $entityName);
+ 
++        if (array_key_exists('export', $actions)) {
++            unset($actions['export']);
++        }
++
+         if ($entityConfig['class'] === User::class) {
+             if (!$this->authorizationChecker->isGranted('ROLE_SUPERADMIN')) {
+                 $disabledActions = ['edit', 'delete'];

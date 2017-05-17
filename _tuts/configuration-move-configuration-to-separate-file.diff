@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/admin.yml
-similarity index 74%
+similarity index 73%
 copy from app/config/config.yml
 copy to app/config/admin.yml
-index ab5f0e4..bc4649b 100644
+index 8198462..f551293 100644
 --- a/app/config/config.yml
 +++ b/app/config/admin.yml
 @@ -1,84 +1,3 @@
@@ -90,8 +90,19 @@ index ab5f0e4..bc4649b 100644
  easy_admin:
      site_name: 'Aqua<i>Note</i>'
      formats:
+@@ -129,9 +48,7 @@ easy_admin:
+                     - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
+     list:
+         title: 'List of %%entity_label%%'
+-        actions:
+-            - 'show'
+-            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
++        actions: ['show']
+         max_results: 5
+     show:
+         max_results: 6
 diff --git a/app/config/config.yml b/app/config/config.yml
-index ab5f0e4..0c9918e 100644
+index 8198462..0c9918e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -102,7 +113,7 @@ index ab5f0e4..0c9918e 100644
  
  # Put parameters here that don't need to change on each machine where the app is deployed
  # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-@@ -78,179 +79,3 @@ stof_doctrine_extensions:
+@@ -78,182 +79,3 @@ stof_doctrine_extensions:
      orm:
          default:
              sluggable: true
@@ -122,6 +133,7 @@ index ab5f0e4..0c9918e 100644
 -            field_id: 'admin/fields/_id_global.html.twig'
 -        form_theme: vertical
 -        menu:
+-            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
 -            - { label: 'Open front-end', route: 'app_genus_list' }
 -            - { entity: 'User', label: 'Users', icon: 'user' }
 -            -
@@ -134,14 +146,14 @@ index ab5f0e4..0c9918e 100644
 -                        params:
 -                            action: 'show'
 -                            id: 2
--                    - { entity: 'Genus', default: true }
+-                    - Genus
 -                    -
 -                        entity: 'Genus'
 -                        label: 'Genuses (sorted by ID)'
 -                        params:
 -                            sortField: 'id'
 -                            sortDirection: 'ASC'
--                    - 'GenusHorde'
+-                    - GenusHorde
 -                    - { label: 'Related' }
 -                    - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
 -                    - { entity: 'SubFamily', label: 'Families', icon: '' }
@@ -156,7 +168,9 @@ index ab5f0e4..0c9918e 100644
 -                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
 -    list:
 -        title: 'List of %%entity_label%%'
--        actions: ['show']
+-        actions:
+-            - 'show'
+-            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
 -        max_results: 5
 -    show:
 -        max_results: 6

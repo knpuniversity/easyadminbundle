@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index a86a3cb..ab5f0e4 100644
+index f2ccef0..8198462 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -117,6 +117,15 @@ easy_admin:
+@@ -118,6 +118,15 @@ easy_admin:
                      - { label: 'Related' }
                      - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
                      - { entity: 'SubFamily', label: 'Families', icon: '' }
@@ -17,4 +17,4 @@ index a86a3cb..ab5f0e4 100644
 +                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
      list:
          title: 'List of %%entity_label%%'
-         actions: ['show']
+         actions:

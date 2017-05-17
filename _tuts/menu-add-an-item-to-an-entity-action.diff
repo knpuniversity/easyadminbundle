@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f6b9141..050ffeb 100644
+index 9a7ae36..cc111dd 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -98,6 +98,13 @@ easy_admin:
+@@ -99,6 +99,13 @@ easy_admin:
              -
                  label: 'Genus'
                  children:
@@ -13,6 +13,6 @@ index f6b9141..050ffeb 100644
 +                        params:
 +                            action: 'show'
 +                            id: 2
-                     - { entity: 'Genus', default: true }
+                     - Genus
                      -
                          entity: 'Genus'
