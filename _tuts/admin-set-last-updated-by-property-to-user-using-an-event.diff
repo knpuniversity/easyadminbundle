@@ -1,0 +1,156 @@
+diff --git a/app/DoctrineMigrations/Version20170425153726.php b/app/DoctrineMigrations/Version20170425153726.php
+new file mode 100644
+index 0000000..7cc63e0
+--- /dev/null
++++ b/app/DoctrineMigrations/Version20170425153726.php
+@@ -0,0 +1,38 @@
++<?php
++
++namespace Application\Migrations;
++
++use Doctrine\DBAL\Migrations\AbstractMigration;
++use Doctrine\DBAL\Schema\Schema;
++
++/**
++ * Auto-generated Migration: Please modify to your needs!
++ */
++class Version20170425153726 extends AbstractMigration
++{
++    /**
++     * @param Schema $schema
++     */
++    public function up(Schema $schema)
++    {
++        // this up() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE user ADD last_updated_by_id INT DEFAULT NULL');
++        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D649E562D849 FOREIGN KEY (last_updated_by_id) REFERENCES user (id)');
++        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E562D849 ON user (last_updated_by_id)');
++    }
++
++    /**
++     * @param Schema $schema
++     */
++    public function down(Schema $schema)
++    {
++        // this down() migration is auto-generated, please modify it to your needs
++        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
++
++        $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D649E562D849');
++        $this->addSql('DROP INDEX UNIQ_8D93D649E562D849 ON user');
++        $this->addSql('ALTER TABLE user DROP last_updated_by_id');
++    }
++}
+diff --git a/app/config/services.yml b/app/config/services.yml
+index 0049595..cfce1e7 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -30,3 +30,9 @@ services:
+         autowire: true
+         tags:
+             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
++
++    app.easy_admin_subscriber:
++        class: AppBundle\Event\EasyAdminSubscriber
++        autowire: true
++        tags:
++            - { name: kernel.event_subscriber }
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 7c82c51..abaede7 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -85,6 +85,12 @@ class User implements UserInterface
+      */
+     private $updatedAt;
+ 
++    /**
++     * @ORM\OneToOne(targetEntity="User")
++     * @ORM\JoinColumn(name="last_updated_by_id", referencedColumnName="id", nullable=true)
++     */
++    private $lastUpdatedBy;
++
+     public function __construct()
+     {
+         $this->studiedGenuses = new ArrayCollection();
+@@ -237,7 +243,9 @@ class User implements UserInterface
+ 
+     public function __toString(): string
+     {
+-        return (string)$this->getFullName();
++        return (string) empty($this->getFullName())
++            ? $this->getEmail()
++            : $this->getFullName();
+     }
+ 
+     /**
+@@ -255,4 +263,20 @@ class User implements UserInterface
+     {
+         $this->updatedAt = $updatedAt;
+     }
++
++    /**
++     * @return mixed
++     */
++    public function getLastUpdatedBy()
++    {
++        return $this->lastUpdatedBy;
++    }
++
++    /**
++     * @param mixed $lastUpdatedBy
++     */
++    public function setLastUpdatedBy($lastUpdatedBy)
++    {
++        $this->lastUpdatedBy = $lastUpdatedBy;
++    }
+ }
+diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
+new file mode 100644
+index 0000000..017970a
+--- /dev/null
++++ b/src/AppBundle/Event/EasyAdminSubscriber.php
+@@ -0,0 +1,43 @@
++<?php
++
++namespace AppBundle\Event;
++
++use AppBundle\Entity\User;
++use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
++use Symfony\Component\EventDispatcher\EventSubscriberInterface;
++use Symfony\Component\EventDispatcher\GenericEvent;
++use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
++
++class EasyAdminSubscriber implements EventSubscriberInterface
++{
++    /**
++     * @var TokenStorageInterface
++     */
++    private $tokenStorage;
++
++    public function __construct(TokenStorageInterface $tokenStorage)
++    {
++        $this->tokenStorage = $tokenStorage;
++    }
++
++    public static function getSubscribedEvents()
++    {
++        return [
++            EasyAdminEvents::PRE_UPDATE => ['preUpdate'],
++        ];
++    }
++
++    public function preUpdate(GenericEvent $event)
++    {
++        $entity = $event->getSubject();
++
++        if ($entity instanceof User) {
++            $user = $this->tokenStorage->getToken()->getUser();
++            if (!($user instanceof User)) {
++                $user = null;
++            }
++
++            $entity->setLastUpdatedBy($user);
++        }
++    }
++}

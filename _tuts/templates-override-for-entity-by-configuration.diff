@@ -1,0 +1,20 @@
+diff --git a/app/Resources/views/admin/fields/_id.html.twig b/app/Resources/views/admin/fields/_id.html.twig
+new file mode 100644
+index 0000000..b204edd
+--- /dev/null
++++ b/app/Resources/views/admin/fields/_id.html.twig
+@@ -0,0 +1 @@
++<i class="fa fa-key"></i> {{ value }}
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 225439b..f04e5e5 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -116,6 +116,8 @@ easy_admin:
+                 fields: ['id', 'name']
+             show:
+                 actions: ['-delete']
++            templates:
++                field_id: 'admin/fields/_id.html.twig'
+         GenusHorde:
+             class: AppBundle\Entity\Genus
+             label: HORDE of Genuses 😱 !!!

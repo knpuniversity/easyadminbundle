@@ -1,0 +1,73 @@
+diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
+index 67e2554..5067b82 100644
+--- a/src/AppBundle/Entity/Genus.php
++++ b/src/AppBundle/Entity/Genus.php
+@@ -235,4 +235,9 @@ class Genus
+ 
+         return sprintf('%s recently ate: %s', $this->getName(), implode(', ', $food));
+     }
++
++    public function __toString(): string
++    {
++        return (string)$this->name;
++    }
+ }
+diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
+index 4c4fc7b..3edb073 100644
+--- a/src/AppBundle/Entity/GenusNote.php
++++ b/src/AppBundle/Entity/GenusNote.php
+@@ -112,4 +112,9 @@ class GenusNote
+     {
+         return $this->id;
+     }
++
++    public function __toString(): string
++    {
++        return (string)$this->note;
++    }
+ }
+diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
+index d392492..5d6b964 100644
+--- a/src/AppBundle/Entity/GenusScientist.php
++++ b/src/AppBundle/Entity/GenusScientist.php
+@@ -76,4 +76,9 @@ class GenusScientist
+     {
+         $this->yearsStudied = $yearsStudied;
+     }
+-}
+\ No newline at end of file
++
++    public function __toString(): string
++    {
++        return (string)$this->user;
++    }
++}
+diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
+index 95e9de7..a92135d 100644
+--- a/src/AppBundle/Entity/SubFamily.php
++++ b/src/AppBundle/Entity/SubFamily.php
+@@ -37,8 +37,8 @@ class SubFamily
+         $this->name = $name;
+     }
+ 
+-    public function __toString()
++    public function __toString(): string
+     {
+-        return $this->getName();
++        return (string)$this->getName();
+     }
+ }
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index 19d053a..ba4d64a 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -219,4 +219,9 @@ class User implements UserInterface
+     {
+         return $this->studiedGenuses;
+     }
++
++    public function __toString(): string
++    {
++        return (string)$this->getFullName();
++    }
+ }

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="page-header text-center">
+        Welcome
+        {{ app.user ? app.user.email : 'Aquanauts' }}!
+    </h1>
+{% endblock %}

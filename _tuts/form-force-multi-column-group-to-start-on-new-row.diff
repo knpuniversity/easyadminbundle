@@ -1,0 +1,13 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index dbc8df2..ca37fd0 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -165,7 +165,7 @@ easy_admin:
+ 
+                     -
+                         type: 'group'
+-                        css_class: 'col-sm-6'
++                        css_class: 'col-sm-6 new-row'
+                         label: 'Identification'
+                         icon: 'id-card-o'
+                         help: 'For administrators'

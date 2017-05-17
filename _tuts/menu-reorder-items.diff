@@ -1,0 +1,17 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index ca37fd0..9908694 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -95,11 +95,11 @@ easy_admin:
+         form_theme: vertical
+         menu:
+             - { label: 'Dashboard', route: 'admin_dashboard', default: true }
++            - User
+             - Genus
+             - GenusHorde
+             - GenusNote
+             - SubFamily
+-            - User
+     list:
+         title: 'List of %%entity_label%%'
+         actions:

@@ -1,0 +1,27 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 27be35d..c98c90f 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -122,8 +122,8 @@ easy_admin:
+                 field_id: 'admin/fields/_id.html.twig'
+             form:
+                 fields:
+-                    - id
+-                    - name
++                    - { property: 'id', type_options: { disabled: true }}
++                    - { property: 'name', type_options: { attr: { autofocus: true }}}
+                     - speciesCount
+                     - funFact
+                     - isPublished
+@@ -135,7 +135,10 @@ easy_admin:
+                     - '-id'
+             edit:
+                 fields:
+-                    - slug
++                    -
++                        property: 'slug'
++                        help: 'unique auto-generated value'
++                        type_options: { disabled: true }
+         GenusHorde:
+             class: AppBundle\Entity\Genus
+             label: HORDE of Genuses 😱 !!!

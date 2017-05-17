@@ -1,0 +1,12 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 7908cf0..c081748 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -92,6 +92,7 @@ easy_admin:
+                 - '/js/custom_backend.js'
+         templates:
+             field_id: 'admin/fields/_id_global.html.twig'
++        form_theme: vertical
+         menu:
+             - { label: 'Dashboard', route: 'admin_dashboard', default: true }
+             - Genus

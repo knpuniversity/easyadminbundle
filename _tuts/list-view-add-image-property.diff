@@ -1,0 +1,17 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index cc17689..a5c4aeb 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -112,6 +112,12 @@ easy_admin:
+             label: Genus Notes
+             list:
+                 title: List of notes
++                fields:
++                    - id
++                    - username
++                    - { property: 'userAvatarFilename', label: 'User avatar', type: 'image' }
++                    - createdAt
++                    - genus
+         SubFamily:
+             class: AppBundle\Entity\SubFamily
+             list:

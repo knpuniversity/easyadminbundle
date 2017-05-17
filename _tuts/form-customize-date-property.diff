@@ -1,0 +1,13 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index c98c90f..61146e5 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -127,7 +127,7 @@ easy_admin:
+                     - speciesCount
+                     - funFact
+                     - isPublished
+-                    - firstDiscoveredAt
++                    - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
+                     - subFamily
+                     - genusScientists
+             new:

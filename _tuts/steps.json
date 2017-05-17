@@ -1,0 +1,430 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "installing",
+            "name": "Installing",
+            "description": null
+        },
+        {
+            "id": "configuring-entities-for-back-end",
+            "name": "Configuring entities for back-end",
+            "description": null
+        },
+        {
+            "id": "fixing-php7-with-outdated-doctrine",
+            "name": "Fixing PHP7 with outdated Doctrine",
+            "description": null
+        },
+        {
+            "id": "configuration-name-of-back-end",
+            "name": "Configuration: name of back-end",
+            "description": null
+        },
+        {
+            "id": "configuration-stylish-name-of-back-end",
+            "name": "Configuration: stylish name of back-end",
+            "description": null
+        },
+        {
+            "id": "configuration-change-brand-color",
+            "name": "Configuration: change brand color",
+            "description": null
+        },
+        {
+            "id": "configuration-add-custom-assets",
+            "name": "Configuration: add custom assets",
+            "description": null
+        },
+        {
+            "id": "securing-access-to-back-end",
+            "name": "Securing access to back-end",
+            "description": null
+        },
+        {
+            "id": "list-view-change-page-title",
+            "name": "List view: change page title",
+            "description": null
+        },
+        {
+            "id": "list-view-change-page-title-using-special-variables",
+            "name": "List view: change page title using special variables",
+            "description": null
+        },
+        {
+            "id": "list-view-move-to-expanded-configuration-format",
+            "name": "List view: move to expanded configuration format",
+            "description": null
+        },
+        {
+            "id": "list-view-change-label-of-specific-entity",
+            "name": "List view: change label of specific entity",
+            "description": null
+        },
+        {
+            "id": "list-view-change-page-title-of-specific-entity",
+            "name": "List view: change page title of specific entity",
+            "description": null
+        },
+        {
+            "id": "list-view-add-global-help-message",
+            "name": "List view: add global help message",
+            "description": null
+        },
+        {
+            "id": "list-view-overwrite-global-help-message",
+            "name": "List view: overwrite global help message",
+            "description": null
+        },
+        {
+            "id": "search-view-disable-help-message",
+            "name": "Search view: disable help message",
+            "description": null
+        },
+        {
+            "id": "list-view-globally-change-available-actions",
+            "name": "List view: globally change available actions",
+            "description": null
+        },
+        {
+            "id": "show-view-add-tostring-method-to-all-entities",
+            "name": "Show view: add toString method to all entities",
+            "description": null
+        },
+        {
+            "id": "show-view-change-available-actions-for-an-entity",
+            "name": "Show view: change available actions for an entity",
+            "description": null
+        },
+        {
+            "id": "list-view-change-available-actions-for-an-entity",
+            "name": "List view: change available actions for an entity",
+            "description": null
+        },
+        {
+            "id": "list-view-disable-action-for-an-entity",
+            "name": "List view: disable action for an entity",
+            "description": null
+        },
+        {
+            "id": "list-view-customize-action-presentation",
+            "name": "List view: customize action presentation",
+            "description": null
+        },
+        {
+            "id": "list-view-customize-rows-to-display",
+            "name": "List view: customize rows to display",
+            "description": null
+        },
+        {
+            "id": "show-view-customize-rows-to-display",
+            "name": "Show view: customize rows to display",
+            "description": null
+        },
+        {
+            "id": "list-view-customize-the-properties-displayed",
+            "name": "List view: customize the properties displayed",
+            "description": null
+        },
+        {
+            "id": "search-view-customize-the-properties-displayed",
+            "name": "Search view: customize the properties displayed",
+            "description": null
+        },
+        {
+            "id": "list-view-change-is-scientist-property-appearance",
+            "name": "List view: change is scientist property appearance",
+            "description": null
+        },
+        {
+            "id": "list-view-add-virtual-property",
+            "name": "List view: add virtual property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-email-property",
+            "name": "List view: add email property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-url-property",
+            "name": "List view: add url property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-image-property",
+            "name": "List view: add image property",
+            "description": null
+        },
+        {
+            "id": "list-view-fix-image-property",
+            "name": "List view: fix image property",
+            "description": null
+        },
+        {
+            "id": "list-view-globally-set-date-format",
+            "name": "List view: globally set date format",
+            "description": null
+        },
+        {
+            "id": "list-view-change-date-format-for-property",
+            "name": "List view: change date format for property",
+            "description": null
+        },
+        {
+            "id": "list-view-add-species-count-back",
+            "name": "List view: add species count back ",
+            "description": null
+        },
+        {
+            "id": "list-view-change-number-format-of-species-count-property",
+            "name": "List view: change number format of species count property",
+            "description": null
+        },
+        {
+            "id": "list-view-sort-genus-by-name",
+            "name": "List view: sort genus by name",
+            "description": null
+        },
+        {
+            "id": "list-view-sort-by-relation-property",
+            "name": "List view: sort by relation property",
+            "description": null
+        },
+        {
+            "id": "list-view-disable-sort-for-column",
+            "name": "List view: disable sort for column",
+            "description": null
+        },
+        {
+            "id": "list-view-preparing-for-filtering",
+            "name": "List view: preparing for filtering",
+            "description": null
+        },
+        {
+            "id": "list-view-filter-entities-by-property",
+            "name": "List view: filter entities by property",
+            "description": null
+        },
+        {
+            "id": "list-view-use-container-parameter-in-filter",
+            "name": "List view: use container parameter in filter",
+            "description": null
+        },
+        {
+            "id": "list-view-filter-with-multiple-conditions",
+            "name": "List view: filter with multiple conditions",
+            "description": null
+        },
+        {
+            "id": "search-view-use-different-filter-for-search",
+            "name": "Search view: use different filter for search",
+            "description": null
+        },
+        {
+            "id": "templates-override-for-entity-by-configuration",
+            "name": "Templates: override for entity by configuration",
+            "description": null
+        },
+        {
+            "id": "templates-override-globally-by-configuration",
+            "name": "Templates: override globally by configuration",
+            "description": null
+        },
+        {
+            "id": "templates-override-by-convention",
+            "name": "Templates: override by convention",
+            "description": null
+        },
+        {
+            "id": "templates-using-dump-to-learn-about-variables",
+            "name": "Templates: using dump to learn about variables",
+            "description": null
+        },
+        {
+            "id": "templates-remove-dump-call",
+            "name": "Templates: remove dump call",
+            "description": null
+        },
+        {
+            "id": "templates-extend-from-an-existing-template",
+            "name": "Templates: extend from an existing template",
+            "description": null
+        },
+        {
+            "id": "templates-custom-template-for-property",
+            "name": "Templates: custom template for property",
+            "description": null
+        },
+        {
+            "id": "form-customize-available-fields",
+            "name": "Form: customize available fields",
+            "description": null
+        },
+        {
+            "id": "form-customize-fields",
+            "name": "Form: customize fields",
+            "description": null
+        },
+        {
+            "id": "form-customize-date-property",
+            "name": "Form: customize date property",
+            "description": null
+        },
+        {
+            "id": "form-autocomplete-sub-family",
+            "name": "Form: autocomplete sub family",
+            "description": null
+        },
+        {
+            "id": "form-use-collection-field-for-genus-scientists",
+            "name": "Form: use collection field for genus scientists",
+            "description": null
+        },
+        {
+            "id": "form-fix-missing-user-in-genus-scientists-form",
+            "name": "Form: fix missing user in genus scientists form",
+            "description": null
+        },
+        {
+            "id": "form-provide-more-information-for-genus-scientist-relation",
+            "name": "Form: provide more information for genus scientist relation",
+            "description": null
+        },
+        {
+            "id": "form-use-virtual-property",
+            "name": "Form: use virtual property",
+            "description": null
+        },
+        {
+            "id": "form-add-markdown-input-for-genus-fun-fact",
+            "name": "Form: add markdown input for genus fun fact",
+            "description": null
+        },
+        {
+            "id": "action-add-route-based-action",
+            "name": "Action: add route based action",
+            "description": null
+        },
+        {
+            "id": "action-add-method-based-action",
+            "name": "Action: add method based action",
+            "description": null
+        },
+        {
+            "id": "admin-add-updated-at-property-to-user",
+            "name": "Admin: add updated at property to user",
+            "description": null
+        },
+        {
+            "id": "admin-set-last-updated-by-property-to-user-using-an-event",
+            "name": "Admin: set last updated by property to user using an event",
+            "description": null
+        },
+        {
+            "id": "admin-conditionally-disable-actions-through-events",
+            "name": "Admin: conditionally disable actions through events",
+            "description": null
+        },
+        {
+            "id": "admin-conditionally-disable-actions-in-templates",
+            "name": "Admin: conditionally disable actions in templates",
+            "description": null
+        },
+        {
+            "id": "admin-csv-export",
+            "name": "Admin: CSV export",
+            "description": null
+        },
+        {
+            "id": "admin-dashboard",
+            "name": "Admin: Dashboard",
+            "description": null
+        },
+        {
+            "id": "form-change-theme-to-vertical",
+            "name": "Form: change theme to vertical",
+            "description": null
+        },
+        {
+            "id": "form-add-dividers-to-user-form",
+            "name": "Form: add dividers to user form",
+            "description": null
+        },
+        {
+            "id": "form-add-sections-to-user-form",
+            "name": "Form: add sections to user form",
+            "description": null
+        },
+        {
+            "id": "form-add-groups-to-genus-form",
+            "name": "Form: add groups to genus form",
+            "description": null
+        },
+        {
+            "id": "form-force-multi-column-group-to-start-on-new-row",
+            "name": "Form: force multi-column group to start on new row",
+            "description": null
+        },
+        {
+            "id": "menu-reorder-items",
+            "name": "Menu: reorder items",
+            "description": null
+        },
+        {
+            "id": "menu-customize-labels",
+            "name": "Menu: customize labels",
+            "description": null
+        },
+        {
+            "id": "menu-customize-icons",
+            "name": "Menu: customize icons",
+            "description": null
+        },
+        {
+            "id": "menu-changing-the-back-end-index-page",
+            "name": "Menu: changing the back-end index page",
+            "description": null
+        },
+        {
+            "id": "menu-add-a-divider",
+            "name": "Menu: add a divider",
+            "description": null
+        },
+        {
+            "id": "menu-add-a-sub-menu",
+            "name": "Menu: add a sub-menu",
+            "description": null
+        },
+        {
+            "id": "menu-add-item-with-different-sort-parameters",
+            "name": "Menu: add item with different sort parameters",
+            "description": null
+        },
+        {
+            "id": "menu-add-an-item-to-an-entity-action",
+            "name": "Menu: add an item to an entity action",
+            "description": null
+        },
+        {
+            "id": "menu-add-an-item-with-symfony-route",
+            "name": "Menu: add an item with symfony route",
+            "description": null
+        },
+        {
+            "id": "menu-add-an-item-with-an-absolute-url",
+            "name": "Menu: add an item with an absolute url",
+            "description": null
+        },
+        {
+            "id": "configuration-move-configuration-to-separate-file",
+            "name": "Configuration: move configuration to separate file",
+            "description": null
+        }
+    ],
+    "sha": "88ef922a9cb4bee622f69954ba72c20ffc2e3f12"
+}

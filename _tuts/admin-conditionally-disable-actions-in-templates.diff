@@ -1,0 +1,71 @@
+diff --git a/app/config/services.yml b/app/config/services.yml
+index cfce1e7..246df2b 100644
+--- a/app/config/services.yml
++++ b/app/config/services.yml
+@@ -36,3 +36,9 @@ services:
+         autowire: true
+         tags:
+             - { name: kernel.event_subscriber }
++
++    easyadmin.twig.extension:
++        class: AppBundle\Twig\Extension\EasyAdminExtension
++        autowire: true
++        tags:
++            - { name: twig.extension }
+diff --git a/src/AppBundle/Twig/Extension/EasyAdminExtension.php b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
+new file mode 100644
+index 0000000..d4bf179
+--- /dev/null
++++ b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
+@@ -0,0 +1,51 @@
++<?php
++
++namespace AppBundle\Twig\Extension;
++
++use AppBundle\Entity\User;
++use JavierEguiluz\Bundle\EasyAdminBundle\Configuration\ConfigManager;
++use JavierEguiluz\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension;
++use Symfony\Component\PropertyAccess\PropertyAccessor;
++use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
++
++class EasyAdminExtension extends EasyAdminTwigExtension
++{
++    /** @var ConfigManager */
++    protected $configManager;
++
++    /**
++     * @var AuthorizationCheckerInterface
++     */
++    private $authorizationChecker;
++
++    public function __construct(ConfigManager $configManager, PropertyAccessor $propertyAccessor, AuthorizationCheckerInterface $authorizationChecker, $debug = false)
++    {
++        $this->configManager = $configManager;
++        $this->authorizationChecker = $authorizationChecker;
++
++        parent::__construct($configManager, $propertyAccessor, $debug);
++    }
++
++    public function getActionsForItem($view, $entityName)
++    {
++        try {
++            $entityConfig = $this->configManager->getEntityConfig($entityName);
++        } catch (\Exception $e) {
++            return array();
++        }
++
++        $actions = parent::getActionsForItem($view, $entityName);
++
++        if ($entityConfig['class'] === User::class) {
++            if (!$this->authorizationChecker->isGranted('ROLE_SUPERADMIN')) {
++                $disabledActions = ['edit', 'delete'];
++
++                $actions = array_filter($actions, function ($action) use ($disabledActions) {
++                    return !in_array($action['name'], $disabledActions, true);
++                });
++            }
++        }
++
++        return $actions;
++    }
++}

@@ -1,0 +1,12 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index cc111dd..f2ccef0 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -95,6 +95,7 @@ easy_admin:
+         form_theme: vertical
+         menu:
+             - { label: 'Dashboard', route: 'admin_dashboard', default: true }
++            - { label: 'Open front-end', route: 'app_genus_list' }
+             - { entity: 'User', label: 'Users', icon: 'user' }
+             -
+                 label: 'Genus'

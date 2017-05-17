@@ -1,0 +1,24 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 93eb98f..7a569ad 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -96,11 +96,14 @@ easy_admin:
+         menu:
+             - { label: 'Dashboard', route: 'admin_dashboard', default: true }
+             - { entity: 'User', label: 'Users', icon: 'user' }
+-            - { label: 'Genus' }
+-            - Genus
+-            - GenusHorde
+-            - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
+-            - { entity: 'SubFamily', label: 'Families', icon: '' }
++            -
++                label: 'Genus'
++                children:
++                    - Genus
++                    - GenusHorde
++                    - { label: 'Related' }
++                    - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
++                    - { entity: 'SubFamily', label: 'Families', icon: '' }
+     list:
+         title: 'List of %%entity_label%%'
+         actions:

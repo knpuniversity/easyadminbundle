@@ -1,0 +1,298 @@
+diff --git a/app/config/config.yml b/app/config/admin.yml
+similarity index 73%
+copy from app/config/config.yml
+copy to app/config/admin.yml
+index 8198462..f551293 100644
+--- a/app/config/config.yml
++++ b/app/config/admin.yml
+@@ -1,84 +1,3 @@
+-imports:
+-    - { resource: parameters.yml }
+-    - { resource: security.yml }
+-    - { resource: services.yml }
+-
+-# Put parameters here that don't need to change on each machine where the app is deployed
+-# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+-parameters:
+-    locale: en
+-    cache_type: file_system
+-
+-framework:
+-    #esi:             ~
+-    translator:      { fallbacks: ["%locale%"] }
+-    secret:          "%secret%"
+-    router:
+-        resource: "%kernel.root_dir%/config/routing.yml"
+-        strict_requirements: ~
+-    form:            ~
+-    csrf_protection: ~
+-    validation:      { enable_annotations: true }
+-    #serializer:      { enable_annotations: true }
+-    templating:
+-        engines: ['twig']
+-        #assets_version: SomeVersionScheme
+-    default_locale:  "%locale%"
+-    trusted_hosts:   ~
+-    trusted_proxies: ~
+-    session:
+-        # handler_id set to null will use default session handler from php.ini
+-        handler_id:  ~
+-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+-    fragments:       ~
+-    http_method_override: true
+-    assets: ~
+-
+-# Twig Configuration
+-twig:
+-    debug:            "%kernel.debug%"
+-    strict_variables: "%kernel.debug%"
+-    number_format:
+-        thousands_separator: ','
+-    form_themes:
+-        - bootstrap_3_layout.html.twig
+-        - _formTheme.html.twig
+-
+-# Doctrine Configuration
+-doctrine:
+-    dbal:
+-        driver:   pdo_mysql
+-        host:     "%database_host%"
+-        port:     "%database_port%"
+-        dbname:   "%database_name%"
+-        user:     "%database_user%"
+-        password: "%database_password%"
+-        charset:  UTF8
+-        # if using pdo_sqlite as your database driver:
+-        #   1. add the path in parameters.yml
+-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+-        #   2. Uncomment database_path in parameters.yml.dist
+-        #   3. Uncomment next line:
+-        #     path:     "%database_path%"
+-
+-    orm:
+-        auto_generate_proxy_classes: "%kernel.debug%"
+-        naming_strategy: doctrine.orm.naming_strategy.underscore
+-        auto_mapping: true
+-
+-doctrine_cache:
+-    providers:
+-        my_markdown_cache:
+-            type: %cache_type%
+-            file_system:
+-                directory: %kernel.cache_dir%/markdown_cache
+-
+-stof_doctrine_extensions:
+-    default_locale: en_US
+-    orm:
+-        default:
+-            sluggable: true
+-
+ easy_admin:
+     site_name: 'Aqua<i>Note</i>'
+     formats:
+@@ -129,9 +48,7 @@ easy_admin:
+                     - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
+     list:
+         title: 'List of %%entity_label%%'
+-        actions:
+-            - 'show'
+-            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
++        actions: ['show']
+         max_results: 5
+     show:
+         max_results: 6
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 8198462..0c9918e 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -2,6 +2,7 @@ imports:
+     - { resource: parameters.yml }
+     - { resource: security.yml }
+     - { resource: services.yml }
++    - { resource: admin.yml }
+ 
+ # Put parameters here that don't need to change on each machine where the app is deployed
+ # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+@@ -78,182 +79,3 @@ stof_doctrine_extensions:
+     orm:
+         default:
+             sluggable: true
+-
+-easy_admin:
+-    site_name: 'Aqua<i>Note</i>'
+-    formats:
+-        date: 'd/m/Y'
+-    design:
+-        brand_color: '#81b9ba'
+-        assets:
+-            css: ['/css/custom_backend.css']
+-            js:
+-                - 'https://unpkg.com/snarkdown@1.2.2/dist/snarkdown.umd.js'
+-                - '/js/custom_backend.js'
+-        templates:
+-            field_id: 'admin/fields/_id_global.html.twig'
+-        form_theme: vertical
+-        menu:
+-            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
+-            - { label: 'Open front-end', route: 'app_genus_list' }
+-            - { entity: 'User', label: 'Users', icon: 'user' }
+-            -
+-                label: 'Genus'
+-                children:
+-                    -
+-                        entity: 'Genus'
+-                        label: 'Pet genus'
+-                        icon: 'paw'
+-                        params:
+-                            action: 'show'
+-                            id: 2
+-                    - Genus
+-                    -
+-                        entity: 'Genus'
+-                        label: 'Genuses (sorted by ID)'
+-                        params:
+-                            sortField: 'id'
+-                            sortDirection: 'ASC'
+-                    - GenusHorde
+-                    - { label: 'Related' }
+-                    - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
+-                    - { entity: 'SubFamily', label: 'Families', icon: '' }
+-            -
+-                label: 'Important stuff'
+-                icon: 'exclamation'
+-                children:
+-                    -
+-                        label: 'Silly kittens'
+-                        url: 'https://www.youtube.com/results?search_query=silly+kittens'
+-                        target: '_blank'
+-                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
+-    list:
+-        title: 'List of %%entity_label%%'
+-        actions:
+-            - 'show'
+-            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
+-        max_results: 5
+-    show:
+-        max_results: 6
+-    entities:
+-        Genus:
+-            class: AppBundle\Entity\Genus
+-            label: Genuses
+-            help: Genuses are not covered under warranty!
+-            list:
+-                help: Do not feed!
+-                actions:
+-                    - { name: 'edit', icon: 'pencil', label: 'Edit' }
+-                    - { name: 'show', icon: 'search', label: '' }
+-                fields:
+-                    - 'id'
+-                    - 'name'
+-                    - 'isPublished'
+-                    - { property: 'firstDiscoveredAt', format: 'l', label: 'Discovered' }
+-                    - 'funFact'
+-                    - { property: 'speciesCount', format: '%b' }
+-                sort: 'name'
+-            search:
+-                help: null
+-                fields: ['id', 'name']
+-            show:
+-                actions:
+-                    - '-delete'
+-                    -
+-                        name: 'genus_feed'
+-                        type: 'route'
+-                        label: 'Feed genus'
+-                        css_class: 'btn btn-info'
+-                        icon: 'cutlery'
+-                    - { name: 'changePublishedStatus', css_class: 'btn' }
+-            templates:
+-                field_id: 'admin/fields/_id.html.twig'
+-            form:
+-                fields:
+-                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
+-                    - { property: 'name', type_options: { attr: { autofocus: true }}}
+-                    - speciesCount
+-                    - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
+-                    - { property: 'subFamily', type: 'easyadmin_autocomplete' }
+-                    - { type: 'section', label: 'Optional' }
+-                    - { property: 'funFact', css_class: 'js-markdown-input' }
+-                    - isPublished
+-
+-                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
+-                    -
+-                        property: 'genusScientists'
+-                        type: 'collection'
+-                        label: ' '
+-                        type_options:
+-                            entry_type: AppBundle\Form\GenusScientistEmbeddedForm
+-                            allow_delete: true
+-                            allow_add: true
+-                            by_reference: false
+-
+-                    -
+-                        type: 'group'
+-                        css_class: 'col-sm-6 new-row'
+-                        label: 'Identification'
+-                        icon: 'id-card-o'
+-                        help: 'For administrators'
+-                    - { property: 'id', type_options: { disabled: true }}
+-                    -
+-                        property: 'slug'
+-                        help: 'unique auto-generated value'
+-                        type_options: { disabled: true }
+-            new:
+-                fields:
+-                    - '-id'
+-                    - '-slug'
+-        GenusHorde:
+-            class: AppBundle\Entity\Genus
+-            label: HORDE of Genuses 😱 !!!
+-            list:
+-                dql_filter: 'entity.speciesCount >= %admin.horde_species_count% AND entity.isPublished = true'
+-                sort: 'speciesCount'
+-                help: Run for your life!!! 😱😱😱
+-            search:
+-                dql_filter: 'entity.speciesCount >= %admin.horde_species_count%'
+-        GenusNote:
+-            class: AppBundle\Entity\GenusNote
+-            label: Genus Notes
+-            list:
+-                title: List of notes
+-                fields:
+-                    - id
+-                    - username
+-                    - { property: 'userAvatarFilename', label: 'User avatar', type: 'image', base_path: '/images/', sortable: false }
+-                    - createdAt
+-                    - genus
+-                sort: ['genus.name', 'ASC']
+-        SubFamily:
+-            class: AppBundle\Entity\SubFamily
+-            list:
+-                actions: ['-show']
+-            disabled_actions: ['show']
+-        User:
+-            class: AppBundle\Entity\User
+-            controller: AppBundle\Controller\EasyAdmin\UserController
+-            list:
+-                fields:
+-                    - id
+-                    - { property: 'email', type: 'email' }
+-                    - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
+-                    - { property: 'fullName', template: 'scientist_fullname.html.twig' }
+-                    - { property: 'avatarUri', type: 'url' }
+-            form:
+-                fields:
+-                    - { type: 'section', label: 'User details' }
+-                    - { property: 'fullName', type: 'text', help: 'First then Last' }
+-                    - { type: 'divider' }
+-                    - avatarUri
+-                    -
+-                        type: 'section'
+-                        label: 'Contact information'
+-                        icon: 'phone'
+-                        help: 'Only for emergencies!'
+-                        css_class: 'any-you-want'
+-                    - email
+-                    - { type: 'section', label: 'Education' }
+-                    - isScientist
+-                    - universityName

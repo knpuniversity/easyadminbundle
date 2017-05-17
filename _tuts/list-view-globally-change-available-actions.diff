@@ -1,0 +1,12 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 7267601..8bd5645 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -87,6 +87,7 @@ easy_admin:
+             css: ['/css/custom_backend.css']
+     list:
+         title: 'List of %%entity_label%%'
++        actions: ['show']
+     entities:
+         Genus:
+             class: AppBundle\Entity\Genus

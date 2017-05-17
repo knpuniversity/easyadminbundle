@@ -1,0 +1,36 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 2eb627d..2d2cb4c 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -181,3 +181,10 @@ easy_admin:
+                     - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
+                     - { property: 'fullName', template: 'scientist_fullname.html.twig' }
+                     - { property: 'avatarUri', type: 'url' }
++            form:
++                fields:
++                    - email
++                    - isScientist
++                    - { property: 'fullName', type: 'text', help: 'First then Last' }
++                    - avatarUri
++                    - universityName
+diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
+index ba4d64a..339db2b 100644
+--- a/src/AppBundle/Entity/User.php
++++ b/src/AppBundle/Entity/User.php
+@@ -212,6 +212,16 @@ class User implements UserInterface
+         return trim($this->getFirstName().' '.$this->getLastName());
+     }
+ 
++    public function setFullName($fullName)
++    {
++        $names = explode(' ', $fullName);
++        $firstName = array_shift($names);
++        $lastName = implode(' ', $names);
++
++        $this->setFirstName($firstName);
++        $this->setLastName($lastName);
++    }
++
+     /**
+      * @return ArrayCollection|GenusScientist[]
+      */
