@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 
 namespace AppBundle\Entity;
 
@@ -91,64 +90,64 @@ class Genus
         $this->genusScientists = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(?string $name): void
+    public function setName($name)
     {
         $this->name = $name;
     }
 
-    public function getSubFamily(): ?SubFamily
+    public function getSubFamily()
     {
         return $this->subFamily;
     }
 
-    public function setSubFamily(SubFamily $subFamily = null): void
+    public function setSubFamily(SubFamily $subFamily = null)
     {
         $this->subFamily = $subFamily;
     }
 
-    public function getSpeciesCount(): ?int
+    public function getSpeciesCount()
     {
         return $this->speciesCount;
     }
 
-    public function setSpeciesCount(?int $speciesCount): void
+    public function setSpeciesCount($speciesCount)
     {
         $this->speciesCount = $speciesCount;
     }
 
-    public function getFunFact(): ?string
+    public function getFunFact()
     {
         return $this->funFact;
     }
 
-    public function setFunFact(?string $funFact): void
+    public function setFunFact($funFact)
     {
         $this->funFact = $funFact;
 
         return;
     }
 
-    public function getUpdatedAt(): \DateTimeInterface
+    public function getUpdatedAt()
     {
         return new \DateTime('-'.rand(0, 100).' days');
     }
 
-    public function setIsPublished(bool $isPublished): void
+    public function setIsPublished($isPublished)
     {
         $this->isPublished = $isPublished;
     }
 
-    public function getIsPublished(): bool
+    public function getIsPublished()
     {
         return $this->isPublished;
     }
@@ -156,32 +155,32 @@ class Genus
     /**
      * @return Collection|GenusNote[]
      */
-    public function getNotes(): Collection
+    public function getNotes()
     {
         return $this->notes;
     }
 
-    public function getFirstDiscoveredAt(): ?\DateTimeInterface
+    public function getFirstDiscoveredAt()
     {
         return $this->firstDiscoveredAt;
     }
 
-    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt = null): void
+    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt = null)
     {
         $this->firstDiscoveredAt = $firstDiscoveredAt;
     }
 
-    public function getSlug(): ?string
+    public function getSlug()
     {
         return $this->slug;
     }
 
-    public function setSlug(?string $slug): void
+    public function setSlug($slug)
     {
         $this->slug = $slug;
     }
 
-    public function addGenusScientist(GenusScientist $genusScientist): void
+    public function addGenusScientist(GenusScientist $genusScientist)
     {
         if ($this->genusScientists->contains($genusScientist)) {
             return;
@@ -192,7 +191,7 @@ class Genus
         $genusScientist->setGenus($this);
     }
 
-    public function removeGenusScientist(GenusScientist $genusScientist): void
+    public function removeGenusScientist(GenusScientist $genusScientist)
     {
         if (!$this->genusScientists->contains($genusScientist)) {
             return;
@@ -206,7 +205,7 @@ class Genus
     /**
      * @return Collection|GenusScientist[]
      */
-    public function getGenusScientists(): Collection
+    public function getGenusScientists()
     {
         return $this->genusScientists;
     }
@@ -214,25 +213,10 @@ class Genus
     /**
      * @return \Doctrine\Common\Collections\Collection|GenusScientist[]
      */
-    public function getExpertScientists(): Collection
+    public function getExpertScientists()
     {
         return $this->getGenusScientists()->matching(
             GenusRepository::createExpertCriteria()
         );
-    }
-
-    public function feed(iterable $iterableFood): string
-    {
-        $food = $iterableFood;
-
-        if ($iterableFood instanceof \Traversable) {
-            $food = $iterableFood->getArrayCopy();
-        }
-
-        if (count($food) === 0) {
-            return sprintf('%s is looking at you in a funny way', $this->getName());
-        }
-
-        return sprintf('%s recently ate: %s', $this->getName(), implode(', ', $food));
     }
 }

@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 
 namespace AppBundle\Controller;
 
@@ -15,28 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GenusController extends Controller
 {
-    /**
-     * @Route("/genus/types-example")
-     */
-    public function typesExampleAction()
-    {
-        $genus = new Genus();
-        $genus->setName('Octopus');
-
-        dump($genus);
-        dump($genus->getName());
-
-        $genus->setFunFact('This is fun');
-
-        dump($genus->getFunFact());
-
-        $genus->setFunFact(null);
-
-        dump($genus->getFunFact());
-
-        return new Response('<html><body>Testing PHP7</body></html>');
-    }
-
     /**
      * @Route("/genus/new")
      */
@@ -111,15 +88,10 @@ class GenusController extends Controller
         $recentNotes = $em->getRepository('AppBundle:GenusNote')
             ->findAllRecentNotesForGenus($genus);
 
-        $foodArray = ['shrimp', 'clams', 'lobsters', 'shark'];
-        $foodObject = new \ArrayObject($foodArray);
-        $food = $foodObject->getIterator();
-
         return $this->render('genus/show.html.twig', array(
             'genus' => $genus,
             'funFact' => $funFact,
             'recentNoteCount' => count($recentNotes),
-            'recentlyAte' => $genus->feed($food),
         ));
     }
 

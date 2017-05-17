@@ -14,22 +14,4 @@ class MainController extends Controller
     {
         return $this->render('main/homepage.html.twig');
     }
-
-    /**
-     * @Route("/crazy-dave")
-     */
-    public function cookiesAction()
-    {
-        try {
-            if (random_int(0, 1)) {
-                throw new NoCookieForYou();
-            }
-
-            throw new NoCookiesLeft();
-        } catch (NoCookieForYou | NoCookiesLeft $e) {
-            $whisper = sprintf('Crazy Dave whispered "%s"', $e->getMessage());
-        }
-
-        return new Response('<html><body>'.$whisper.'</body></html>');
-    }
 }
