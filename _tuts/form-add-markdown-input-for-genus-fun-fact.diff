@@ -1,14 +1,14 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2d2cb4c..07ddd3f 100644
+index c765709..17b1840 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -87,6 +87,9 @@ easy_admin:
          brand_color: '#81b9ba'
          assets:
-             css: ['/css/custom_backend.css']
+             css: ['css/custom_backend.css']
 +            js:
 +                - 'https://unpkg.com/snarkdown@1.2.2/dist/snarkdown.umd.js'
-+                - '/js/custom_backend.js'
++                - 'js/custom_backend.js'
          templates:
              field_id: 'admin/fields/_id_global.html.twig'
      list:

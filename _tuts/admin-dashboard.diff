@@ -88,11 +88,11 @@ index 0000000..21589f9
 +    </div>
 +{% endblock %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index c53cc99..7908cf0 100644
+index e3681e1..a71c378 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -92,6 +92,13 @@ easy_admin:
-                 - '/js/custom_backend.js'
+                 - 'js/custom_backend.js'
          templates:
              field_id: 'admin/fields/_id_global.html.twig'
 +        menu:

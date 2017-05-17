@@ -6,7 +6,7 @@ index 0000000..b204edd
 @@ -0,0 +1 @@
 +<i class="fa fa-key"></i> {{ value }}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 225439b..f04e5e5 100644
+index 212b6d2..e9b5944 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -116,6 +116,8 @@ easy_admin:

@@ -1,11 +1,11 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index da0f433..c12a91c 100644
+index 47b19a2..1bf6187 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -85,6 +85,8 @@ easy_admin:
          brand_color: '#81b9ba'
          assets:
-             css: ['/css/custom_backend.css']
+             css: ['css/custom_backend.css']
 +    list:
 +        title: 'List'
      entities:

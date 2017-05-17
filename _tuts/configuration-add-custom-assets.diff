@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 953ac78..da0f433 100644
+index 953ac78..47b19a2 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -83,6 +83,8 @@ easy_admin:
@@ -7,7 +7,7 @@ index 953ac78..da0f433 100644
      design:
          brand_color: '#81b9ba'
 +        assets:
-+            css: ['/css/custom_backend.css']
++            css: ['css/custom_backend.css']
      entities:
          - AppBundle\Entity\Genus
          - AppBundle\Entity\GenusNote

@@ -6,13 +6,13 @@ index 0000000..2c2801e
 @@ -0,0 +1 @@
 +{{ value }} <i class="fa fa-key"></i>
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f04e5e5..394f75a 100644
+index e9b5944..d9f0cd9 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -87,6 +87,8 @@ easy_admin:
          brand_color: '#81b9ba'
          assets:
-             css: ['/css/custom_backend.css']
+             css: ['css/custom_backend.css']
 +        templates:
 +            field_id: 'admin/fields/_id_global.html.twig'
      list:
