@@ -1,6 +1,6 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..aa73a33
+index 0000000..2786b0e
 --- /dev/null
 +++ b/app/config/admin.yml
 @@ -0,0 +1,178 @@
@@ -74,7 +74,7 @@ index 0000000..aa73a33
 +                    - 'id'
 +                    - 'name'
 +                    - 'isPublished'
-+                    - { property: 'firstDiscoveredAt', format: 'l', label: 'Discovered' }
++                    - { property: 'firstDiscoveredAt', format: 'M Y', label: 'Discovered' }
 +                    - 'funFact'
 +                    - { property: 'speciesCount', format: '%b' }
 +                sort: 'name'
@@ -184,7 +184,7 @@ index 0000000..aa73a33
 +                    - universityName
 \ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 57f2223..0c9918e 100644
+index 0819a02..0c9918e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -270,7 +270,7 @@ index 57f2223..0c9918e 100644
 -                    - 'id'
 -                    - 'name'
 -                    - 'isPublished'
--                    - { property: 'firstDiscoveredAt', format: 'l', label: 'Discovered' }
+-                    - { property: 'firstDiscoveredAt', format: 'M Y', label: 'Discovered' }
 -                    - 'funFact'
 -                    - { property: 'speciesCount', format: '%b' }
 -                sort: 'name'

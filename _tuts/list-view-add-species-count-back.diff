@@ -1,10 +1,10 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f7548d7..cd9f8d5 100644
+index b804d49..e4c347e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -109,6 +109,7 @@ easy_admin:
                      - 'isPublished'
-                     - { property: 'firstDiscoveredAt', format: 'l', label: 'Discovered' }
+                     - { property: 'firstDiscoveredAt', format: 'M Y', label: 'Discovered' }
                      - 'funFact'
 +                    - { property: 'speciesCount' }
              search:

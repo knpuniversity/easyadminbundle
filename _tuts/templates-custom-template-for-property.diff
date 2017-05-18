@@ -10,7 +10,7 @@ index 0000000..78b3005
 +
 +{{ value|default('Stranger') }}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index a86fc3d..af7e92e 100644
+index e636ba9..8c86aba 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -153,5 +153,5 @@ easy_admin:
