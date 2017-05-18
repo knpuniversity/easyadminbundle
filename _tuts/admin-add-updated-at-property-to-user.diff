@@ -70,7 +70,7 @@ index 0000000..1abaca5
 +    }
 +}
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 339db2b..7c82c51 100644
+index 646da9f..ed85ef1 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -80,6 +80,11 @@ class User implements UserInterface
@@ -87,7 +87,7 @@ index 339db2b..7c82c51 100644
          $this->studiedGenuses = new ArrayCollection();
 @@ -234,4 +239,20 @@ class User implements UserInterface
      {
-         return (string)$this->getFullName();
+         return (string) $this->getFullName();
      }
 +
 +    /**

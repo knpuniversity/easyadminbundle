@@ -1,19 +1,19 @@
 diff --git a/src/AppBundle/Entity/Genus.php b/src/AppBundle/Entity/Genus.php
-index 67e2554..5067b82 100644
+index 4c1af7a..1c11bcb 100644
 --- a/src/AppBundle/Entity/Genus.php
 +++ b/src/AppBundle/Entity/Genus.php
-@@ -235,4 +235,9 @@ class Genus
+@@ -234,4 +234,9 @@ class Genus
  
-         return sprintf('%s recently ate: %s', $this->getName(), implode(', ', $food));
+         return sprintf('%s recently ate: %s', $this->getName(), implode(', ', $foodItems));
      }
 +
-+    public function __toString(): string
++    public function __toString()
 +    {
-+        return (string)$this->name;
++        return (string) $this->name;
 +    }
  }
 diff --git a/src/AppBundle/Entity/GenusNote.php b/src/AppBundle/Entity/GenusNote.php
-index 4c4fc7b..3edb073 100644
+index 4078de9..039324b 100644
 --- a/src/AppBundle/Entity/GenusNote.php
 +++ b/src/AppBundle/Entity/GenusNote.php
 @@ -112,4 +112,9 @@ class GenusNote
@@ -21,13 +21,13 @@ index 4c4fc7b..3edb073 100644
          return $this->id;
      }
 +
-+    public function __toString(): string
++    public function __toString()
 +    {
-+        return (string)$this->note;
++        return (string) $this->note;
 +    }
  }
 diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
-index d392492..5d6b964 100644
+index d392492..9c94378 100644
 --- a/src/AppBundle/Entity/GenusScientist.php
 +++ b/src/AppBundle/Entity/GenusScientist.php
 @@ -76,4 +76,9 @@ class GenusScientist
@@ -37,28 +37,25 @@ index d392492..5d6b964 100644
 -}
 \ No newline at end of file
 +
-+    public function __toString(): string
++    public function __toString()
 +    {
-+        return (string)$this->user;
++        return (string) $this->user;
 +    }
 +}
 diff --git a/src/AppBundle/Entity/SubFamily.php b/src/AppBundle/Entity/SubFamily.php
-index 95e9de7..a92135d 100644
+index 95e9de7..c625b9b 100644
 --- a/src/AppBundle/Entity/SubFamily.php
 +++ b/src/AppBundle/Entity/SubFamily.php
-@@ -37,8 +37,8 @@ class SubFamily
-         $this->name = $name;
-     }
+@@ -39,6 +39,6 @@ class SubFamily
  
--    public function __toString()
-+    public function __toString(): string
+     public function __toString()
      {
 -        return $this->getName();
-+        return (string)$this->getName();
++        return (string) $this->getName();
      }
  }
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 19d053a..ba4d64a 100644
+index 19d053a..b97cd59 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -219,4 +219,9 @@ class User implements UserInterface
@@ -66,8 +63,8 @@ index 19d053a..ba4d64a 100644
          return $this->studiedGenuses;
      }
 +
-+    public function __toString(): string
++    public function __toString()
 +    {
-+        return (string)$this->getFullName();
++        return (string) $this->getFullName();
 +    }
  }
