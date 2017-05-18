@@ -57,7 +57,7 @@ index 0049595..cfce1e7 100644
 +        tags:
 +            - { name: kernel.event_subscriber }
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index ed85ef1..4c78e05 100644
+index 4ea76a8..ec6f831 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -85,6 +85,12 @@ class User implements UserInterface
@@ -73,15 +73,6 @@ index ed85ef1..4c78e05 100644
      public function __construct()
      {
          $this->studiedGenuses = new ArrayCollection();
-@@ -237,7 +243,7 @@ class User implements UserInterface
- 
-     public function __toString()
-     {
--        return (string) $this->getFullName();
-+        return (string) $this->getFullName() ? $this->getFullName() : $this->getEmail();
-     }
- 
-     /**
 @@ -255,4 +261,20 @@ class User implements UserInterface
      {
          $this->updatedAt = $updatedAt;

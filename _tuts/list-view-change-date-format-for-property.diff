@@ -1,11 +1,11 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 678ebe1..e1dfdb9 100644
+index 53f6996..f7548d7 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -103,7 +103,12 @@ easy_admin:
                  actions:
                      - { name: 'edit', icon: 'pencil', label: 'Edit' }
-                     - { name: 'show', icon: 'search', label: '' }
+                     - { name: 'show', icon: 'info-circle', label: '' }
 -                fields: ['id', 'name', 'isPublished', 'firstDiscoveredAt', 'funFact']
 +                fields:
 +                    - 'id'

@@ -1,6 +1,6 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..c28f2bf
+index 0000000..aa73a33
 --- /dev/null
 +++ b/app/config/admin.yml
 @@ -0,0 +1,178 @@
@@ -69,7 +69,7 @@ index 0000000..c28f2bf
 +                help: Do not feed!
 +                actions:
 +                    - { name: 'edit', icon: 'pencil', label: 'Edit' }
-+                    - { name: 'show', icon: 'search', label: '' }
++                    - { name: 'show', icon: 'info-circle', label: '' }
 +                fields:
 +                    - 'id'
 +                    - 'name'
@@ -184,7 +184,7 @@ index 0000000..c28f2bf
 +                    - universityName
 \ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 38e3cd8..0c9918e 100644
+index 57f2223..0c9918e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -265,7 +265,7 @@ index 38e3cd8..0c9918e 100644
 -                help: Do not feed!
 -                actions:
 -                    - { name: 'edit', icon: 'pencil', label: 'Edit' }
--                    - { name: 'show', icon: 'search', label: '' }
+-                    - { name: 'show', icon: 'info-circle', label: '' }
 -                fields:
 -                    - 'id'
 -                    - 'name'

@@ -55,7 +55,7 @@ index 95e9de7..c625b9b 100644
      }
  }
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 19d053a..b97cd59 100644
+index 19d053a..6c7f081 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -219,4 +219,9 @@ class User implements UserInterface
@@ -65,6 +65,6 @@ index 19d053a..b97cd59 100644
 +
 +    public function __toString()
 +    {
-+        return (string) $this->getFullName();
++        return (string) $this->getEmail();
 +    }
  }

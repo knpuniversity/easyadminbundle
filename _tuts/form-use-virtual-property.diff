@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 32a50d5..c765709 100644
+index fab5b11..24f6da0 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -181,3 +181,10 @@ easy_admin:
@@ -14,7 +14,7 @@ index 32a50d5..c765709 100644
 +                    - avatarUri
 +                    - universityName
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index b97cd59..646da9f 100644
+index 6c7f081..f9d04b7 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -212,6 +212,16 @@ class User implements UserInterface

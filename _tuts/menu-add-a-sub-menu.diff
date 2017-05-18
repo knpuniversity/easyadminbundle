@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index b29b32d..4b2e92a 100644
+index 10bd7d0..be620ab 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -96,11 +96,14 @@ easy_admin:
