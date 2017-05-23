@@ -1,19 +1,17 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index caed2a5..c2df511 100644
+index 7e38a5e..be98a37 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -122,8 +122,8 @@ easy_admin:
-                 field_id: 'admin/fields/_id.html.twig'
-             form:
-                 fields:
--                    - id
--                    - name
-+                    - { property: 'id', type_options: { disabled: true }}
-+                    - { property: 'name', type_options: { attr: { autofocus: true }}}
+@@ -118,7 +118,7 @@ easy_admin:
+                     - id
+                     - name
                      - speciesCount
-                     - funFact
+-                    - funFact
++                    - { property: 'funFact', type: 'textarea' }
                      - isPublished
-@@ -135,7 +135,10 @@ easy_admin:
+                     - firstDiscoveredAt
+                     - subFamily
+@@ -128,7 +128,10 @@ easy_admin:
                      - '-id'
              edit:
                  fields:

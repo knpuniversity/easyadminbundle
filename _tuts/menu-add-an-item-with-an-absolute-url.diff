@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 442d4d4..0819a02 100644
+index cf00a79..ff2b7af 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -118,6 +118,15 @@ easy_admin:
+@@ -116,6 +116,15 @@ easy_admin:
                      - { label: 'Related' }
                      - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
                      - { entity: 'SubFamily', label: 'Families', icon: '' }

@@ -6,13 +6,13 @@ index 0000000..b204edd
 @@ -0,0 +1 @@
 +<i class="fa fa-key"></i> {{ value }}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index c7eac37..d8aa869 100644
+index b473a05..ad044d2 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -116,6 +116,8 @@ easy_admin:
+@@ -109,6 +109,8 @@ easy_admin:
+             search:
+                 help: null
                  fields: ['id', 'name']
-             show:
-                 actions: ['-delete']
 +            templates:
 +                field_id: 'admin/fields/_id.html.twig'
          GenusHorde:

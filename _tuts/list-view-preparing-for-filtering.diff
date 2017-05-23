@@ -1,11 +1,11 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f5c4d98..e407602 100644
+index b7be052..ef3f8ba 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -116,6 +116,9 @@ easy_admin:
+@@ -109,6 +109,9 @@ easy_admin:
+             search:
+                 help: null
                  fields: ['id', 'name']
-             show:
-                 actions: ['-delete']
 +        GenusHorde:
 +            class: AppBundle\Entity\Genus
 +            label: HORDE of Genuses 😱 !!!

@@ -1,21 +1,21 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 74f9b44..7945067 100644
+index d5b79c4..9d794d2 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -143,30 +143,41 @@ easy_admin:
-                 field_id: 'admin/fields/_id.html.twig'
+@@ -139,30 +139,40 @@ easy_admin:
+ #                field_id: 'admin/fields/_id.html.twig'
              form:
                  fields:
--                    - { property: 'id', type_options: { disabled: true }}
+-                    - id
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
-                     - { property: 'name', type_options: { attr: { autofocus: true }}}
-                     - speciesCount
--                    - { property: 'funFact', css_class: 'js-markdown-input' }
+                     - name
+-                    - speciesCount
+-                    - { property: 'funFact', type: 'textarea', css_class: 'js-markdown-input' }
 -                    - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
                      - { property: 'subFamily', type: 'easyadmin_autocomplete' }
 +                    - { type: 'section', label: 'Optional' }
-+                    - { property: 'funFact', css_class: 'js-markdown-input' }
++                    - { property: 'funFact', type: 'textarea', css_class: 'js-markdown-input' }
 +                    - isPublished
 +
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
@@ -40,7 +40,7 @@ index 74f9b44..7945067 100644
 +                        label: 'Identification'
 +                        icon: 'id-card-o'
 +                        help: 'For administrators'
-+                    - { property: 'id', type_options: { disabled: true }}
++                    - id
                      -
                          property: 'slug'
                          help: 'unique auto-generated value'

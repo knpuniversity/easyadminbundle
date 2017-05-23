@@ -1,8 +1,8 @@
 diff --git a/app/config/security.yml b/app/config/security.yml
-index b03a7bd..37e5434 100644
+index 68813c3..8506b97 100644
 --- a/app/config/security.yml
 +++ b/app/config/security.yml
-@@ -36,4 +36,4 @@ security:
+@@ -37,4 +37,4 @@ security:
              # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
  
      access_control:

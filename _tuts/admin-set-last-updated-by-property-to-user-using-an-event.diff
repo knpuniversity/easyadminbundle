@@ -1,49 +1,5 @@
-diff --git a/app/DoctrineMigrations/Version20170425153726.php b/app/DoctrineMigrations/Version20170425153726.php
-new file mode 100644
-index 0000000..7cc63e0
---- /dev/null
-+++ b/app/DoctrineMigrations/Version20170425153726.php
-@@ -0,0 +1,38 @@
-+<?php
-+
-+namespace Application\Migrations;
-+
-+use Doctrine\DBAL\Migrations\AbstractMigration;
-+use Doctrine\DBAL\Schema\Schema;
-+
-+/**
-+ * Auto-generated Migration: Please modify to your needs!
-+ */
-+class Version20170425153726 extends AbstractMigration
-+{
-+    /**
-+     * @param Schema $schema
-+     */
-+    public function up(Schema $schema)
-+    {
-+        // this up() migration is auto-generated, please modify it to your needs
-+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-+
-+        $this->addSql('ALTER TABLE user ADD last_updated_by_id INT DEFAULT NULL');
-+        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D649E562D849 FOREIGN KEY (last_updated_by_id) REFERENCES user (id)');
-+        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E562D849 ON user (last_updated_by_id)');
-+    }
-+
-+    /**
-+     * @param Schema $schema
-+     */
-+    public function down(Schema $schema)
-+    {
-+        // this down() migration is auto-generated, please modify it to your needs
-+        $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
-+
-+        $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D649E562D849');
-+        $this->addSql('DROP INDEX UNIQ_8D93D649E562D849 ON user');
-+        $this->addSql('ALTER TABLE user DROP last_updated_by_id');
-+    }
-+}
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 0049595..cfce1e7 100644
+index d2f27ed..347c395 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -30,3 +30,9 @@ services:
@@ -56,44 +12,6 @@ index 0049595..cfce1e7 100644
 +        autowire: true
 +        tags:
 +            - { name: kernel.event_subscriber }
-diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 4ea76a8..ec6f831 100644
---- a/src/AppBundle/Entity/User.php
-+++ b/src/AppBundle/Entity/User.php
-@@ -85,6 +85,12 @@ class User implements UserInterface
-      */
-     private $updatedAt;
- 
-+    /**
-+     * @ORM\OneToOne(targetEntity="User")
-+     * @ORM\JoinColumn(name="last_updated_by_id", referencedColumnName="id", nullable=true)
-+     */
-+    private $lastUpdatedBy;
-+
-     public function __construct()
-     {
-         $this->studiedGenuses = new ArrayCollection();
-@@ -255,4 +261,20 @@ class User implements UserInterface
-     {
-         $this->updatedAt = $updatedAt;
-     }
-+
-+    /**
-+     * @return mixed
-+     */
-+    public function getLastUpdatedBy()
-+    {
-+        return $this->lastUpdatedBy;
-+    }
-+
-+    /**
-+     * @param mixed $lastUpdatedBy
-+     */
-+    public function setLastUpdatedBy($lastUpdatedBy)
-+    {
-+        $this->lastUpdatedBy = $lastUpdatedBy;
-+    }
- }
 diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
 new file mode 100644
 index 0000000..017970a

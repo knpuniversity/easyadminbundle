@@ -1,28 +1,27 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 0c8bf90..418bb59 100644
+index 17700de..7d0ea63 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -120,7 +120,14 @@ easy_admin:
+@@ -116,6 +116,14 @@ easy_admin:
+             search:
                  help: null
                  fields: ['id', 'name']
-             show:
--                actions: ['-delete']
++            show:
 +                actions:
-+                    - '-delete'
 +                    -
 +                        name: 'genus_feed'
 +                        type: 'route'
 +                        label: 'Feed genus'
 +                        css_class: 'btn btn-info'
 +                        icon: 'cutlery'
-             templates:
-                 field_id: 'admin/fields/_id.html.twig'
+ #            templates:
+ #                field_id: 'admin/fields/_id.html.twig'
              form:
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index dcb6765..e22afa3 100644
+index dcb6765..9ef7aed 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
-@@ -10,11 +10,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+@@ -10,10 +10,32 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  use Symfony\Component\HttpFoundation\JsonResponse;
@@ -31,7 +30,7 @@ index dcb6765..e22afa3 100644
  
  class GenusController extends Controller
  {
-     /**
++    /**
 +     * @Route("/genus/feed", name="genus_feed")
 +     */
 +    public function feedAction(Request $request)
@@ -47,12 +46,11 @@ index dcb6765..e22afa3 100644
 +
 +        return $this->redirectToRoute('easyadmin', [
 +            'action' => 'show',
-+            'entity' => $request->get('entity'),
++            'entity' => $request->query->get('entity'),
 +            'id' => $id
 +        ]);
 +    }
 +
-+    /**
+     /**
       * @Route("/genus/new")
       */
-     public function newAction()

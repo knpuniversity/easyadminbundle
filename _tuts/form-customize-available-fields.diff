@@ -1,11 +1,11 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 8c86aba..caed2a5 100644
+index 2060779..7e38a5e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -120,6 +120,22 @@ easy_admin:
-                 actions: ['-delete']
-             templates:
-                 field_id: 'admin/fields/_id.html.twig'
+@@ -113,6 +113,22 @@ easy_admin:
+                 fields: ['id', 'name']
+ #            templates:
+ #                field_id: 'admin/fields/_id.html.twig'
 +            form:
 +                fields:
 +                    - id

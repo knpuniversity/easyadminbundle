@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 081c768..aa86fdf 100644
+index 3c09def..2451a9e 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -96,11 +96,14 @@ easy_admin:
+@@ -94,11 +94,14 @@ easy_admin:
          menu:
              - { label: 'Dashboard', route: 'admin_dashboard', default: true }
              - { entity: 'User', label: 'Users', icon: 'user' }

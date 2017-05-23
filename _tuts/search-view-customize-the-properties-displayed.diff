@@ -1,12 +1,12 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f7df0dd..03df4e6 100644
+index bd29f55..dd30c8d 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -104,6 +104,7 @@ easy_admin:
-                 fields: ['id', 'name', 'isPublished', 'firstDiscoveredAt', 'funFact']
+@@ -107,6 +107,7 @@ easy_admin:
+                     - { property: 'speciesCount', format: '%b' }
              search:
                  help: null
 +                fields: ['id', 'name']
-             show:
-                 actions: ['-delete']
          GenusNote:
+             class: AppBundle\Entity\GenusNote
+             label: Genus Notes

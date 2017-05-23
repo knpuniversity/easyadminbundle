@@ -1,5 +1,5 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index cfce1e7..246df2b 100644
+index 347c395..e9f108f 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
 @@ -36,3 +36,9 @@ services:
@@ -14,10 +14,10 @@ index cfce1e7..246df2b 100644
 +            - { name: twig.extension }
 diff --git a/src/AppBundle/Twig/Extension/EasyAdminExtension.php b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
 new file mode 100644
-index 0000000..d4bf179
+index 0000000..79dd041
 --- /dev/null
 +++ b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
-@@ -0,0 +1,51 @@
+@@ -0,0 +1,52 @@
 +<?php
 +
 +namespace AppBundle\Twig\Extension;
@@ -27,6 +27,7 @@ index 0000000..d4bf179
 +use JavierEguiluz\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension;
 +use Symfony\Component\PropertyAccess\PropertyAccessor;
 +use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
++use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 +
 +class EasyAdminExtension extends EasyAdminTwigExtension
 +{
@@ -38,12 +39,12 @@ index 0000000..d4bf179
 +     */
 +    private $authorizationChecker;
 +
-+    public function __construct(ConfigManager $configManager, PropertyAccessor $propertyAccessor, AuthorizationCheckerInterface $authorizationChecker, $debug = false)
++    public function __construct(ConfigManager $configManager, PropertyAccessor $propertyAccessor, AuthorizationCheckerInterface $authorizationChecker, $debug = false, LogoutUrlGenerator $logoutUrlGenerator = null)
 +    {
 +        $this->configManager = $configManager;
 +        $this->authorizationChecker = $authorizationChecker;
 +
-+        parent::__construct($configManager, $propertyAccessor, $debug);
++        parent::__construct($configManager, $propertyAccessor, $debug, $logoutUrlGenerator);
 +    }
 +
 +    public function getActionsForItem($view, $entityName)

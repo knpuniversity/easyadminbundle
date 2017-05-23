@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 40728c8..29583b2 100644
+index 84d2270..27a28f9 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -181,3 +181,10 @@ easy_admin:
+@@ -176,3 +176,10 @@ easy_admin:
                      - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
                      - { property: 'fullName', template: 'scientist_fullname.html.twig' }
                      - { property: 'avatarUri', type: 'url' }
@@ -14,10 +14,10 @@ index 40728c8..29583b2 100644
 +                    - avatarUri
 +                    - universityName
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index 6c7f081..f9d04b7 100644
+index c5345f0..4c78e05 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
-@@ -212,6 +212,16 @@ class User implements UserInterface
+@@ -223,6 +223,16 @@ class User implements UserInterface
          return trim($this->getFirstName().' '.$this->getLastName());
      }
  

@@ -1,15 +1,3 @@
-diff --git a/app/config/security.yml b/app/config/security.yml
-index 37e5434..8506b97 100644
---- a/app/config/security.yml
-+++ b/app/config/security.yml
-@@ -6,6 +6,7 @@ security:
- 
-     role_hierarchy:
-         ROLE_ADMIN: [ROLE_MANAGE_GENUS, ROLE_ALLOWED_TO_SWITCH]
-+        ROLE_SUPERADMIN: [ROLE_ADMIN]
- 
-     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-     providers:
 diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
 index 017970a..3b0b256 100644
 --- a/src/AppBundle/Event/EasyAdminSubscriber.php

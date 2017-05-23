@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 4008106..a0f8946 100644
+index 530a34a..107530c 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -127,6 +127,7 @@ easy_admin:
+@@ -120,6 +120,7 @@ easy_admin:
                      - { property: 'userAvatarFilename', label: 'User avatar', type: 'image', base_path: '/images/' }
                      - createdAt
                      - genus

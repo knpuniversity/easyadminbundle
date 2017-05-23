@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 346cd05..40728c8 100644
+index 01c7094..84d2270 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -129,7 +129,14 @@ easy_admin:
+@@ -124,7 +124,14 @@ easy_admin:
                      - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
                      - { property: 'subFamily', type: 'easyadmin_autocomplete' }

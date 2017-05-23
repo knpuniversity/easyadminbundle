@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 0228f81..461f20e 100644
+index 1f7309f..cee2c41 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -95,6 +95,9 @@ easy_admin:
@@ -11,4 +11,4 @@ index 0228f81..461f20e 100644
 +                    - { name: 'show', icon: 'info-circle', label: '' }
              search:
                  help: null
-             show:
+         GenusNote:

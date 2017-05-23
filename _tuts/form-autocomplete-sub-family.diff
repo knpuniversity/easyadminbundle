@@ -1,18 +1,18 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index fbbe987..346cd05 100644
+index 3fcb995..01c7094 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -94,7 +94,7 @@ easy_admin:
+@@ -90,6 +90,8 @@ easy_admin:
+     list:
+         title: 'List of %%entity_label%%'
          actions: ['show']
-         max_results: 5
-     show:
--        max_results: 15
++    show:
 +        max_results: 6
      entities:
          Genus:
              class: AppBundle\Entity\Genus
-@@ -128,7 +128,7 @@ easy_admin:
-                     - funFact
+@@ -121,7 +123,7 @@ easy_admin:
+                     - { property: 'funFact', type: 'textarea' }
                      - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
 -                    - subFamily

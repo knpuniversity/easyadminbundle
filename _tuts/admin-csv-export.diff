@@ -24,20 +24,20 @@ index 36f01c6..c3ec533 100644
 +    {% endif %}
 +{% endblock global_actions %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 3fa0728..7e08d4b 100644
+index 5709bfd..dd337d8 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -94,7 +94,9 @@ easy_admin:
-             field_id: 'admin/fields/_id_global.html.twig'
+@@ -92,7 +92,9 @@ easy_admin:
+             field_id: 'admin/fields/_id.html.twig'
      list:
          title: 'List of %%entity_label%%'
 -        actions: ['show']
 +        actions:
 +            - 'show'
 +            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
-         max_results: 5
      show:
          max_results: 6
+     entities:
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
 index 1c6499a..122a70f 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
@@ -127,10 +127,10 @@ index 1c6499a..122a70f 100644
 +    }
  }
 diff --git a/src/AppBundle/Twig/Extension/EasyAdminExtension.php b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
-index d4bf179..e628b74 100644
+index 79dd041..0e004eb 100644
 --- a/src/AppBundle/Twig/Extension/EasyAdminExtension.php
 +++ b/src/AppBundle/Twig/Extension/EasyAdminExtension.php
-@@ -36,6 +36,10 @@ class EasyAdminExtension extends EasyAdminTwigExtension
+@@ -37,6 +37,10 @@ class EasyAdminExtension extends EasyAdminTwigExtension
  
          $actions = parent::getActionsForItem($view, $entityName);
  
