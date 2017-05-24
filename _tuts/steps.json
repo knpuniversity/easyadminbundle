@@ -96,11 +96,6 @@
             "description": null
         },
         {
-            "id": "show-view-change-available-actions-for-an-entity",
-            "name": "Show view: change available actions for an entity",
-            "description": null
-        },
-        {
             "id": "list-view-change-available-actions-for-an-entity",
             "name": "List view: change available actions for an entity",
             "description": null
@@ -113,16 +108,6 @@
         {
             "id": "list-view-customize-action-presentation",
             "name": "List view: customize action presentation",
-            "description": null
-        },
-        {
-            "id": "list-view-customize-rows-to-display",
-            "name": "List view: customize rows to display",
-            "description": null
-        },
-        {
-            "id": "show-view-customize-rows-to-display",
-            "name": "Show view: customize rows to display",
             "description": null
         },
         {
@@ -166,26 +151,6 @@
             "description": null
         },
         {
-            "id": "list-view-globally-set-date-format",
-            "name": "List view: globally set date format",
-            "description": null
-        },
-        {
-            "id": "list-view-change-date-format-for-property",
-            "name": "List view: change date format for property",
-            "description": null
-        },
-        {
-            "id": "list-view-add-species-count-back",
-            "name": "List view: add species count back ",
-            "description": null
-        },
-        {
-            "id": "list-view-change-number-format-of-species-count-property",
-            "name": "List view: change number format of species count property",
-            "description": null
-        },
-        {
             "id": "list-view-sort-genus-by-name",
             "name": "List view: sort genus by name",
             "description": null
@@ -208,11 +173,6 @@
         {
             "id": "list-view-filter-entities-by-property",
             "name": "List view: filter entities by property",
-            "description": null
-        },
-        {
-            "id": "list-view-use-container-parameter-in-filter",
-            "name": "List view: use container parameter in filter",
             "description": null
         },
         {
