@@ -106,20 +106,20 @@ index dd337d8..3c7f78e 100644
          title: 'List of %%entity_label%%'
          actions:
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-index 122a70f..2677ae8 100644
+index adcce42..717e0ce 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
 +++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-@@ -5,6 +5,7 @@ namespace AppBundle\Controller\EasyAdmin;
+@@ -4,6 +4,7 @@ namespace AppBundle\Controller\EasyAdmin;
+ 
  use AppBundle\Entity\Genus;
- use Doctrine\Common\Collections\ArrayCollection;
  use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 +use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
- use Symfony\Component\HttpFoundation\StreamedResponse;
  
  class AdminController extends BaseAdminController
-@@ -92,4 +93,19 @@ class AdminController extends BaseAdminController
- 
-         return $response;
+ {
+@@ -48,4 +49,19 @@ class AdminController extends BaseAdminController
+             'genuses-export.csv'
+         );
      }
 +
 +    /**

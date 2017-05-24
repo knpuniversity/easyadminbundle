@@ -39,21 +39,18 @@ index 5709bfd..dd337d8 100644
          max_results: 6
      entities:
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-index 1c6499a..122a70f 100644
+index 1c6499a..adcce42 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
 +++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-@@ -2,7 +2,10 @@
+@@ -2,6 +2,7 @@
  
  namespace AppBundle\Controller\EasyAdmin;
  
 +use AppBundle\Entity\Genus;
-+use Doctrine\Common\Collections\ArrayCollection;
  use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
-+use Symfony\Component\HttpFoundation\StreamedResponse;
  
  class AdminController extends BaseAdminController
- {
-@@ -21,4 +24,72 @@ class AdminController extends BaseAdminController
+@@ -21,4 +22,30 @@ class AdminController extends BaseAdminController
              'id' => $id,
          ]);
      }
@@ -77,53 +74,11 @@ index 1c6499a..122a70f 100644
 +            $this->entity['list']['dql_filter']
 +        );
 +
-+        $genuses = new ArrayCollection($queryBuilder->getQuery()->getResult());
-+        $response = new StreamedResponse();
-+
-+        $response->setCallback(function () use ($genuses) {
-+            $handle = fopen('php://output', 'w+');
-+
-+            $columns = [
-+                'Genus ID' => function (Genus $genus) {
-+                    return $genus->getId();
-+                },
-+                'Name' => function (Genus $genus) {
-+                    return $genus->getName();
-+                },
-+                'Slug' => function (Genus $genus) {
-+                    return $genus->getSlug();
-+                },
-+                'Sub Family' => function (Genus $genus) {
-+                    return $genus->getSubFamily();
-+                },
-+                'Species count' => function (Genus $genus) {
-+                    return $genus->getSpeciesCount();
-+                },
-+                // ...
-+            ];
-+
-+            // Add header
-+            fputcsv($handle, array_keys($columns));
-+
-+            while ($genus = $genuses->current()) {
-+                $values = [];
-+
-+                foreach ($columns as $callback) {
-+                    $values[] = $callback($genus);
-+                }
-+
-+                fputcsv($handle, $values);
-+
-+                $genuses->next();
-+            }
-+
-+            fclose($handle);
-+        });
-+
-+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-+        $response->headers->set('Content-Disposition', 'attachment; filename="genuses-export.csv"');
-+
-+        return $response;
++        return $this->get('app.csv_exporter')->getResponseFromQueryBuilder(
++            $queryBuilder,
++            Genus::class,
++            'genuses-export.csv'
++        );
 +    }
  }
 diff --git a/src/AppBundle/Twig/Extension/EasyAdminExtension.php b/src/AppBundle/Twig/Extension/EasyAdminExtension.php

@@ -1,11 +1,11 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index d2f27ed..347c395 100644
+index 7855a89..493a5b9 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -30,3 +30,9 @@ services:
-         autowire: true
-         tags:
-             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+@@ -33,3 +33,9 @@ services:
+ 
+     app.csv_exporter:
+         class: AppBundle\Service\CSVExporter
 +
 +    app.easy_admin_subscriber:
 +        class: AppBundle\Event\EasyAdminSubscriber

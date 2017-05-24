@@ -1,8 +1,8 @@
 diff --git a/app/config/services.yml b/app/config/services.yml
-index 347c395..e9f108f 100644
+index 493a5b9..7d3d1c5 100644
 --- a/app/config/services.yml
 +++ b/app/config/services.yml
-@@ -36,3 +36,9 @@ services:
+@@ -39,3 +39,9 @@ services:
          autowire: true
          tags:
              - { name: kernel.event_subscriber }
