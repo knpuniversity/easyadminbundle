@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index c1b67fc..953ac78 100644
+index 1bd0693..1c68d4f 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -81,6 +81,8 @@ stof_doctrine_extensions:
+@@ -80,6 +80,8 @@ stof_doctrine_extensions:
  
  easy_admin:
      site_name: 'Aqua<i>Note</i>'

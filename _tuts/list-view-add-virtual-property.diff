@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index b244261..85f901c 100644
+index 24b2ed4..335c0b2 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -125,6 +125,5 @@ easy_admin:
+@@ -124,6 +124,5 @@ easy_admin:
                      - id
                      - email
                      - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }

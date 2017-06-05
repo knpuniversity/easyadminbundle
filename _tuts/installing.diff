@@ -31,7 +31,7 @@ index e88b48e..26e8209 100644
 +    type: annotation
 +    prefix: /easyadmin
 diff --git a/composer.json b/composer.json
-index 56f7327..1a30572 100644
+index f39f7b1..9948f2c 100644
 --- a/composer.json
 +++ b/composer.json
 @@ -27,7 +27,8 @@
@@ -45,23 +45,22 @@ index 56f7327..1a30572 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index acecd21..e818fc6 100644
+index a41dff0..dbc0091 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
          "This file is @generated automatically"
      ],
--    "content-hash": "304884647f1fae4d4b96e000e1cb60df",
+-    "content-hash": "0dc7fd018b8439ffed59e5e6e912a3bd",
 +    "content-hash": "0a8a2441a2742dc5f68fcc8e9bb072f6",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1138,6 +1138,92 @@
-             ],
+@@ -1197,6 +1197,92 @@
              "time": "2015-11-10T17:04:01+00:00"
          },
-+        {
+         {
 +            "name": "javiereguiluz/easyadmin-bundle",
 +            "version": "v1.16.9",
 +            "source": {
@@ -147,14 +146,14 @@ index acecd21..e818fc6 100644
 +            ],
 +            "time": "2017-04-08T18:35:00+00:00"
 +        },
-         {
++        {
              "name": "jdorn/sql-formatter",
              "version": "v1.2.17",
-@@ -1496,6 +1582,75 @@
-             ],
+             "source": {
+@@ -1555,6 +1641,75 @@
              "time": "2017-05-04T11:12:50+00:00"
          },
-+        {
+         {
 +            "name": "pagerfanta/pagerfanta",
 +            "version": "v1.0.5",
 +            "source": {
@@ -223,14 +222,14 @@ index acecd21..e818fc6 100644
 +            ],
 +            "time": "2017-03-20T13:46:15+00:00"
 +        },
-         {
++        {
              "name": "paragonie/random_compat",
              "version": "v2.0.10",
-@@ -2517,6 +2672,58 @@
-             ],
-             "time": "2017-01-28T02:53:38+00:00"
+             "source": {
+@@ -2733,6 +2888,58 @@
+             "time": "2017-05-29T21:02:32+00:00"
          },
-+        {
+         {
 +            "name": "twig/extensions",
 +            "version": "v1.4.1",
 +            "source": {
@@ -282,6 +281,7 @@ index acecd21..e818fc6 100644
 +            ],
 +            "time": "2016-10-25T17:34:14+00:00"
 +        },
-         {
++        {
              "name": "twig/twig",
              "version": "v2.3.2",
+             "source": {

@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 1b946cd..d5b79c4 100644
+index 9784fbd..b8035c2 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -201,11 +201,17 @@ easy_admin:
+@@ -200,11 +200,17 @@ easy_admin:
                      - { property: 'avatarUri', type: 'url' }
              form:
                  fields:

@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 1d75a3e..5a8b80d 100644
+index 943dcc4..82dfb3f 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -113,6 +113,12 @@ easy_admin:
+@@ -112,6 +112,12 @@ easy_admin:
              label: Genus Notes
              list:
                  title: List of notes

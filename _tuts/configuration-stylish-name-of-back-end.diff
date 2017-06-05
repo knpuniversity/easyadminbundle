@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2a03b4f..c1b67fc 100644
+index 2e3b12e..1bd0693 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -80,7 +80,7 @@ stof_doctrine_extensions:
+@@ -79,7 +79,7 @@ stof_doctrine_extensions:
              sluggable: true
  
  easy_admin:

@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 49ebf50..212d542 100644
+index 358b9cb..2579310 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -87,6 +87,7 @@ easy_admin:
+@@ -86,6 +86,7 @@ easy_admin:
              css: ['css/custom_backend.css']
      list:
          title: 'List of %%entity_label%%'

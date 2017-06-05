@@ -10,10 +10,10 @@ index 0000000..78b3005
 +
 +{{ value|default('Stranger') }}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 3ff5470..2060779 100644
+index 45d05c0..e67d498 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -146,5 +146,5 @@ easy_admin:
+@@ -145,5 +145,5 @@ easy_admin:
                      - id
                      - { property: 'email', type: 'email' }
                      - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }

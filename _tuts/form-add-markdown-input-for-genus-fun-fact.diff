@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 27a28f9..17700de 100644
+index 5e34df0..9ce2198 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -85,6 +85,9 @@ easy_admin:
+@@ -84,6 +84,9 @@ easy_admin:
          brand_color: '#81b9ba'
          assets:
              css: ['css/custom_backend.css']
@@ -12,7 +12,7 @@ index 27a28f9..17700de 100644
          templates:
              field_id: 'admin/fields/_id.html.twig'
      list:
-@@ -120,7 +123,7 @@ easy_admin:
+@@ -119,7 +122,7 @@ easy_admin:
                      - id
                      - name
                      - speciesCount

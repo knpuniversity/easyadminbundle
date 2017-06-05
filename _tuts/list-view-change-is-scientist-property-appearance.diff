@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index dd30c8d..b244261 100644
+index 6e307e6..24b2ed4 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -120,3 +120,11 @@ easy_admin:
+@@ -119,3 +119,11 @@ easy_admin:
              disabled_actions: ['show']
          User:
              class: AppBundle\Entity\User

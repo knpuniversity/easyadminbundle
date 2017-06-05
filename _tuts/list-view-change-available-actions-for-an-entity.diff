@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 212d542..2294361 100644
+index 2579310..dd03698 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -104,5 +104,7 @@ easy_admin:
+@@ -103,5 +103,7 @@ easy_admin:
                  title: List of notes
          SubFamily:
              class: AppBundle\Entity\SubFamily

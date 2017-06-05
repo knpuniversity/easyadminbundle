@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 7e38a5e..be98a37 100644
+index fcc8e82..f9d5984 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -118,7 +118,7 @@ easy_admin:
+@@ -117,7 +117,7 @@ easy_admin:
                      - id
                      - name
                      - speciesCount
@@ -11,7 +11,7 @@ index 7e38a5e..be98a37 100644
                      - isPublished
                      - firstDiscoveredAt
                      - subFamily
-@@ -128,7 +128,10 @@ easy_admin:
+@@ -127,7 +127,10 @@ easy_admin:
                      - '-id'
              edit:
                  fields:

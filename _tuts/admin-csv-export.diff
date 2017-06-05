@@ -24,10 +24,10 @@ index 36f01c6..c3ec533 100644
 +    {% endif %}
 +{% endblock global_actions %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 5709bfd..dd337d8 100644
+index 8dfb1ad..919bdcd 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -92,7 +92,9 @@ easy_admin:
+@@ -91,7 +91,9 @@ easy_admin:
              field_id: 'admin/fields/_id.html.twig'
      list:
          title: 'List of %%entity_label%%'

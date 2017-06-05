@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 1f7309f..cee2c41 100644
+index 300a469..caf38dc 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -95,6 +95,9 @@ easy_admin:
+@@ -94,6 +94,9 @@ easy_admin:
              help: Genuses are not covered under warranty!
              list:
                  help: Do not feed!

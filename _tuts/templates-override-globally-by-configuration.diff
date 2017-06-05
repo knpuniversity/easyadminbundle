@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index ad044d2..3ff5470 100644
+index 98d73c2..45d05c0 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -85,6 +85,8 @@ easy_admin:
+@@ -84,6 +84,8 @@ easy_admin:
          brand_color: '#81b9ba'
          assets:
              css: ['css/custom_backend.css']
@@ -11,7 +11,7 @@ index ad044d2..3ff5470 100644
      list:
          title: 'List of %%entity_label%%'
          actions: ['show']
-@@ -109,8 +111,8 @@ easy_admin:
+@@ -108,8 +110,8 @@ easy_admin:
              search:
                  help: null
                  fields: ['id', 'name']

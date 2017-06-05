@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 2294361..1f7309f 100644
+index dd03698..300a469 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -106,5 +106,6 @@ easy_admin:
+@@ -105,5 +105,6 @@ easy_admin:
              class: AppBundle\Entity\SubFamily
              list:
                  actions: ['-show']

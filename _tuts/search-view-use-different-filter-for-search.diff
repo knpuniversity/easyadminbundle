@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 552fffd..b473a05 100644
+index 0dc8d2a..7540755 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -116,6 +116,8 @@ easy_admin:
+@@ -115,6 +115,8 @@ easy_admin:
                  dql_filter: 'entity.speciesCount >= 50000 AND entity.isPublished = true'
                  sort: 'speciesCount'
                  help: Run for your life!!! 😱😱😱
