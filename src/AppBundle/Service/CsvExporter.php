@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class CSVExporter
+class CsvExporter
 {
     public function getResponseFromQueryBuilder(QueryBuilder $queryBuilder, $columns, $filename)
     {
