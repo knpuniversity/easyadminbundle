@@ -88,7 +88,7 @@ index 0000000..21589f9
 +    </div>
 +{% endblock %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index b1b83de..ae9b763 100644
+index 52e9fa5..cf819cd 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -89,6 +89,13 @@ easy_admin:

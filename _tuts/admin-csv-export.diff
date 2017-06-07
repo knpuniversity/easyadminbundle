@@ -24,7 +24,7 @@ index 7a4a185..f7fd1ac 100644
 +    {% endif %}
 +{% endblock global_actions %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 8d5fcb5..b1b83de 100644
+index 68f4a5a..52e9fa5 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -91,7 +91,9 @@ easy_admin:
@@ -35,9 +35,9 @@ index 8d5fcb5..b1b83de 100644
 +        actions:
 +            - 'show'
 +            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
-     show:
-         max_results: 6
      entities:
+         Genus:
+             class: AppBundle\Entity\Genus
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
 index 1c6499a..adcce42 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php

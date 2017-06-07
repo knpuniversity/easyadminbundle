@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index b7061c4..30e95bb 100644
+index 771f8a0..6a7df0a 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -119,7 +119,7 @@ easy_admin:
+@@ -121,7 +121,7 @@ easy_admin:
                      - speciesCount
                      - { property: 'funFact', type: 'textarea' }
                      - isPublished

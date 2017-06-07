@@ -1,9 +1,15 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index ee63372..b7061c4 100644
+index ee63372..771f8a0 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -117,7 +117,7 @@ easy_admin:
-                     - id
+@@ -114,10 +114,12 @@ easy_admin:
+ #                field_id: 'admin/fields/_id.html.twig'
+             form:
+                 fields:
+-                    - id
++                    -
++                        property: id
++                        type_options: {disabled: true}
                      - name
                      - speciesCount
 -                    - funFact
@@ -11,7 +17,7 @@ index ee63372..b7061c4 100644
                      - isPublished
                      - firstDiscoveredAt
                      - subFamily
-@@ -127,7 +127,10 @@ easy_admin:
+@@ -127,7 +129,10 @@ easy_admin:
                      - '-id'
              edit:
                  fields:

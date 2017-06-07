@@ -1,6 +1,6 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..f0d53a8
+index 0000000..352b9d9
 --- /dev/null
 +++ b/app/config/admin.yml
 @@ -0,0 +1,173 @@
@@ -55,8 +55,6 @@ index 0000000..f0d53a8
 +        actions:
 +            - 'show'
 +            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
-+    show:
-+        max_results: 6
 +    entities:
 +        Genus:
 +            class: AppBundle\Entity\Genus
@@ -116,7 +114,9 @@ index 0000000..f0d53a8
 +                        label: 'Identification'
 +                        icon: 'id-card-o'
 +                        help: 'For administrators'
-+                    - id
++                    -
++                        property: id
++                        type_options: {disabled: true}
 +                    -
 +                        property: 'slug'
 +                        help: 'unique auto-generated value'
@@ -177,8 +177,9 @@ index 0000000..f0d53a8
 +                    - { type: 'section', label: 'Education' }
 +                    - isScientist
 +                    - universityName
+\ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
-index b879f1e..c4148a6 100644
+index f0763f3..c4148a6 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -245,8 +246,6 @@ index b879f1e..c4148a6 100644
 -        actions:
 -            - 'show'
 -            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
--    show:
--        max_results: 6
 -    entities:
 -        Genus:
 -            class: AppBundle\Entity\Genus
@@ -306,7 +305,9 @@ index b879f1e..c4148a6 100644
 -                        label: 'Identification'
 -                        icon: 'id-card-o'
 -                        help: 'For administrators'
--                    - id
+-                    -
+-                        property: id
+-                        type_options: {disabled: true}
 -                    -
 -                        property: 'slug'
 -                        help: 'unique auto-generated value'

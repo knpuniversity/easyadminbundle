@@ -1,12 +1,14 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index a66d8a0..179269c 100644
+index f2351bc..93ac630 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -138,30 +138,40 @@ easy_admin:
+@@ -136,32 +136,42 @@ easy_admin:
  #                field_id: 'admin/fields/_id.html.twig'
              form:
                  fields:
--                    - id
+-                    -
+-                        property: id
+-                        type_options: {disabled: true}
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
                      - name
 -                    - speciesCount
@@ -40,7 +42,9 @@ index a66d8a0..179269c 100644
 +                        label: 'Identification'
 +                        icon: 'id-card-o'
 +                        help: 'For administrators'
-+                    - id
++                    -
++                        property: id
++                        type_options: {disabled: true}
                      -
                          property: 'slug'
                          help: 'unique auto-generated value'

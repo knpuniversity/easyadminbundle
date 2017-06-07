@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 02cee8a..d8c63df 100644
+index 3439025..ce0fc79 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -123,6 +123,7 @@ easy_admin:
+@@ -121,6 +121,7 @@ easy_admin:
                          label: 'Feed genus'
                          css_class: 'btn btn-info'
                          icon: 'cutlery'
