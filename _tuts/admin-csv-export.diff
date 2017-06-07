@@ -1,8 +1,8 @@
 diff --git a/app/Resources/views/easy_admin/list.html.twig b/app/Resources/views/easy_admin/list.html.twig
-index 36f01c6..c3ec533 100644
+index 7a4a185..f7fd1ac 100644
 --- a/app/Resources/views/easy_admin/list.html.twig
 +++ b/app/Resources/views/easy_admin/list.html.twig
-@@ -14,3 +14,20 @@
+@@ -16,3 +16,20 @@
  
      {{ parent() }}
  {% endblock item_actions %}

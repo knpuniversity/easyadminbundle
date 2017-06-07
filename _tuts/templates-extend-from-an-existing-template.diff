@@ -1,24 +1,29 @@
 diff --git a/app/Resources/views/easy_admin/list.html.twig b/app/Resources/views/easy_admin/list.html.twig
-index a9980c5..36f01c6 100644
+index a9980c5..7a4a185 100644
 --- a/app/Resources/views/easy_admin/list.html.twig
 +++ b/app/Resources/views/easy_admin/list.html.twig
-@@ -1,243 +1,16 @@
+@@ -1,243 +1,18 @@
 -{% set _entity_config = easyadmin_entity(app.request.query.get('entity')) %}
 -{% trans_default_domain _entity_config.translation_domain %}
 -{% set _trans_parameters = { '%entity_name%': _entity_config.name|trans, '%entity_label%': _entity_config.label|trans } %}
 +{% extends '@EasyAdmin/default/list.html.twig' %}
- 
--{% extends _entity_config.templates.layout %}
++
 +{% block item_actions %}
 +    {% set filtered_actions = {} %}
 +    {% for action_name, action_config in _list_item_actions %}
 +        {% if action_name == 'delete' and item.isPublished|default(false) %}
 +            {# remove the 'delete' action from published items #}
 +        {% else %}
-+            {% set filtered_actions = filtered_actions|merge([action_config]) %}
++            {% set filtered_actions = filtered_actions|merge({
++                (action_name): action_config
++            }) %}
 +        {% endif %}
 +    {% endfor %}
++
++    {% set _list_item_actions = filtered_actions %}
  
+-{% extends _entity_config.templates.layout %}
+-
 -{% set _request_parameters = _request_parameters|default({})|merge({
 -    action: app.request.get('action'),
 -    entity: _entity_config.name,
@@ -28,8 +33,7 @@ index a9980c5..36f01c6 100644
 -    sortDirection: app.request.get('sortDirection', 'DESC'),
 -    page: app.request.get('page', 1)
 -}) %}
-+    {% set _list_item_actions = filtered_actions %}
- 
+-
 -{% if 'search' == app.request.get('action') %}
 -    {% set _request_parameters = _request_parameters|merge({ query: app.request.get('query')|default('') }) %}
 -{% endif %}
