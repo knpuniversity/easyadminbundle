@@ -1,8 +1,8 @@
-diff --git a/app/Resources/views/easy_admin/scientist_fullname.html.twig b/app/Resources/views/easy_admin/scientist_fullname.html.twig
+diff --git a/app/Resources/views/easy_admin/_field_user_full_name.html.twig b/app/Resources/views/easy_admin/_field_user_full_name.html.twig
 new file mode 100644
 index 0000000..78b3005
 --- /dev/null
-+++ b/app/Resources/views/easy_admin/scientist_fullname.html.twig
++++ b/app/Resources/views/easy_admin/_field_user_full_name.html.twig
 @@ -0,0 +1,5 @@
 +{% if item.isScientist %}
 +    <i class="fa fa-graduation-cap"></i>
@@ -10,7 +10,7 @@ index 0000000..78b3005
 +
 +{{ value|default('Stranger') }}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 45d05c0..e67d498 100644
+index 45d05c0..a93120f 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -145,5 +145,5 @@ easy_admin:
@@ -18,5 +18,5 @@ index 45d05c0..e67d498 100644
                      - { property: 'email', type: 'email' }
                      - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
 -                    - fullName
-+                    - { property: 'fullName', template: 'scientist_fullname.html.twig' }
++                    - { property: 'fullName', template: '_field_user_full_name.html.twig' }
                      - { property: 'avatarUri', type: 'url' }

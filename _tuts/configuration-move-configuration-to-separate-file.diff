@@ -1,6 +1,6 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..b51d89c
+index 0000000..f0d53a8
 --- /dev/null
 +++ b/app/config/admin.yml
 @@ -0,0 +1,173 @@
@@ -159,7 +159,7 @@ index 0000000..b51d89c
 +                    - id
 +                    - { property: 'email', type: 'email' }
 +                    - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
-+                    - { property: 'fullName', template: 'scientist_fullname.html.twig' }
++                    - { property: 'fullName', template: '_field_user_full_name.html.twig' }
 +                    - { property: 'avatarUri', type: 'url' }
 +            form:
 +                fields:
@@ -178,7 +178,7 @@ index 0000000..b51d89c
 +                    - isScientist
 +                    - universityName
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 3232b1b..c4148a6 100644
+index b879f1e..c4148a6 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -349,7 +349,7 @@ index 3232b1b..c4148a6 100644
 -                    - id
 -                    - { property: 'email', type: 'email' }
 -                    - { property: 'isScientist', label: 'Is scientist?', type: 'boolean' }
--                    - { property: 'fullName', template: 'scientist_fullname.html.twig' }
+-                    - { property: 'fullName', template: '_field_user_full_name.html.twig' }
 -                    - { property: 'avatarUri', type: 'url' }
 -            form:
 -                fields:

@@ -24,7 +24,7 @@ index 7a4a185..f7fd1ac 100644
 +    {% endif %}
 +{% endblock global_actions %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 8dfb1ad..919bdcd 100644
+index 8d5fcb5..b1b83de 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -91,7 +91,9 @@ easy_admin:
