@@ -2581,16 +2581,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.3.1",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "de4db89980282f960211efd029bb6ca754999dbd"
+                "reference": "82bd7c039214b34bb5d12c04f996f05f6581c49f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/de4db89980282f960211efd029bb6ca754999dbd",
-                "reference": "de4db89980282f960211efd029bb6ca754999dbd",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/82bd7c039214b34bb5d12c04f996f05f6581c49f",
+                "reference": "82bd7c039214b34bb5d12c04f996f05f6581c49f",
                 "shasum": ""
             },
             "require": {
@@ -2730,20 +2730,20 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-06-05T17:32:18+00:00"
+            "time": "2017-06-06T04:00:14+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v2.4.1",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "97c5e1f7e2f208df4433fc47197dbcf6cbc797a6"
+                "reference": "eab7c3288ae6603d7d6f92b531626af2b162d1f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/97c5e1f7e2f208df4433fc47197dbcf6cbc797a6",
-                "reference": "97c5e1f7e2f208df4433fc47197dbcf6cbc797a6",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/eab7c3288ae6603d7d6f92b531626af2b162d1f2",
+                "reference": "eab7c3288ae6603d7d6f92b531626af2b162d1f2",
                 "shasum": ""
             },
             "require": {
@@ -2796,7 +2796,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-06-05T18:29:51+00:00"
+            "time": "2017-06-07T18:47:58+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -3191,7 +3191,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.3.1",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
