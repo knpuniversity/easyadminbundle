@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserEditForm;
 use AppBundle\Form\UserRegistrationForm;
+use AppBundle\Security\LoginFormAuthenticator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ class UserController extends Controller
     /**
      * @Route("/register", name="user_register")
      */
-    public function registerAction(Request $request)
+    public function registerAction(Request $request, LoginFormAuthenticator $loginFormAuthenticator)
     {
         $form = $this->createForm(UserRegistrationForm::class);
 
@@ -32,7 +33,7 @@ class UserController extends Controller
                 ->authenticateUserAndHandleSuccess(
                     $user,
                     $request,
-                    $this->get('app.security.login_form_authenticator'),
+                    $loginFormAuthenticator,
                     'main'
                 );
         }
