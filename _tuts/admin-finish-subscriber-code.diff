@@ -1,0 +1,43 @@
+diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
+index b684867..29b43f3 100644
+--- a/src/AppBundle/Event/EasyAdminSubscriber.php
++++ b/src/AppBundle/Event/EasyAdminSubscriber.php
+@@ -2,12 +2,21 @@
+ 
+ namespace AppBundle\Event;
+ 
++use AppBundle\Entity\User;
+ use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+ use Symfony\Component\EventDispatcher\GenericEvent;
++use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+ 
+ class EasyAdminSubscriber implements EventSubscriberInterface
+ {
++    private $tokenStorage;
++
++    public function __construct(TokenStorageInterface $tokenStorage)
++    {
++        $this->tokenStorage = $tokenStorage;
++    }
++
+     public static function getSubscribedEvents()
+     {
+         return [
+@@ -17,6 +26,15 @@ class EasyAdminSubscriber implements EventSubscriberInterface
+ 
+     public function preUpdate(GenericEvent $event)
+     {
+-        dump($event);die;
++        $entity = $event->getSubject();
++
++        if ($entity instanceof User) {
++            $user = $this->tokenStorage->getToken()->getUser();
++            if (!$user instanceof User) {
++                $user = null;
++            }
++
++            $entity->setLastUpdatedBy($user);
++        }
+     }
+ }

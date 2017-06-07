@@ -1,28 +1,20 @@
 diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
-index 017970a..3b0b256 100644
+index 29b43f3..2c7ab84 100644
 --- a/src/AppBundle/Event/EasyAdminSubscriber.php
 +++ b/src/AppBundle/Event/EasyAdminSubscriber.php
-@@ -6,7 +6,10 @@ use AppBundle\Entity\User;
- use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+@@ -7,23 +7,36 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
  use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  use Symfony\Component\EventDispatcher\GenericEvent;
-+use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 +use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 +use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  
  class EasyAdminSubscriber implements EventSubscriberInterface
  {
-@@ -15,18 +18,46 @@ class EasyAdminSubscriber implements EventSubscriberInterface
-      */
      private $tokenStorage;
++    private $authorizationChecker;
  
 -    public function __construct(TokenStorageInterface $tokenStorage)
-+    /**
-+     * @var AuthorizationCheckerInterface
-+     */
-+    private $authorizationChecker;
-+
 +    public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker)
      {
          $this->tokenStorage = $tokenStorage;
@@ -32,41 +24,28 @@ index 017970a..3b0b256 100644
      public static function getSubscribedEvents()
      {
          return [
-+            EasyAdminEvents::PRE_DELETE => ['preDelete'],
-+            EasyAdminEvents::PRE_EDIT => ['preEdit'],
-             EasyAdminEvents::PRE_UPDATE => ['preUpdate'],
++            EasyAdminEvents::PRE_EDIT => 'preEdit',
+             EasyAdminEvents::PRE_UPDATE => 'preUpdate',
          ];
      }
  
-+    public function preDelete(GenericEvent $event)
-+    {
-+        $entity = $event->getSubject();
-+
-+        if ($entity['class'] === User::class) {
-+            $this->denyUserActions($event);
-+        }
-+    }
-+
 +    public function preEdit(GenericEvent $event)
 +    {
-+        /** @var Request $request */
-+        $request = $event->getArgument('request');
-+        $entity = $request->attributes->get('easyadmin')['item'];
-+
-+        if ($entity instanceof User) {
-+            $this->denyUserActions($event);
++        $config = $event->getSubject();
++        if ($config['class'] == User::class) {
++            $this->denyAccessUnlessSuperAdmin();
 +        }
 +    }
 +
      public function preUpdate(GenericEvent $event)
      {
          $entity = $event->getSubject();
-@@ -40,4 +71,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
+@@ -37,4 +50,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
              $entity->setLastUpdatedBy($user);
          }
      }
 +
-+    private function denyUserActions(GenericEvent $event)
++    private function denyAccessUnlessSuperAdmin()
 +    {
 +        if (!$this->authorizationChecker->isGranted('ROLE_SUPERADMIN')) {
 +            throw new AccessDeniedException();

@@ -45,7 +45,7 @@ index f39f7b1..9948f2c 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 6676c0c..cf1d34b 100644
+index 998f6ae..a658e2b 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
@@ -227,7 +227,7 @@ index 6676c0c..cf1d34b 100644
              "version": "v2.0.10",
              "source": {
 @@ -2733,6 +2888,58 @@
-             "time": "2017-06-05T17:32:18+00:00"
+             "time": "2017-06-06T04:00:14+00:00"
          },
          {
 +            "name": "twig/extensions",
@@ -283,5 +283,5 @@ index 6676c0c..cf1d34b 100644
 +        },
 +        {
              "name": "twig/twig",
-             "version": "v2.4.1",
+             "version": "v2.4.3",
              "source": {

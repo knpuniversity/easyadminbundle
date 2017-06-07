@@ -1,9 +1,9 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..352b9d9
+index 0000000..938c0c4
 --- /dev/null
 +++ b/app/config/admin.yml
-@@ -0,0 +1,173 @@
+@@ -0,0 +1,172 @@
 +easy_admin:
 +    site_name: 'Aqua<i>Note</i>'
 +    design:
@@ -52,12 +52,11 @@ index 0000000..352b9d9
 +                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
 +    list:
 +        title: 'List of %%entity_label%%'
-+        actions:
-+            - 'show'
-+            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
++        actions: ['show', 'export']
 +    entities:
 +        Genus:
 +            class: AppBundle\Entity\Genus
++            controller: AppBundle\Controller\EasyAdmin\GenusController
 +            label: Genuses
 +            help: Genuses are not covered under warranty!
 +            list:
@@ -179,7 +178,7 @@ index 0000000..352b9d9
 +                    - universityName
 \ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f0763f3..c4148a6 100644
+index d00e196..c4148a6 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -190,7 +189,7 @@ index f0763f3..c4148a6 100644
  
  # Put parameters here that don't need to change on each machine where the app is deployed
  # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-@@ -77,177 +78,3 @@ stof_doctrine_extensions:
+@@ -77,176 +78,3 @@ stof_doctrine_extensions:
      orm:
          default:
              sluggable: true
@@ -243,12 +242,11 @@ index f0763f3..c4148a6 100644
 -                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
 -    list:
 -        title: 'List of %%entity_label%%'
--        actions:
--            - 'show'
--            - { name: 'export', icon: 'download', css_class: 'btn btn-primary' }
+-        actions: ['show', 'export']
 -    entities:
 -        Genus:
 -            class: AppBundle\Entity\Genus
+-            controller: AppBundle\Controller\EasyAdmin\GenusController
 -            label: Genuses
 -            help: Genuses are not covered under warranty!
 -            list:

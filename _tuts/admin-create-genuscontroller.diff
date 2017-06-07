@@ -1,0 +1,83 @@
+diff --git a/app/config/config.yml b/app/config/config.yml
+index 68f4a5a..d783792 100644
+--- a/app/config/config.yml
++++ b/app/config/config.yml
+@@ -95,6 +95,7 @@ easy_admin:
+     entities:
+         Genus:
+             class: AppBundle\Entity\Genus
++            controller: AppBundle\Controller\EasyAdmin\GenusController
+             label: Genuses
+             help: Genuses are not covered under warranty!
+             list:
+diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
+index 239904a..b3f16ad 100644
+--- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
++++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
+@@ -6,21 +6,4 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdmin
+ 
+ class AdminController extends BaseAdminController
+ {
+-    public function changePublishedStatusAction()
+-    {
+-        $id = $this->request->query->get('id');
+-        $entity = $this->em->getRepository('AppBundle:Genus')->find($id);
+-
+-        $entity->setIsPublished(!$entity->getIsPublished());
+-
+-        $this->em->flush();
+-
+-        $this->addFlash('success', sprintf('Genus %spublished!', $entity->getIsPublished() ? '' : 'un'));
+-
+-        return $this->redirectToRoute('easyadmin', [
+-            'action' => 'show',
+-            'entity' => $this->request->query->get('entity'),
+-            'id' => $id,
+-        ]);
+-    }
+ }
+diff --git a/src/AppBundle/Controller/EasyAdmin/GenusController.php b/src/AppBundle/Controller/EasyAdmin/GenusController.php
+new file mode 100644
+index 0000000..0e803f4
+--- /dev/null
++++ b/src/AppBundle/Controller/EasyAdmin/GenusController.php
+@@ -0,0 +1,24 @@
++<?php
++
++namespace AppBundle\Controller\EasyAdmin;
++
++class GenusController extends AdminController
++{
++    public function changePublishedStatusAction()
++    {
++        $id = $this->request->query->get('id');
++        $entity = $this->em->getRepository('AppBundle:Genus')->find($id);
++
++        $entity->setIsPublished(!$entity->getIsPublished());
++
++        $this->em->flush();
++
++        $this->addFlash('success', sprintf('Genus %spublished!', $entity->getIsPublished() ? '' : 'un'));
++
++        return $this->redirectToRoute('easyadmin', [
++            'action' => 'show',
++            'entity' => $this->request->query->get('entity'),
++            'id' => $id,
++        ]);
++    }
++}
+diff --git a/src/AppBundle/Controller/EasyAdmin/UserController.php b/src/AppBundle/Controller/EasyAdmin/UserController.php
+index 7381168..5100234 100644
+--- a/src/AppBundle/Controller/EasyAdmin/UserController.php
++++ b/src/AppBundle/Controller/EasyAdmin/UserController.php
+@@ -3,9 +3,8 @@
+ namespace AppBundle\Controller\EasyAdmin;
+ 
+ use AppBundle\Entity\User;
+-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+ 
+-class UserController extends BaseAdminController
++class UserController extends AdminController
+ {
+     /**
+      * @param User $entity

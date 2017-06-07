@@ -1,29 +1,17 @@
 diff --git a/app/Resources/views/easy_admin/list.html.twig b/app/Resources/views/easy_admin/list.html.twig
-index a9980c5..7a4a185 100644
+index a9980c5..d7b335e 100644
 --- a/app/Resources/views/easy_admin/list.html.twig
 +++ b/app/Resources/views/easy_admin/list.html.twig
-@@ -1,243 +1,18 @@
+@@ -1,243 +1,7 @@
 -{% set _entity_config = easyadmin_entity(app.request.query.get('entity')) %}
 -{% trans_default_domain _entity_config.translation_domain %}
 -{% set _trans_parameters = { '%entity_name%': _entity_config.name|trans, '%entity_label%': _entity_config.label|trans } %}
 +{% extends '@EasyAdmin/default/list.html.twig' %}
-+
-+{% block item_actions %}
-+    {% set filtered_actions = {} %}
-+    {% for action_name, action_config in _list_item_actions %}
-+        {% if action_name == 'delete' and item.isPublished|default(false) %}
-+            {# remove the 'delete' action from published items #}
-+        {% else %}
-+            {% set filtered_actions = filtered_actions|merge({
-+                (action_name): action_config
-+            }) %}
-+        {% endif %}
-+    {% endfor %}
-+
-+    {% set _list_item_actions = filtered_actions %}
  
 -{% extends _entity_config.templates.layout %}
--
++{% block item_actions %}
++    {% set _list_item_actions = _list_item_actions|filter_admin_actions(item) %}
+ 
 -{% set _request_parameters = _request_parameters|default({})|merge({
 -    action: app.request.get('action'),
 -    entity: _entity_config.name,
@@ -260,5 +248,37 @@ index a9980c5..7a4a185 100644
 -            $('#main').find('table tbody').highlight($.merge([_search_query], _search_query.split(' ')));
 -        </script>
 -    {% endif %}
--{% endblock %}
-+{% endblock item_actions %}
+ {% endblock %}
+diff --git a/src/AppBundle/Twig/EasyAdminExtension.php b/src/AppBundle/Twig/EasyAdminExtension.php
+new file mode 100644
+index 0000000..03c138e
+--- /dev/null
++++ b/src/AppBundle/Twig/EasyAdminExtension.php
+@@ -0,0 +1,27 @@
++<?php
++
++namespace AppBundle\Twig;
++
++use AppBundle\Entity\Genus;
++
++class EasyAdminExtension extends \Twig_Extension
++{
++    public function getFilters()
++    {
++        return [
++            new \Twig_SimpleFilter(
++                'filter_admin_actions',
++                [$this, 'filterActions']
++            )
++        ];
++    }
++
++    public function filterActions(array $itemActions, $item)
++    {
++        if ($item instanceof Genus && $item->getIsPublished()) {
++            unset($itemActions['delete']);
++        }
++
++        return $itemActions;
++    }
++}

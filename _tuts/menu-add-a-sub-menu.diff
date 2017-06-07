@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index ab14549..7c07046 100644
+index fc46202..d3995c8 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -93,11 +93,14 @@ easy_admin:
@@ -21,4 +21,4 @@ index ab14549..7c07046 100644
 +                    - { entity: 'SubFamily', label: 'Families', icon: '' }
      list:
          title: 'List of %%entity_label%%'
-         actions:
+         actions: ['show', 'export']

@@ -18,7 +18,7 @@ index f618c9c..3439025 100644
  #                field_id: 'admin/fields/_id.html.twig'
              form:
 diff --git a/src/AppBundle/Controller/GenusController.php b/src/AppBundle/Controller/GenusController.php
-index dcb6765..9ef7aed 100644
+index 0b9ff5a..4550b2b 100644
 --- a/src/AppBundle/Controller/GenusController.php
 +++ b/src/AppBundle/Controller/GenusController.php
 @@ -10,11 +10,33 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

@@ -88,7 +88,7 @@ index 0000000..21589f9
 +    </div>
 +{% endblock %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 52e9fa5..cf819cd 100644
+index 5a25a04..a1329fb 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -89,6 +89,13 @@ easy_admin:
@@ -104,22 +104,22 @@ index 52e9fa5..cf819cd 100644
 +            - User
      list:
          title: 'List of %%entity_label%%'
-         actions:
+         actions: ['show', 'export']
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-index adcce42..717e0ce 100644
+index a6f32de..da17192 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
 +++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-@@ -4,6 +4,7 @@ namespace AppBundle\Controller\EasyAdmin;
+@@ -3,6 +3,7 @@
+ namespace AppBundle\Controller\EasyAdmin;
  
- use AppBundle\Entity\Genus;
  use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 +use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  
  class AdminController extends BaseAdminController
  {
-@@ -48,4 +49,19 @@ class AdminController extends BaseAdminController
-             'genuses-export.csv'
-         );
+@@ -10,4 +11,19 @@ class AdminController extends BaseAdminController
+     {
+         throw new \RuntimeException('Action for exporting an entity not defined');
      }
 +
 +    /**

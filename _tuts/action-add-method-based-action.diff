@@ -24,10 +24,10 @@ index 26e8209..4b56744 100644
      prefix: /easyadmin
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
 new file mode 100644
-index 0000000..1c6499a
+index 0000000..239904a
 --- /dev/null
 +++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-@@ -0,0 +1,24 @@
+@@ -0,0 +1,26 @@
 +<?php
 +
 +namespace AppBundle\Controller\EasyAdmin;
@@ -44,6 +44,8 @@ index 0000000..1c6499a
 +        $entity->setIsPublished(!$entity->getIsPublished());
 +
 +        $this->em->flush();
++
++        $this->addFlash('success', sprintf('Genus %spublished!', $entity->getIsPublished() ? '' : 'un'));
 +
 +        return $this->redirectToRoute('easyadmin', [
 +            'action' => 'show',

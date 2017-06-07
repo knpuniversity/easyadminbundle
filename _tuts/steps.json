@@ -281,8 +281,18 @@
             "description": null
         },
         {
+            "id": "admin-create-genuscontroller",
+            "name": "Admin: Create GenusController",
+            "description": null
+        },
+        {
             "id": "admin-set-last-updated-by-property-to-user-using-an-event",
             "name": "Admin: set last updated by property to user using an event",
+            "description": null
+        },
+        {
+            "id": "admin-finish-subscriber-code",
+            "name": "Admin: Finish subscriber code",
             "description": null
         },
         {
@@ -386,5 +396,5 @@
             "description": null
         }
     ],
-    "sha": "78958e102785ac5474f8ef44b8e1073eb1c57845"
+    "sha": "003ea7528835bda94145bdb867fa6277b36dbbe2"
 }
