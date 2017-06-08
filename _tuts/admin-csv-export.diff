@@ -1,8 +1,8 @@
 diff --git a/app/Resources/views/easy_admin/list.html.twig b/app/Resources/views/easy_admin/list.html.twig
-index d7b335e..1746d12 100644
+index d7b335e..4a41068 100644
 --- a/app/Resources/views/easy_admin/list.html.twig
 +++ b/app/Resources/views/easy_admin/list.html.twig
-@@ -4,4 +4,19 @@
+@@ -4,4 +4,18 @@
      {% set _list_item_actions = _list_item_actions|filter_admin_actions(item) %}
  
      {{ parent() }}
@@ -13,7 +13,6 @@ index d7b335e..1746d12 100644
 +    {{ parent() }}
 +
 +    {% if easyadmin_action_is_enabled_for_list_view('export', _entity_config.name) %}
-+        {% set _action = easyadmin_get_action_for_list_view('export', _entity_config.name) %}
 +
 +        <div class="button-action">
 +            <a class="btn btn-primary" href="{{ path('easyadmin', _request_parameters|merge({ action: 'export' })) }}">
@@ -50,7 +49,7 @@ index b3f16ad..a6f32de 100644
 +    }
  }
 diff --git a/src/AppBundle/Controller/EasyAdmin/GenusController.php b/src/AppBundle/Controller/EasyAdmin/GenusController.php
-index 0e803f4..d066a00 100644
+index 0e803f4..1d366dd 100644
 --- a/src/AppBundle/Controller/EasyAdmin/GenusController.php
 +++ b/src/AppBundle/Controller/EasyAdmin/GenusController.php
 @@ -2,8 +2,18 @@
@@ -77,7 +76,7 @@ index 0e803f4..d066a00 100644
          ]);
      }
 +
-+    public function exportGenusAction()
++    public function exportAction()
 +    {
 +        $sortDirection = $this->request->query->get('sortDirection');
 +        if (empty($sortDirection) || !in_array(strtoupper($sortDirection), ['ASC', 'DESC'])) {
@@ -97,4 +96,18 @@ index 0e803f4..d066a00 100644
 +            'genuses.csv'
 +        );
 +    }
+ }
+diff --git a/src/AppBundle/Twig/EasyAdminExtension.php b/src/AppBundle/Twig/EasyAdminExtension.php
+index db48e46..69e15d8 100644
+--- a/src/AppBundle/Twig/EasyAdminExtension.php
++++ b/src/AppBundle/Twig/EasyAdminExtension.php
+@@ -35,6 +35,9 @@ class EasyAdminExtension extends \Twig_Extension
+             unset($itemActions['edit']);
+         }
+ 
++        // export action is rendered by us manually
++        unset($itemActions['export']);
++
+         return $itemActions;
+     }
  }

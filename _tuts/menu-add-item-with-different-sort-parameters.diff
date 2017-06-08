@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index d3995c8..e7a6cae 100644
+index f55b6dd..4afa12c 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -97,6 +97,12 @@ easy_admin:
+@@ -97,6 +97,13 @@ easy_admin:
                  label: 'Genus'
                  children:
                      - Genus
@@ -12,6 +12,7 @@ index d3995c8..e7a6cae 100644
 +                        params:
 +                            sortField: 'id'
 +                            sortDirection: 'ASC'
++                            pizza: 'delicious'
                      - GenusHorde
                      - { label: 'Related' }
                      - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }

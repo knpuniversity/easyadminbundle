@@ -1,6 +1,6 @@
 diff --git a/app/Resources/views/easy_admin/dashboard.html.twig b/app/Resources/views/easy_admin/dashboard.html.twig
 new file mode 100644
-index 0000000..21589f9
+index 0000000..8f582d7
 --- /dev/null
 +++ b/app/Resources/views/easy_admin/dashboard.html.twig
 @@ -0,0 +1,83 @@
@@ -68,7 +68,7 @@ index 0000000..21589f9
 +        <div class="col-sm-4">
 +            <div class="panel panel-primary">
 +                <div class="panel-heading">
-+                    <h3 class="panel-title">{{ petGenus.name }}</h3>
++                    <h3 class="panel-title">{{ randomGenus.name }}</h3>
 +                </div>
 +
 +                <div class="panel-body">
@@ -76,9 +76,9 @@ index 0000000..21589f9
 +                        <img src="{{ asset('images/octopus-rubescens.jpg') }}" />
 +                    </p>
 +
-+                    <p>{{ petGenus.funFact }}</p>
++                    <p>{{ randomGenus.funFact }}</p>
 +
-+                    <a href="{{ path('easyadmin', {entity: 'Genus', action: 'show', id: petGenus.id}) }}"
++                    <a href="{{ path('easyadmin', {entity: 'Genus', action: 'show', id: randomGenus.id}) }}"
 +                       class="btn btn-primary">
 +                        Show details
 +                    </a>
@@ -106,18 +106,20 @@ index 5a25a04..a1329fb 100644
          title: 'List of %%entity_label%%'
          actions: ['show', 'export']
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-index a6f32de..da17192 100644
+index a6f32de..1f770ef 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php
 +++ b/src/AppBundle/Controller/EasyAdmin/AdminController.php
-@@ -3,6 +3,7 @@
+@@ -2,7 +2,9 @@
+ 
  namespace AppBundle\Controller\EasyAdmin;
  
++use AppBundle\Entity\Genus;
  use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 +use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  
  class AdminController extends BaseAdminController
  {
-@@ -10,4 +11,19 @@ class AdminController extends BaseAdminController
+@@ -10,4 +12,19 @@ class AdminController extends BaseAdminController
      {
          throw new \RuntimeException('Action for exporting an entity not defined');
      }
@@ -128,39 +130,12 @@ index a6f32de..da17192 100644
 +    public function dashboardAction()
 +    {
 +        $em = $this->getDoctrine()->getManager();
-+        $genusRepository = $em->getRepository('AppBundle:Genus');
++        $genusRepository = $em->getRepository(Genus::class);
 +
 +        return $this->render('easy_admin/dashboard.html.twig', [
 +            'genusCount' => $genusRepository->getGenusCount(),
 +            'publishedGenusCount' => $genusRepository->getPublishedGenusCount(),
-+            'petGenus' => $genusRepository->find(2),
++            'randomGenus' => $genusRepository->findRandomGenus()
 +        ]);
-+    }
- }
-diff --git a/src/AppBundle/Repository/GenusRepository.php b/src/AppBundle/Repository/GenusRepository.php
-index a77abd8..814aaf1 100644
---- a/src/AppBundle/Repository/GenusRepository.php
-+++ b/src/AppBundle/Repository/GenusRepository.php
-@@ -41,4 +41,22 @@ class GenusRepository extends EntityRepository
-             ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
-             ->orderBy(['yearsStudied', 'DESC']);
-     }
-+
-+    public function getGenusCount()
-+    {
-+        return $this->createQueryBuilder('genus')
-+            ->select('COUNT(genus.id)')
-+            ->getQuery()
-+            ->getSingleScalarResult();
-+    }
-+
-+    public function getPublishedGenusCount()
-+    {
-+        return $this->createQueryBuilder('genus')
-+            ->select('COUNT(genus.id)')
-+            ->where('genus.isPublished = :isPublished')
-+            ->setParameter('isPublished', true)
-+            ->getQuery()
-+            ->getSingleScalarResult();
 +    }
  }

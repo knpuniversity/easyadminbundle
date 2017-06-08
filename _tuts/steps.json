@@ -331,6 +331,11 @@
             "description": null
         },
         {
+            "id": "form-include-all-fields-in-form",
+            "name": "Form: include all fields in form",
+            "description": null
+        },
+        {
             "id": "form-add-groups-to-genus-form",
             "name": "Form: add groups to genus form",
             "description": null
@@ -396,5 +401,5 @@
             "description": null
         }
     ],
-    "sha": "003ea7528835bda94145bdb867fa6277b36dbbe2"
+    "sha": "142decb51edb47b9a94f12a3a1b755656e4a9d22"
 }

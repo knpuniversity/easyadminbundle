@@ -1,17 +1,21 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f9d125e..08dbb61 100644
+index c3889f7..a36de26 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -135,32 +135,42 @@ easy_admin:
+@@ -135,27 +135,40 @@ easy_admin:
  #                field_id: 'admin/fields/_id.html.twig'
              form:
                  fields:
 -                    -
 -                        property: id
 -                        type_options: {disabled: true}
+-                    -
+-                        property: 'slug'
+-                        help: 'unique auto-generated value'
+-                        type_options: { disabled: true }
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
                      - name
--                    - speciesCount
+                     - speciesCount
 -                    - { property: 'funFact', type: 'textarea', css_class: 'js-markdown-input' }
 -                    - isPublished
                      - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
@@ -30,11 +34,6 @@ index f9d125e..08dbb61 100644
                              allow_delete: true
                              allow_add: true
                              by_reference: false
--            new:
--                fields:
--                    - '-id'
--            edit:
--                fields:
 +
 +                    -
 +                        type: 'group'
@@ -45,14 +44,11 @@ index f9d125e..08dbb61 100644
 +                    -
 +                        property: id
 +                        type_options: {disabled: true}
-                     -
-                         property: 'slug'
-                         help: 'unique auto-generated value'
-                         type_options: { disabled: true }
-+            new:
-+                fields:
-+                    - '-id'
-+                    - '-slug'
-         GenusHorde:
-             class: AppBundle\Entity\Genus
-             label: HORDE of Genuses 😱 !!!
++                    -
++                        property: 'slug'
++                        help: 'unique auto-generated value'
++                        type_options: { disabled: true }
++
+             new:
+                 fields:
+                     - '-id'

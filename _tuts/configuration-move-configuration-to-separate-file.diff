@@ -1,9 +1,9 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..938c0c4
+index 0000000..8c6eca0
 --- /dev/null
 +++ b/app/config/admin.yml
-@@ -0,0 +1,172 @@
+@@ -0,0 +1,178 @@
 +easy_admin:
 +    site_name: 'Aqua<i>Note</i>'
 +    design:
@@ -37,10 +37,11 @@ index 0000000..938c0c4
 +                        params:
 +                            sortField: 'id'
 +                            sortDirection: 'ASC'
++                            pizza: 'delicious'
 +                    - GenusHorde
 +                    - { label: 'Related' }
 +                    - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
-+                    - { entity: 'SubFamily', label: 'Families', icon: '' }
++                    - { entity: 'SubFamily', label: 'Sub-Families', icon: '' }
 +            -
 +                label: 'Important stuff'
 +                icon: 'exclamation'
@@ -49,7 +50,10 @@ index 0000000..938c0c4
 +                        label: 'Silly kittens'
 +                        url: 'https://www.youtube.com/results?search_query=silly+kittens'
 +                        target: '_blank'
-+                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
++                    -
++                        label: 'Wet cats'
++                        url: 'http://www.boredpanda.com/funny-wet-cats/'
++                        target: '_blank'
 +    list:
 +        title: 'List of %%entity_label%%'
 +        actions: ['show', 'export']
@@ -90,6 +94,7 @@ index 0000000..938c0c4
 +                fields:
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
 +                    - name
++                    - speciesCount
 +                    - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
 +                    - { property: 'subFamily', type: 'easyadmin_autocomplete' }
 +                    - { type: 'section', label: 'Optional' }
@@ -120,6 +125,7 @@ index 0000000..938c0c4
 +                        property: 'slug'
 +                        help: 'unique auto-generated value'
 +                        type_options: { disabled: true }
++
 +            new:
 +                fields:
 +                    - '-id'
@@ -178,7 +184,7 @@ index 0000000..938c0c4
 +                    - universityName
 \ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
-index d00e196..c4148a6 100644
+index fd54531..c4148a6 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -189,7 +195,7 @@ index d00e196..c4148a6 100644
  
  # Put parameters here that don't need to change on each machine where the app is deployed
  # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-@@ -77,176 +78,3 @@ stof_doctrine_extensions:
+@@ -77,182 +78,3 @@ stof_doctrine_extensions:
      orm:
          default:
              sluggable: true
@@ -227,10 +233,11 @@ index d00e196..c4148a6 100644
 -                        params:
 -                            sortField: 'id'
 -                            sortDirection: 'ASC'
+-                            pizza: 'delicious'
 -                    - GenusHorde
 -                    - { label: 'Related' }
 -                    - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
--                    - { entity: 'SubFamily', label: 'Families', icon: '' }
+-                    - { entity: 'SubFamily', label: 'Sub-Families', icon: '' }
 -            -
 -                label: 'Important stuff'
 -                icon: 'exclamation'
@@ -239,7 +246,10 @@ index d00e196..c4148a6 100644
 -                        label: 'Silly kittens'
 -                        url: 'https://www.youtube.com/results?search_query=silly+kittens'
 -                        target: '_blank'
--                    - { label: 'Wet cats', url: 'http://www.boredpanda.com/funny-wet-cats/' }
+-                    -
+-                        label: 'Wet cats'
+-                        url: 'http://www.boredpanda.com/funny-wet-cats/'
+-                        target: '_blank'
 -    list:
 -        title: 'List of %%entity_label%%'
 -        actions: ['show', 'export']
@@ -280,6 +290,7 @@ index d00e196..c4148a6 100644
 -                fields:
 -                    - { type: 'group', css_class: 'col-sm-6', label: 'Basic information' }
 -                    - name
+-                    - speciesCount
 -                    - { property: 'firstDiscoveredAt', type_options: { widget: 'single_text' }}
 -                    - { property: 'subFamily', type: 'easyadmin_autocomplete' }
 -                    - { type: 'section', label: 'Optional' }
@@ -310,6 +321,7 @@ index d00e196..c4148a6 100644
 -                        property: 'slug'
 -                        help: 'unique auto-generated value'
 -                        type_options: { disabled: true }
+-
 -            new:
 -                fields:
 -                    - '-id'
