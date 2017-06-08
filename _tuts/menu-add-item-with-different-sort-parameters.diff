@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index f55b6dd..4afa12c 100644
+index 459e58b..37946fd 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -97,6 +97,13 @@ easy_admin:
+@@ -99,6 +99,13 @@ easy_admin:
                  label: 'Genus'
                  children:
                      - Genus

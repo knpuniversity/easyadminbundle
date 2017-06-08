@@ -1,0 +1,36 @@
+diff --git a/app/Resources/views/easy_admin/_form_theme.html.twig b/app/Resources/views/easy_admin/_form_theme.html.twig
+index 50fdc6d..c729ea2 100644
+--- a/app/Resources/views/easy_admin/_form_theme.html.twig
++++ b/app/Resources/views/easy_admin/_form_theme.html.twig
+@@ -1,3 +1,15 @@
+ {% block _genus_genusScientists_widget %}
+-    Are you feeling powerful?
++    <table class="table">
++        <tbody>
++            {% for genusScientist in easyadmin.item.genusScientists %}
++                <tr>
++                    <td>{{ genusScientist.user }}</td>
++                    <td>{{ genusScientist.yearsStudied }} years</td>
++                    <td>
++                        <a href="#" class="js-delete-scientist" data-url="">&times;</a>
++                    </td>
++                </tr>
++            {% endfor %}
++        </tbody>
++    </table>
+ {% endblock %}
+diff --git a/web/js/custom_backend.js b/web/js/custom_backend.js
+index ee167dc..64cad74 100644
+--- a/web/js/custom_backend.js
++++ b/web/js/custom_backend.js
+@@ -10,4 +10,10 @@ $(document).ready(function () {
+     });
+ 
+     $markdownInputs.trigger('keyup');
++
++    $('.js-delete-scientist').on('click', function(e) {
++        e.preventDefault();
++
++        alert('todo');
++    });
+ });

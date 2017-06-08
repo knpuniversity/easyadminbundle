@@ -88,13 +88,13 @@ index 0000000..8f582d7
 +    </div>
 +{% endblock %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 5a25a04..a1329fb 100644
+index 7fafe90..561e7c8 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -89,6 +89,13 @@ easy_admin:
-                 - 'js/custom_backend.js'
-         templates:
-             field_id: 'admin/fields/_id.html.twig'
+@@ -92,6 +92,13 @@ easy_admin:
+         form_theme:
+             - horizontal
+             - easy_admin/_form_theme.html.twig
 +        menu:
 +            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
 +            - Genus

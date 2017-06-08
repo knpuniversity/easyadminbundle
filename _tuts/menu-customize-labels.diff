@@ -1,9 +1,9 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index ca6be04..41d5fd0 100644
+index d95c608..2635132 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -92,11 +92,11 @@ easy_admin:
-         form_theme: vertical
+@@ -94,11 +94,11 @@ easy_admin:
+             - easy_admin/_form_theme.html.twig
          menu:
              - { label: 'Dashboard', route: 'admin_dashboard', default: true }
 -            - User

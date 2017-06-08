@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 68f4a5a..d783792 100644
+index e3c41c7..d3b11e3 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -95,6 +95,7 @@ easy_admin:
+@@ -98,6 +98,7 @@ easy_admin:
      entities:
          Genus:
              class: AppBundle\Entity\Genus

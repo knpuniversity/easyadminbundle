@@ -1,16 +1,16 @@
 diff --git a/src/AppBundle/Entity/GenusScientist.php b/src/AppBundle/Entity/GenusScientist.php
-index 9c94378..d48fb2d 100644
+index 98b2ede..9a7002e 100644
 --- a/src/AppBundle/Entity/GenusScientist.php
 +++ b/src/AppBundle/Entity/GenusScientist.php
 @@ -79,6 +79,10 @@ class GenusScientist
  
      public function __toString()
      {
--        return (string) $this->user;
+-        return (string) $this->getUser();
 +        return sprintf(
 +            '%s studied genus for %d years',
-+            (string)$this->user,
-+            $this->yearsStudied
++            (string)$this->getUser(),
++            $this->getYearsStudied()
 +        );
      }
  }

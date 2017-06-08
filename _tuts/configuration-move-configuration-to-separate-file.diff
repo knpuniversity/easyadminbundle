@@ -1,9 +1,9 @@
 diff --git a/app/config/admin.yml b/app/config/admin.yml
 new file mode 100644
-index 0000000..8c6eca0
+index 0000000..cdb3804
 --- /dev/null
 +++ b/app/config/admin.yml
-@@ -0,0 +1,178 @@
+@@ -0,0 +1,177 @@
 +easy_admin:
 +    site_name: 'Aqua<i>Note</i>'
 +    design:
@@ -15,7 +15,9 @@ index 0000000..8c6eca0
 +                - 'js/custom_backend.js'
 +        templates:
 +            field_id: 'admin/fields/_id.html.twig'
-+        form_theme: vertical
++        form_theme:
++            - horizontal
++            - easy_admin/_form_theme.html.twig
 +        menu:
 +            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
 +            - { label: 'Open front-end', route: 'app_genus_list' }
@@ -104,13 +106,10 @@ index 0000000..8c6eca0
 +                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
 +                    -
 +                        property: 'genusScientists'
-+                        type: 'collection'
-+                        label: ' '
++                        type: 'text'
 +                        type_options:
-+                            entry_type: AppBundle\Form\GenusScientistEmbeddedForm
-+                            allow_delete: true
-+                            allow_add: true
-+                            by_reference: false
++                            mapped: false
++                            attr: { class: 'js-genus-scientists-field' }
 +
 +                    -
 +                        type: 'group'
@@ -184,7 +183,7 @@ index 0000000..8c6eca0
 +                    - universityName
 \ No newline at end of file
 diff --git a/app/config/config.yml b/app/config/config.yml
-index fd54531..c4148a6 100644
+index 79e6f73..c4148a6 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -2,6 +2,7 @@ imports:
@@ -195,7 +194,7 @@ index fd54531..c4148a6 100644
  
  # Put parameters here that don't need to change on each machine where the app is deployed
  # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-@@ -77,182 +78,3 @@ stof_doctrine_extensions:
+@@ -77,181 +78,3 @@ stof_doctrine_extensions:
      orm:
          default:
              sluggable: true
@@ -211,7 +210,9 @@ index fd54531..c4148a6 100644
 -                - 'js/custom_backend.js'
 -        templates:
 -            field_id: 'admin/fields/_id.html.twig'
--        form_theme: vertical
+-        form_theme:
+-            - horizontal
+-            - easy_admin/_form_theme.html.twig
 -        menu:
 -            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
 -            - { label: 'Open front-end', route: 'app_genus_list' }
@@ -300,13 +301,10 @@ index fd54531..c4148a6 100644
 -                    - { type: 'group', css_class: 'col-sm-6', label: 'Studied by ...' }
 -                    -
 -                        property: 'genusScientists'
--                        type: 'collection'
--                        label: ' '
+-                        type: 'text'
 -                        type_options:
--                            entry_type: AppBundle\Form\GenusScientistEmbeddedForm
--                            allow_delete: true
--                            allow_add: true
--                            by_reference: false
+-                            mapped: false
+-                            attr: { class: 'js-genus-scientists-field' }
 -
 -                    -
 -                        type: 'group'
