@@ -41,4 +41,22 @@ class GenusRepository extends EntityRepository
             ->andWhere(Criteria::expr()->gt('yearsStudied', 20))
             ->orderBy(['yearsStudied', 'DESC']);
     }
+
+    public function getGenusCount()
+    {
+        return $this->createQueryBuilder('genus')
+            ->select('COUNT(genus.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getPublishedGenusCount()
+    {
+        return $this->createQueryBuilder('genus')
+            ->select('COUNT(genus.id)')
+            ->where('genus.isPublished = :isPublished')
+            ->setParameter('isPublished', true)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
