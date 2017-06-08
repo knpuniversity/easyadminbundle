@@ -62,7 +62,7 @@
         <div class="col-sm-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ petGenus.name }}</h3>
+                    <h3 class="panel-title">{{ randomGenus.name }}</h3>
                 </div>
 
                 <div class="panel-body">
@@ -70,9 +70,9 @@
                         <img src="{{ asset('images/octopus-rubescens.jpg') }}" />
                     </p>
 
-                    <p>{{ petGenus.funFact }}</p>
+                    <p>{{ randomGenus.funFact }}</p>
 
-                    <a href="{{ path('easyadmin', {entity: 'Genus', action: 'show', id: petGenus.id}) }}"
+                    <a href="{{ path('easyadmin', {entity: 'Genus', action: 'show', id: randomGenus.id}) }}"
                        class="btn btn-primary">
                         Show details
                     </a>

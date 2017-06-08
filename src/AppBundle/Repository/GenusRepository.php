@@ -59,4 +59,18 @@ class GenusRepository extends EntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * @return Genus
+     */
+    public function findRandomGenus()
+    {
+        // very dirty way to get a "random" result - don't use in a real project!
+        $results = $this->createQueryBuilder('genus')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->execute();
+
+        return $results[array_rand($results)];
+    }
 }
