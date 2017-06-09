@@ -16,11 +16,6 @@
             "description": null
         },
         {
-            "id": "fixing-php7-with-outdated-doctrine",
-            "name": "Fixing PHP7 with outdated Doctrine",
-            "description": null
-        },
-        {
             "id": "configuration-name-of-back-end",
             "name": "Configuration: name of back-end",
             "description": null
@@ -251,11 +246,6 @@
             "description": null
         },
         {
-            "id": "form-provide-more-information-for-genus-scientist-relation",
-            "name": "Form: provide more information for genus scientist relation",
-            "description": null
-        },
-        {
             "id": "form-use-virtual-property",
             "name": "Form: use virtual property",
             "description": null
@@ -321,16 +311,6 @@
             "description": null
         },
         {
-            "id": "admin-dashboard-removed",
-            "name": "Admin: Dashboard (removed)",
-            "description": null
-        },
-        {
-            "id": "form-change-theme-to-vertical",
-            "name": "Form: change theme to vertical",
-            "description": null
-        },
-        {
             "id": "form-add-dividers-to-user-form",
             "name": "Form: add dividers to user form",
             "description": null
@@ -373,11 +353,6 @@
         {
             "id": "menu-customize-icons",
             "name": "Menu: customize icons",
-            "description": null
-        },
-        {
-            "id": "menu-changing-the-back-end-index-page",
-            "name": "Menu: changing the back-end index page",
             "description": null
         },
         {
