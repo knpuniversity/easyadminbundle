@@ -1,5 +1,5 @@
 diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
-index 29b43f3..2c7ab84 100644
+index 11e0a5f..7721a75 100644
 --- a/src/AppBundle/Event/EasyAdminSubscriber.php
 +++ b/src/AppBundle/Event/EasyAdminSubscriber.php
 @@ -7,23 +7,36 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
@@ -24,12 +24,12 @@ index 29b43f3..2c7ab84 100644
      public static function getSubscribedEvents()
      {
          return [
-+            EasyAdminEvents::PRE_EDIT => 'preEdit',
-             EasyAdminEvents::PRE_UPDATE => 'preUpdate',
++            EasyAdminEvents::PRE_EDIT => 'onPreEdit',
+             EasyAdminEvents::PRE_UPDATE => 'onPreUpdate',
          ];
      }
  
-+    public function preEdit(GenericEvent $event)
++    public function onPreEdit(GenericEvent $event)
 +    {
 +        $config = $event->getSubject();
 +        if ($config['class'] == User::class) {
@@ -37,7 +37,7 @@ index 29b43f3..2c7ab84 100644
 +        }
 +    }
 +
-     public function preUpdate(GenericEvent $event)
+     public function onPreUpdate(GenericEvent $event)
      {
          $entity = $event->getSubject();
 @@ -37,4 +50,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface

@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index d95c608..2635132 100644
+index b07a85f..2635132 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -94,11 +94,11 @@ easy_admin:
+@@ -94,12 +94,11 @@ easy_admin:
              - easy_admin/_form_theme.html.twig
          menu:
              - { label: 'Dashboard', route: 'admin_dashboard', default: true }
@@ -12,6 +12,7 @@ index d95c608..2635132 100644
              - GenusHorde
 -            - GenusNote
 -            - SubFamily
+-
 +            - { entity: 'GenusNote', label: 'Notes' }
 +            - { entity: 'SubFamily', label: 'Families' }
      list:

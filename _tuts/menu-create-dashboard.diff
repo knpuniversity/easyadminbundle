@@ -88,23 +88,17 @@ index 0000000..8f582d7
 +    </div>
 +{% endblock %}
 diff --git a/app/config/config.yml b/app/config/config.yml
-index 7fafe90..561e7c8 100644
+index d8da6b4..b07a85f 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -92,6 +92,13 @@ easy_admin:
-         form_theme:
+@@ -93,6 +93,7 @@ easy_admin:
              - horizontal
              - easy_admin/_form_theme.html.twig
-+        menu:
+         menu:
 +            - { label: 'Dashboard', route: 'admin_dashboard', default: true }
-+            - Genus
-+            - GenusHorde
-+            - GenusNote
-+            - SubFamily
-+            - User
-     list:
-         title: 'List of %%entity_label%%'
-         actions: ['show', 'export']
+             - User
+             - Genus
+             - GenusHorde
 diff --git a/src/AppBundle/Controller/EasyAdmin/AdminController.php b/src/AppBundle/Controller/EasyAdmin/AdminController.php
 index a6f32de..1f770ef 100644
 --- a/src/AppBundle/Controller/EasyAdmin/AdminController.php

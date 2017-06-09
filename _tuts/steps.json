@@ -321,8 +321,8 @@
             "description": null
         },
         {
-            "id": "admin-dashboard",
-            "name": "Admin: Dashboard",
+            "id": "admin-dashboard-removed",
+            "name": "Admin: Dashboard (removed)",
             "description": null
         },
         {
@@ -358,6 +358,11 @@
         {
             "id": "menu-reorder-items",
             "name": "Menu: reorder items",
+            "description": null
+        },
+        {
+            "id": "menu-create-dashboard",
+            "name": "Menu: Create Dashboard",
             "description": null
         },
         {
@@ -411,5 +416,5 @@
             "description": null
         }
     ],
-    "sha": "5fc237b61aed5b7097b03334e01703728fde22bc"
+    "sha": "50c8400d7f60839e8cb96c34f15c5e179ab51a40"
 }

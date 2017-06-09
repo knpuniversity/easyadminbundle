@@ -1,8 +1,8 @@
-diff --git a/app/Resources/views/easy_admin/how.html.twig b/app/Resources/views/easy_admin/how.html.twig
+diff --git a/app/Resources/views/easy_admin/show.html.twig b/app/Resources/views/easy_admin/show.html.twig
 new file mode 100644
 index 0000000..f64dd3f
 --- /dev/null
-+++ b/app/Resources/views/easy_admin/how.html.twig
++++ b/app/Resources/views/easy_admin/show.html.twig
 @@ -0,0 +1,15 @@
 +{% extends '@EasyAdmin/default/show.html.twig' %}
 +

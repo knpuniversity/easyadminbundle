@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index a7a37a6..adbb4c6 100644
+index 136688b..cba3ca0 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -140,6 +140,10 @@ easy_admin:
+@@ -133,6 +133,10 @@ easy_admin:
                      -
                          property: id
                          type_options: {disabled: true}
@@ -13,7 +13,7 @@ index a7a37a6..adbb4c6 100644
                      - name
                      - speciesCount
                      - { property: 'funFact', type: 'textarea', css_class: 'js-markdown-input' }
-@@ -155,12 +159,7 @@ easy_admin:
+@@ -148,12 +152,7 @@ easy_admin:
              new:
                  fields:
                      - '-id'

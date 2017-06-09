@@ -1,8 +1,8 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index adbb4c6..b2c6a57 100644
+index cba3ca0..f4babc8 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
-@@ -137,25 +137,37 @@ easy_admin:
+@@ -130,25 +130,37 @@ easy_admin:
  #                field_id: 'admin/fields/_id.html.twig'
              form:
                  fields:

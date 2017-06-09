@@ -1,6 +1,6 @@
 diff --git a/src/AppBundle/Event/EasyAdminSubscriber.php b/src/AppBundle/Event/EasyAdminSubscriber.php
 new file mode 100644
-index 0000000..b684867
+index 0000000..3ac1301
 --- /dev/null
 +++ b/src/AppBundle/Event/EasyAdminSubscriber.php
 @@ -0,0 +1,22 @@
@@ -17,11 +17,11 @@ index 0000000..b684867
 +    public static function getSubscribedEvents()
 +    {
 +        return [
-+            EasyAdminEvents::PRE_UPDATE => 'preUpdate',
++            EasyAdminEvents::PRE_UPDATE => 'onPreUpdate',
 +        ];
 +    }
 +
-+    public function preUpdate(GenericEvent $event)
++    public function onPreUpdate(GenericEvent $event)
 +    {
 +        dump($event);die;
 +    }
