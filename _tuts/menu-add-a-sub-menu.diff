@@ -1,5 +1,5 @@
 diff --git a/app/config/config.yml b/app/config/config.yml
-index ef275c3..459e58b 100644
+index b9aedb4..459e58b 100644
 --- a/app/config/config.yml
 +++ b/app/config/config.yml
 @@ -95,11 +95,14 @@ easy_admin:
@@ -10,7 +10,7 @@ index ef275c3..459e58b 100644
 -            - Genus
 -            - GenusHorde
 -            - { entity: 'GenusNote', label: 'Notes', icon: 'sticky-note' }
--            - { entity: 'SubFamily', label: 'Families', icon: '' }
+-            - { entity: 'SubFamily', label: 'Sub-Families', icon: '' }
 +            -
 +                label: 'Genus'
 +                children:
