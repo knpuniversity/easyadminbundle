@@ -1,0 +1,22 @@
+# Bundle Install
+
+Welcome, welcome. Man, we do a lot of hard stuff in our day to day job and we cover a lot of hard topics on this site. Today is a little different. We're going to talk about something that's easy, EasyAdminBundle. My recommended way for you to create admin interfaces for your symphony projects. There's also SonataAdminBundle, which is more powerful, but it's also bit of a beast. So there are some things that SonataAdminBundle can do that EasyAdminBundle can't, but EasyAdminBundle is a whole lot nicer to work with.
+
+As always you guys should totally code along with me, download the code, unzip it and you'll find a start directory, which has the same code as you see here. Open up that README.md file to get your project and your database setup and the last step will be to find your project and run bin/console server:run to start up the built in web-server. Localhost, in our browser about a localhost:8000.
+
+You should see [Aquanote 01:31]. The project we've been building in our symfony series, which already has a bunch of database entities. And actually in the symfony series we spent quite a lot of work making a lot of these editable by admins. For example, if we go to /admin/genus, it'll bounce us back to the login page, we gonna log in with [inaudible 02:20] plus [inaudible 02:20]@gmail.com. I like turtles. And you'll see them have real nice interface for adding and editing genuses, but this was a lot of work to set up and now I've task with making genus, genus note, sub-family and users editable via the admin interface.
+
+Instead of doing all that by hand it's time for us to turn to EasyAdminBundle. So let's check it out. We'll find the EasyAdminBundle on GitHub, it's made by my friend Javiere, who does a lot of amazing things for the symfony community. And we're just gonna follow down with the installation, which you guys notice it's the same process. First we're gonna use the composer require line. In my terminal I will open up a new tab and I'll paste that, but we're busy so let's keep going while that's doing its work.
+
+Copy in the new bundle line, go into app/AppKernel and I'll paste that in there. Unlike a lot of bundles, this bundle actually brings in routes, because it's going to give us an admin interface, so it has some custom and controllers. To import those we have to copy these lines and go into our app/config/routing.yml file and it doesn't really matter where, I'll put it at the bottom, paste that there.
+
+Now since I already have pages that live under my/admin, I'm actually gonna change this preface to easyadmin, so it's always gonna be /easyadmin to get to this section. And then the last install step is to run asset con install, which should happen automatically on your composer install, but if you want to do it just in case it's a good idea. This bullet brings in some CSS and Java script, so that make sure that's available.
+
+All right, so that is it for installation, so what do we get? Now we can go to /easyadmin and it's not much to look at yet, because we haven't actually configured anything for admin, so it says that the backend is empty. And just like Javiere always does, he gives us a really good era. Opening your app config, config that yml file and config the backend.
+
+So in a nut shell, this is gonna make it very easy for us to build big [inaudible 05:13] backends for [inaudible 05:15] and the easiest way to configure it is just like this, by literally listing entities that we have. So I'll copy that little bit of configuration from the documentation, go to my/config.yml and at the bottom I'll paste that there and I'll change these to be my genus names. So appbundle/entities/genus, appbundle/entities/genus note, appbundle/entity/sub-family. I'll skip genus scientist, because this is sort of an embedded entity and then appbundle/entity/user.
+
+All right, the moment of truth. Head back to your browser and refresh. Now when we refresh, got it. Welcome to easyadmin, yes. We have a full CRUD for all former entities edit, delete, list, shows, search, add. We're gonna talk about all of it, because there's some really amazing stuff happening here. It's even responsive. Hello.
+
+You can pop this in our Iphone view here and see exactly what it would look like. So this is exactly what you would want with an admin interface. I want it to be amazing, I don't want to spend a lot of time with it. Of course the trick with this bundle is all about configuring and extending it and that's what we're gonna spend most of this tutorial doing. Let's do it.
+
