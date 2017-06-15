@@ -1,14 +1,61 @@
-# Design Security
+# Design Config & Security Setup
 
-So, with about six lines of code we got a fully functional admin area, which means the true difficulty of this bundle is going to be learning how to extend it, configure it. In fact, almost everything can be controlled in this bundle via configuration. I'm gonna go back up to the top, and click to view the documentation. And you can see a whole bunch of chapters. This bundle is very well documented, so I'm not gonna go through everything, but we are gonna look at the most important pieces. Most of these sections are talking about different keys that you're gonna have here in config.yml. So, let's go over the most basic ones, and also talk about security.
+With about six lines of code, we got a fully functional admin area. It must be our
+birthday. But now... we need to learn how to take control and *really* customize!
 
-So right now, in the upper left corner, you see it says, "EasyAdmin", that's the kind of stuff that you're able to control very easily or consign to your config file. So in this case there's a site_name key, and we'll change that to AquaNote. And in this case you can actually use HTML inside here, if you want to. So add a little sass to our note, AquaNote. And refresh to see that that takes place. There's a number of other things that we see globally here, and of course you can, as you're going to see, we're gonna be able to customize everything by overriding templates if we need to. But, a lot of the colors and schemes you see here, if you want to tweak them a little bit, there's an easier way. It's via the configuration design section.
+And for most things... it's... um... easy... because EasyAdminBundle let's us control
+almost anything via configuration. Back on its README, scroll up and click to view
+the full docs.
 
-So one of the main keys under there is gonna be brand color. And this is referring to basically the blue that you see here. So to make it match our front end a little bit, I'm gonna change that brand color, to what we use on our front end, refresh and there you go. I'm gonna go a little bit further, you might want to include some custom css. You can really start tweaking things. Like for example, let's say that for some reason this AquaNote branding up here, we decide we actually want that to be kind of a darker gray color. So, basically, we want to customize maybe the main header, logo anchor, change its color. So, how do we do that? Well, same way you normally do, we're gonna start with a css file, we're gonna be keeping it very simple inside the web/css, we'll create a custom_backend.css file, inside there I'll do my .main-header.logo, we'll make that a little bit darker.
+The bundle has great docs, so we'll mostly cover the basics and then dive into the
+really tough stuff. Let's start with design.
 
-Now, obviously we don't have control, yet, over this page, this is obviously using a bunch of templates inside the bundle, but we do have a hook under the design key called assets, css, and then we impasse it an array of css keys, so css/custom_backend.css, so that's relative to our web directory. And yes, there is a js key, it works exactly the same way, and we're actually gonna use that later. So, I'm gonna refresh, with a little bit of luck, there we go. So there are a few other keys that you can use under design and we're gonna see some of them. Again, this stuff is documented under basic configuration and design configuration, and we're gonna go a lot deeper anyways.
+Right now, in the upper left corner, it says, "EasyAdmin"... which is probably
+*not* what I want. Like most stuff, this can be changed in the config. Add a `site_name`
+key set to `AquaNote`. Actually, to be fancy, add a bit of HTML in this.
 
-And right now, as you can see, I am logged in, but I can actually log out and go to EasyAdmin and I'm in. So, how do we secure EasyAdmin? The answer to that is through Symphony. Meaning the bundle itself is nothing more than a bunch of normal routes and controllers, which means that you're gonna secure them the same way that you normally would. In normal Symphony we have two options for security. One is via access controls, in app, config, security.yml. And the other one is by actually putting code directly into your controller to check for a role and then deny access. That, in this case, is gonna be a little bit harder because the controller is part of the core bundle. We are gonna see how to do that.
+Refresh! Sweet! What else can we do?
 
-But to protect the entire area, you're probably gonna want an access control. So uncomma the access control here, use ^/easyadmin, role admin and that's it. We want to re-refresh, it's gonna bounce us back to our log in page, log back in with weaverryan, iloveturtles, and back into the admin. All right, next let's talk about customizing what the list page looks like.
+## The design Config Key
 
+Well, eventually, we'll learn how to override the EasyAdminBundle templates... which
+pretty much means you can customize anything. But a lot of things can be controlled
+here, under a `design` key.
+
+For example, `brand_color`. This controls the blue used in the layout. Set it to
+`#819b9a` to match our front-end a bit better. Try that! Got it!
+
+But what if we need to change something more specific... like if we want the branding
+name to be a darker gray color? Let's see... that means we want to set the color
+of the `.main-header .logo` anchor tag. So... how can we do that? The way you
+normally would: in CSS. Create a new file in `web/css`: `custom_backend.css`. Add
+the `.main-header .logo` and make its color a bit darker.
+
+Simple... but how do we include this on the page... because don't have control over
+any of these templates yet. Well, like most things... it's configurable: add
+`assets`, `css` then pass an array with the path: `css/custom_backend.css`. 
+
+And yes! There *is* a `js` key and it works the same. We'll use it a bit later.
+Refresh to see our sweet styling skills. Woohoo!
+
+There are a few other keys under `design` and we'll use some of them. But they're
+all pretty simple and this stuff is documented under "Basic configuration" and
+"Design Configuration".
+
+## Adding Security
+
+Before we keep going... we need to talk security! Because right now, I can log out
+and go back to `/easyadmin` with no problem. This is *totally* open to the public.
+Fun!
+
+How can we configure security in EasyAdminBundle? We don't! This is just a normal
+page... so we can use Symfony's normal security to protect it.
+
+The easiest way is in `security.yml` via `access_control`. Uncomment the example,
+use `^/easyadmin` and check for `ROLE_ADMIN`. That is it!
+
+When we refresh... yep! We're bounced back to the login page. Log back in with
+`weaverryan+1@gmail.com` password `iliketurtles`. And we're back! We *can* also secure
+things in a more granular way... and I'll show you how later.
+
+Now, let's start customizing the list page.

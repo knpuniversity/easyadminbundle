@@ -1,22 +1,86 @@
-# Bundle Install
+# Installation and First Admin
 
-Welcome, welcome. Man, we do a lot of hard stuff in our day to day job and we cover a lot of hard topics on this site. Today is a little different. We're going to talk about something that's easy, EasyAdminBundle. My recommended way for you to create admin interfaces for your symphony projects. There's also SonataAdminBundle, which is more powerful, but it's also bit of a beast. So there are some things that SonataAdminBundle can do that EasyAdminBundle can't, but EasyAdminBundle is a whole lot nicer to work with.
+Hello! And welcome to another *amazing* episode of: "Recipes with Ryan". Today
+we'll be baking a positively mind-blowing, mile-high cinnamon bread!
 
-As always you guys should totally code along with me, download the code, unzip it and you'll find a start directory, which has the same code as you see here. Open up that README.md file to get your project and your database setup and the last step will be to find your project and run bin/console server:run to start up the built in web-server. Localhost, in our browser about a localhost:8000.
+Huh? It's not the recipe video? EasyAdminBundle? Ok, cool!
 
-You should see [Aquanote 01:31]. The project we've been building in our symfony series, which already has a bunch of database entities. And actually in the symfony series we spent quite a lot of work making a lot of these editable by admins. For example, if we go to /admin/genus, it'll bounce us back to the login page, we gonna log in with [inaudible 02:20] plus [inaudible 02:20]@gmail.com. I like turtles. And you'll see them have real nice interface for adding and editing genuses, but this was a lot of work to set up and now I've task with making genus, genus note, sub-family and users editable via the admin interface.
+Um... we'll be baking a positively mind-blowing admin interface in Symfony
+with the wonderful EasyAdminBundle.
 
-Instead of doing all that by hand it's time for us to turn to EasyAdminBundle. So let's check it out. We'll find the EasyAdminBundle on GitHub, it's made by my friend Javiere, who does a lot of amazing things for the symfony community. And we're just gonna follow down with the installation, which you guys notice it's the same process. First we're gonna use the composer require line. In my terminal I will open up a new tab and I'll paste that, but we're busy so let's keep going while that's doing its work.
+## What about SonataAdminBundle
 
-Copy in the new bundle line, go into app/AppKernel and I'll paste that in there. Unlike a lot of bundles, this bundle actually brings in routes, because it's going to give us an admin interface, so it has some custom and controllers. To import those we have to copy these lines and go into our app/config/routing.yml file and it doesn't really matter where, I'll put it at the bottom, paste that there.
+Wait, but what about SonataAdminBundle? SonataAdminBundle *is* super powerful... more
+powerful than EasyAdminBundle. But it's also a bit of a beast - a lot bigger and
+more difficult to get use. If it's has a feature that you *need*... go for it!
+Otherwise, jump into the easy side with EasyAdminBundle.
 
-Now since I already have pages that live under my/admin, I'm actually gonna change this preface to easyadmin, so it's always gonna be /easyadmin to get to this section. And then the last install step is to run asset con install, which should happen automatically on your composer install, but if you want to do it just in case it's a good idea. This bullet brings in some CSS and Java script, so that make sure that's available.
+## Code with Me!
 
-All right, so that is it for installation, so what do we get? Now we can go to /easyadmin and it's not much to look at yet, because we haven't actually configured anything for admin, so it says that the backend is empty. And just like Javiere always does, he gives us a really good era. Opening your app config, config that yml file and config the backend.
+To make your cinnamon bread a hit, code along with me. Download the course code
+from this page and unzip it. Inside, you'll find a directory called `start/`,
+which will have the same code you see here. Open `README.md` for step-by-step
+baking instructions... and also details on how to get your project setup!
 
-So in a nut shell, this is gonna make it very easy for us to build big [inaudible 05:13] backends for [inaudible 05:15] and the easiest way to configure it is just like this, by literally listing entities that we have. So I'll copy that little bit of configuration from the documentation, go to my/config.yml and at the bottom I'll paste that there and I'll change these to be my genus names. So appbundle/entities/genus, appbundle/entities/genus note, appbundle/entity/sub-family. I'll skip genus scientist, because this is sort of an embedded entity and then appbundle/entity/user.
+The last step will be to find your favorite terminal, move into the project and run:
 
-All right, the moment of truth. Head back to your browser and refresh. Now when we refresh, got it. Welcome to easyadmin, yes. We have a full CRUD for all former entities edit, delete, list, shows, search, add. We're gonna talk about all of it, because there's some really amazing stuff happening here. It's even responsive. Hello.
+```terminal
+php bin/console server:run
+```
 
-You can pop this in our Iphone view here and see exactly what it would look like. So this is exactly what you would want with an admin interface. I want it to be amazing, I don't want to spend a lot of time with it. Of course the trick with this bundle is all about configuring and extending it and that's what we're gonna spend most of this tutorial doing. Let's do it.
+to start the built-in web server. Find your fanciest browser and open that:
+http://localhost:8000. Welcome to AquaNote! The project we've been building in
+our Symfony series.
 
+Actually, in that series, we spent some serious time making an admin area for one
+of our entities: Genus. Go to `/admin/genus`... and then login: username `weaverryan+1@gmail.com`,
+password: `iliketurtles`.
+
+A genus is a type of animal classification. And after all our work, we can create
+and edit them really nicely.
+
+That's great... but now I need to an admin interface for a bunch of other entities:
+`GenusNote`, `SubFamily`, and `User`. Doing that by hand... well... that would
+take a while... and we've got baking to do! So instead, we'll turn to EasyAdminBundle.
+
+## Installing EasyAdminBundle
+
+Google for EasyAdminBundle and find its GitHub page. Ah, it's made by our friend Javier!
+Hi Javier! Let's get this thing installed. Copy the `composer require` line, go back
+to your terminal, open a new tab, and paste.
+
+While Jordi is downloading that package, let's keep busy!
+
+Copy the new bundle line, find `app/AppKernel.php`, and put it here! Unlike most
+bundles, this bundle actually gives us a new *route*, which we need to import. Copy 
+the routing import lines, find our `app/config/routing.yml` and paste anywhere.
+
+Since we already have some pages that live under `/admin`, let's change the prefix
+to `/easyadmin`. *Finally*, one last step: run the `assets:install` command. This
+should run automatically after Composer is finished... but just in case, run it again.
+This bundle comes with some CSS and JavaScript, and we need to make sure it's available.
+
+## Setting up your First Admin
+
+Ok, we are installed! So... what did we get for our efforts? Try going to
+`/easyadmin`. Well... it's not much to look at yet... but it will be! I promise!
+We just need to configure what admin sections we need... and Javier gave us a great
+error message about this!
+
+In a nut shell, EasyAdminBundle can create an admin CRUD for any entity with almost
+zero configuration. In the docs, it shows an example of this minimal config. Copy
+that, find `config.yml`, scroll to the bottom, and paste. Change these
+to our entity names: `AppBundle\Entity\Genus`, `AppBundle\Entity\GenusNote`,
+`AppBundle\Entity\SubFamily`, skip `GenusScientist` - we'll embed that inside one
+of the other forms, and add `AppBundle\Entity\User`.
+
+We have arrived... at the moment of truth. Head back to your browser and refresh
+Ah, hah! Yes! A full CRUD for each entity: edit, delete, add, list, show, search,
+party! For a wow factor, it's even responsive: if you pop it into iPhone view, it
+looks pretty darn good!
+
+This is exactly what I want for my admin interface: I want it to be amazing and
+I want it to let me be lazy!
+
+Of course the trick with this bundle is learning to configure and extend it. We're
+80% of the way there with no config... now let's go further.

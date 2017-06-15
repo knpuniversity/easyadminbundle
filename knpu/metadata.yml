@@ -1,1 +1,19 @@
-chapters: []
+chapters:
+    - bundle-install
+    - design-security
+    - basic-views-entities-config
+    - actions
+    - list-fields
+    - dql-filtering
+    - customizing-templates
+    - form-field-customization
+    - collection-type
+    - custom-js-field
+    - fake-custom-field
+    - custom-actions
+    - custom-controllers
+    - event-hooks
+    - conditional-actions
+    - csv-export
+    - form-layout
+    - dashboard-menu
