@@ -1,24 +1,105 @@
-# Actions
+# Actions Config
 
-In addition to having these five different views, we have something called, "Actions". Actions are basically the buttons that you have on a particular view. From the list view, by default we have the, "Search" action, the new action, the "Edit" action and the "Delete" action, which allow us to get to those views. In the EasyAdminBundle documentation, they actually have an, "Actions Configuration" and they point this out. They also talk about the, "Default Actions" that you have on each view. For example, from, "Edit", you have a delete button and a list link, but you don't have a link for example, to create a new entity directly from edit. These actions can be customized a lot. You can add some, take some away, add custom actions, change the design of the actions and we're going to do all of that.
+We now know that there are *5* views: `list`, `search`, `edit`, `new` and
+~~banana~~ ... `show`. EasyAdminBundle also has an idea of "actions", which are basically
+the *links* and buttons that show up on each view. For example, on `list`, we have
+a `search` action, a `new` action and `edit` & `delete` actions. In the docs, they
+have a section called [Actions Configuration](http://symfony.com/doc/current/bundles/EasyAdminBundle/book/actions-configuration.html)
+that shows the "default" actions for each view. For example, from the "Edit" view,
+you have a delete button and a list link... but you do *not* have a link to create
+a new entity or eat a banana.
 
-First, notice that list does not have the, "Show action". That's why there's no little, "Show" button right here. If we wanted to add that, we of course could go under our global list ... and then say, "Actions", and then in on the right we'll say, "Show". Now notice, I'm only saying, "Show". I'm not relisting all of the different actions that I want to have on list. That's because the, "Action Configuration" is a merge, so it's going to take all the original actions that you see here and it's going to add the show action to it.
+Whelp! These actions can be customized a lot: we can add some, take some away, tweak
+their design and - gasp - create custom actions.
 
-How do you take away an action? We'll see that in a second. But first, if you click, "Show", it is super broken. Bloom. Object of class GenusNote could not be converted to string. In a lot of cases in this bundle, it's going to try to convert your entities to a string, so they can print them in a list or it can create a ... drop down menu. Basically, in most cases you're probably going to want to add a two, underscore, underscore, two string to each of your entities.
+## Adding the show Action
 
-Let's do that real quick. In Genus, underscore, underscore, two string. I'll copy that, save some time. More return. This arrow. Get name. I'm casting it ... into a string just for safety sake. Then a GenusNote. We'll do the same thing. We'll return a string of this arrow, "getNote". Keep going. "GenusScientists". In this case, I'm actually going to return ... the string representation of this arrow, "getUser", which is actually our user object and that's okay because we're about to add a two string to that. Sub family, it already has a two string. I'll just add a string type in just to be ... or cast, just to be safe.
+In the docs, it says that the `list` view does *not* have the `show` action by default.
+Yep, there's no little "show" link next to each item. *If* you want that, add it!
+Under the global `list`, add `actions`, then `show`. 
 
-Then in user ... this one will be a little bit more complicated. I'll return a string of this arrow, "getFullName" or ... this arrow, "getEmail" because it's possible in our database that the user actually doesn't have a first name and a last name, and we don't really want users to be blank. Thanks to all that, if we refresh now ... it's going to work. You can see what it was doing, is it's actually displaying our relations. It was trying to convert sub family into a string for right here. It was also converting the GenusNotes into strings and even our GenusScientists into strings down there.
+We *only* need to say `show`, we don't need to re-list all the actions. That's because
+the, `actions` configuration is a *merge*: it takes all of the original actions and
+*adds* whatever we have here.
 
-Now, check out this cool thing. Since we have a sub family admin section and a notes admin section, we can actually click to go into the show view. You can see the show action up here ... for that particular entity. Awesome. Speaking of sub family, if we click into that area ... you'll see that there's not really much for a sub family. It's basically an ID and a name, and if I show it, it's basically the ID and the name again. In this case, it might be overkill to have the show action for the sub family. Let's remove it.
+## Adding __toString Methods
 
-Back into [inaudible 00:04:40]. We just added the, "Show" action to the list view globally. Now we can go under sub family and not surprisingly we're going to just extend the list view configuration. Say, "list: actions" and in this case ... we'll say, "-show." That is the key for removing a show, an action. When we refresh, you're going to see that show link disappear. Awesome.
+So... how would we *remove* an action? We'll get there! But first, if you click,
+"Show"... wow. Geez. Dang! The page is *very* broken:
 
-Now, a really important thing though ... the, "Show" link is gone, but it is still possible to go to the show page. For example, if we click, "Edit", I can change this action to, "Show" and even beyond that, I can view one of my Genuses, and you can still see there's a link to that sub family. I can click to get to the show page that way.
+> Object of class GenusNote could not be converted to string.
 
-If you want to actually disabled an action, there's a separate configuration for that. It's not under the list view, it's just under the entity in general. It's called, "Disabled actions". That's an aray. We put the name of our action there. As soon as we do that ... the AdminBundle's not going to support the, "Show" action for that entity at all. You can see the link is gone here. If I go forward, back to the page manually and refresh, now we're going to actually hit an error. That's the proper way of actually getting rid of it.
+In a *lot* of places, EasyAdminBundle tries to covert your entity objects into
+strings... ya know, so it can print them in a list or create a drop-down menu.
+To get this working, we need to add `__toString()` methods to each entity. Let's do
+that real quick!
 
-Last main thing that you're going to do with actions ... is customize how they look. Right now, we just have, "Show", "Edit" and "Delete". Let's say we want to customize how those look, but just for our GenusEntity. That means we're going to go under the list key for the GenusEntity and once again we can set an actions key. In this case, we're not adding or removing actions, were just customizing how the actions look. Instead of just using a simple string like, "Show", I'm going to use the expanded figuration ... where we say, "name: edit." I'm configuring how the edit action looks.
+In `Genus`, add `public function __toString()` and return `$this->name`. I'm casting
+this into a string just to be safe - if it's null, you'll get an error. In `GenusNote`,
+do the same thing: return `$this->getNote()`. In `GenusScientist`, we can return
+`$this->getUser()`. That's an object... but we're about to add a `__toString()`
+for it too! 
 
-There's a couple of ... options under that. One is, "icon: pencil". We'll also say, "label: Edit". EasyAdminBundle ... uses Font Awesome. You'll see this icon key in a lot of different places and basically it's ... whatever comes after the, "fa dash" that you want here. This will run your icon with, "fa dash pencil". We can do the same thing for the, "Show" action. In this case we'll use, "info-circle". If you want, you can actually have no label. You can just use the icon. Again, this doesn't mean that we're only going to have these two actions, we're just changing the way those two actions render. When we refresh now, on the Genus page only, we have an icon and we just have the icon for the, "Show". Probably the last major thing that you're going to want to do with actions, is create a custom action, like for example, if we want to publish a Genus. That's something that we'll talk about little later.
+`SubFamily`, well hey! It already has a `__toString()`. I'll just add the string cast.
 
+And finally, in `User` ... make this a bit fancier. Return `$this->getFullName()`
+or `$this->getEmail()`, in case the user doesn't have a first or last name in the
+database.
+
+Try the show page again! Nice! It renders *all* of the properties, including
+the *relations*, which is why it needed that `__toString()` method.
+
+And because we have a `SubFamily` admin section, the `SubFamily` is a link that
+takes us to its `show` view.
+
+## Removing Actions
+
+Speaking of `SubFamily`, as you can see... there's not much to it: just an id and
+a name. And the "show" view, well, it's just the id and name again. Not too interesting.
+In this case, I think it's overkill to have the `show` action for the `SubFamily`
+entity. So let's kill it!
+
+Back in `config.yml`, we just added the, `show` action to the `list` view globally.
+Now, under `SubFamily`, we can *override* that `list` config. Add `actions` and -
+to *remove* an action - use `-show`. Yep, use "minus" to take an action away.
+
+Refresh! Ah, ha! The show link is gone.
+
+## Disabling Actions
+
+But... even though the link is gone, you can *totally* still get to the show page!
+For example, if we click, "Edit", we can be annoying and change the `action` in the
+URL to `show`. Genus!
+
+Or... you can just go to the show page for any `Genus`: there is *still* a link to
+the `SubFamily` show page.
+
+That might be ok, but if you *truly* want to disable the show view, there's a special
+config key for that. Under the entity itself, add `disabled_actions` set to an array
+with `show` inside.
+
+As *soon* as we do that ... the link vanishes in dramatic fashion! Let's be annoying
+again: I'll go forward in my browser to get back to the show page URL. Refresh! Dang!
+Now we get a huge error. The show view is *totally* gone.
+
+## Customizing Action Design
+
+There are two more things you can do with actions: custom actions - we'll talk about
+those later - and making your actions pretty. That's probably even more important!
+
+I want to tweak how the list actions look... but *only* for the `Genus` section.
+Ok, find its config, go under `list` and add `actions`. This time, rather than adding
+or removing actions, we want to *customize* them. So instead of using a simple string
+like `show`, use an expanded configuration with `name: edit`. We are now proudly
+configuring the `edit` action.
+
+There are a few things we can do here, like `icon: pencil` and `label: Edit`. The
+`icon` option - which shows up in a few places - allows you to add Font Awesome icons.
+For the value, just use whatever comes *after* the `fa-`. So, to get the `fa-pencil`
+icon, say `pencil`.
+
+Make the `show` action just as fancy, with `icon: info-circle` and a *blank* label.
+OoooOooo. Refresh to see how that looks!
+
+Oh man, it's actually kind of ugly... I need to work on my styling skills. But it
+totally works! 

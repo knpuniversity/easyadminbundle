@@ -1,14 +1,78 @@
-# Basic Views Entities Config
+# Views & entities Config
 
-Okay, since there's a lot to configure in this bundle, we need to keep how it's organized straight. There are two different axes for configuring things. First, every genus, every entity, admin section has five different views. You have the list view, which we are seeing right now; the search view, we hit this; the new view; the edit view; and also a show view, for viewing more of your entities. And we're able to customize each of those views individually. At the same time, you have your different entities. So, also be making customizations to the genus entity, the genus note entity, subfamily entity, and the user entity. And, of course, we can go deeper than that, we're going to be customizing the list view for one entity and the edit view for a different entity. So, when you put it all together, it's quite a lot of configuration but it's also quite a lot of control.
+With EasyAdminBundle, you can configure just about *everything*... in multiple different
+ways. It's *great*! But also confusing. So, let's get it straight!
 
-So, we're gonna start by customizing the list view. Now, in config.yml, at the root level under easy admin, we can say list and then we can say title list. A lot of the configuration keys that work under list are gonna work under all the other views like search, edit and new. So we won't talk about them, we'll only talk about those global options right now. And since this is global here, you see, this is gonna apply to all of our entities. So, if we refresh the genus list page right now, then watch this title here will go from genus to list, go to genus notes, can see the exact same thing. So, it applies everywhere. Now, unfortunately, that's not a very good title because we don't know what we're actually editing. So the [inaudible 00:02:20] allows you to put a couple of different wild cards in here. You can actually say, list a percent, percent, entity, underscore, label, percent, percent. And when we do that, now we get something a little bit better.
+There are two different axis for configuring things. First, every entity has 5 different
+"views": `list` - which is this one - `search`, `new`, `edit` and `show`. Each view
+can be configured. Second, each *entity* can *also* be configured. And sometimes,
+these overlap: you can tweak something for all list views, but then override that
+list tweak for *one* specific entity.
 
-There are a couple other wildcards you can use like entity, underscore, name, which is a little bit more of a technical name on the genus genus note or entity, underscore, ID. How do we control what this label ... Right now the label is just equal to the entity name, as you can see. How do we control it? By going to look further and actually starting to configure our individual entities. So, right now, we're just listing our entities in a very simple format. As soon as we want to configure our entity further, we need to go into an expanded format. We're just gonna look like this. Instead of a dash, we'll use a genus key, we'll say class, and we'll put the class name, and we'll sort of repeat that for everything else; genus note, subfamily, and user. This key here, genus genus note, that ends up being called the entity name, that's used a few places internally but it can actually be anything you want. The important thing is that you have the class set to your actual entity class.
+## Global list Config
 
-Now, what do we do is we can actually customize the label. So under genus, we'll say label genuses. And this is gonna show up in two places. When I refresh, it'll obviously show up in my title here, but it'll also update my admin navigation over there. Now here's where things get really interesting. There are more keys that you can put under the list key. And of course, as you're gonna see soon, we're gonna also gonna be customizing the other views like new and edit and show. When you customize them up top like this, you're customizing those things globally but you can also customize any of the views for a specific entity only. For example, under genus note, let's add a label here, called it genus notes, and then to customize the list for just that entity we can say list and we'll set title to list of notes. So when we refresh, you'll see the left navigation change because we changed the label and when we click in that, we see the list of notes. Now while we're talking about the list view I also want to talk about the search view.
+Let's see this in action! In `config.yml`, under `easy_admin`, you can configure the
+list view by adding a `list` key. Set `title: List`. And yep! *Each* view can be
+configured like this, by adding `search`, `show`, `edit` or `new`. Some config,
+like `title`, will work under all of these. But mostly, each section has its own
+config.
 
-So if we go up to the search box, type in a couple letters, here is the search view, you can see it's very, very similar to the list view and in fact, it's going to share the configuration from the list configuration by default. So anything that's relevant that we put under list is going to also apply to the search. So let's play with this. One of the things you can do under a specific genus, is you can set a help message. Genuses are not covered by a warranty. And when you put help at the root of an entity like this, this is actually going to add that for all of your views. So, you can see it at the top of the search, and you go back to the list page, at the top of the list, it's even at the top of edit. So, it's everywhere. Now, surprisingly, if we want to, we can go down here and override that specifically for the list view so this is the list view for the genus entity and we're gonna say, "Do not feed". When we refresh, not surprisingly, that's the message we get.
+When you add `list` at this root level, it applies to *all* entities. Try it out:
+yes! We just added a boring title to *all* the list pages!
 
-The one thing that might be surprising is that's also the message that you're gonna see and search uses the default one. If you want to turn that off on search, we can set help to no. Refresh. And it's gone. So, we're not doing much yet but you can already see how we are going to be customizing views up here and then also customizing entities but also customizing the views specifically for each entity to get really good control. So, next, let's talk about actions and the different actions that we can enable.
+For more context, add a magic wildcard: `%%entity_label%%`. Try it! Much better!
 
+There are just a *few* magic wildcards: ``entity_label``, ``entity_name`` and ``entity_id``.
+The ``entity_name`` is the geeky, machine-name for your entity - like `GenusNote`.
+The ``entity_label`` defaults to that same value... but we can change it to something
+better.
+
+## Configuring at the Entity Level
+
+So far, we just have a simple list of all the entity admin sections we want. That's
+great to get started... but not anymore! As *soon* as you need to configure an entity
+further, you need to use an *expanded* format. Basically, instead of `- Genus`, use
+`Genus` as the key and add a new line with `class` set to the full class name: `AppBundle\Entity\Genus`.
+Repeat this for everything else: `GenusNote`, `SubFamily` and `User`.
+
+This didn't change anything... but now we are, oh yes, dangerous! Oh, *so* much can
+be configured for each entity. Start simple: `label: Genuses`. Try that! Nice! The
+label is of course used in the title, but also in the navigation.
+
+## Overriding the List view under an Entity
+
+And here's where things get *really* interesting. The `list` config we added applies
+to *all* entities. But we can also customize the `list` view for just *one* entity.
+Under `GenusNote`, add a `label: Genus Notes`. But more importantly, add `list`,
+then `title: List of Notes`. Ok, check this out! The left navigation uses the new
+label. But the list page's title is `List of Notes`. 
+
+Woohoo! To review: there are *5* views, and each view can be configured globally,
+but also beneath each entity. If that makes sense, you're in *great* shape.
+
+## The Search View
+
+While we're here, go type a few letters into that search box. Yep! This is the `search`
+view. It's almost identical to `list`: it re-uses its template and has almost identical
+config keys.
+
+## Overriding Entity View Config
+
+In addition to `title`, one other key that *every* view has is `help`. First, set
+this below the `Genus` section: "Genuses are not covered by warranty". Notice, this
+is directly under the *entity* config, not under a specific view. Thanks to this,
+it will *all* to *all* views for this entity. And... yep! It's at the top of the search
+page, on list and on edit.
+
+In the spirit of EasyAdminBundle, you can override this for each view below. For
+`list`, set `help` to `Do not feed`. Nice!
+
+And the `search` view still uses the default message. If you want to turn *off* the
+help message here, you can totally do that. Under `search`, set `help` to `null`.
+Refresh! Gone!
+
+Ok, so we're not going to talk about *all* of the different keys available: it's
+all pretty easy. The most important thing is to realize that each of the 5 views
+can be configured on two different levels.
+
+Next, let's talk about actions and the different ones that we can enable.

@@ -4,6 +4,7 @@ chapters:
     - basic-views-entities-config
     - actions
     - list-fields
+    - more-field-types
     - dql-filtering
     - customizing-templates
     - form-field-customization

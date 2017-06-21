@@ -31,7 +31,7 @@ of the `.main-header .logo` anchor tag. So... how can we do that? The way you
 normally would: in CSS. Create a new file in `web/css`: `custom_backend.css`. Add
 the `.main-header .logo` and make its color a bit darker.
 
-Simple... but how do we include this on the page... because don't have control over
+Simple... but how do we include this on the page... because we don't have control over
 any of these templates yet. Well, like most things... it's configurable: add
 `assets`, `css` then pass an array with the path: `css/custom_backend.css`. 
 

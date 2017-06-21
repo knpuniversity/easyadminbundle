@@ -12,7 +12,7 @@ with the wonderful EasyAdminBundle.
 
 Wait, but what about SonataAdminBundle? SonataAdminBundle *is* super powerful... more
 powerful than EasyAdminBundle. But it's also a bit of a beast - a lot bigger and
-more difficult to get use. If it's has a feature that you *need*... go for it!
+more difficult to use. If it has a feature that you *need*... go for it!
 Otherwise, jump into the easy side with EasyAdminBundle.
 
 ## Code with Me!
@@ -39,7 +39,7 @@ password: `iliketurtles`.
 A genus is a type of animal classification. And after all our work, we can create
 and edit them really nicely.
 
-That's great... but now I need to an admin interface for a bunch of other entities:
+That's great... but now I need an admin interface for a bunch of other entities:
 `GenusNote`, `SubFamily`, and `User`. Doing that by hand... well... that would
 take a while... and we've got baking to do! So instead, we'll turn to EasyAdminBundle.
 

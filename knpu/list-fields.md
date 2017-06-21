@@ -1,38 +1,66 @@
-# List Fields
+# Configuring the List Fields
 
-Okay, so let's keep talking about the list view, because there's a lot more to customize, like, the fields themselves. What fields are displayed here ... how they're displayed? So, out of the box, easy admin bundle is going to list all of your fields on your show page, and then on the list page it kind of does an intelligent guess, and it does a pretty good job. It hides certain fields, it shows certain fields, humanizes the labels. And now it is time to take control of that.
+We've been tweaking a bunch of stuff on the list view. But... what about this big
+giant table in the middle!? How can we customize that?
 
-First, I want to point out something that you may not have noticed. Down here in the web debug toolbar we have a little magic wand. We're gonna open that up in a new tab. That is the easy admin bundle configuration debug and it is awesome. Here, under current entity configuration, we can see all of our configuration that we've been building for that entity. Including things that it is guessing for us. Under a list view, there is actually a field option and under that you can see all of the different fields and information about those fields. For example, right there, label, in something called a type. When each field is rendered, its rendered as a different type. There are string types. There are number types. There are date types. It's going to affect how they're rendered. So this is great, we can use this to start to customize how our list fields look.
+Actually, EasyAdminBundle did a pretty good job with it: it guesses which fields
+to show, humanizes the column header labels and renders things nicely. Good job Javier!
 
-So not surprising, to customize this, we're going to go on our Genus, we're going to go under list, and then we're going to add a new field configuration. And for the most part, it's easy. Let's show the ID, let's show the name property so it is published. These are all fields that are currently being shown over here.
+## The EasyAdminBundle Profiler
 
-And then for firstDiscoveredAt we're actually going to tweak that a little bit. So we can use the simple view here or just like with actions, we can use an expanded view. Which means we can say, "property: firstDiscoveredAt", and then we can start customizing that. Because this is a date field, it has a format option. We're gonna say, "M Y", and then all fields have a label option, we'll say "Discovered". We'll keep going, we'll add, "fun Fact" and then we'll add one more expanded, "property: spieciesCount" ... which is a number. And just to be fun, we'll say "%b". Bonus points if you know what that's going to do. The hint is that, number fields are run through the sprint-F function.
+Before we tweak all of this, see that magic wand in the web debug toolbar? Say 
+"Alohomora" and click to open that in a new tab. This is the `EasyAdminBundle` profiler...
+and it's *awesome*. Here, under "Current entity configuration", we can see all of
+the config we've been building for this entity, *including* default values that it's
+guessing for us. This is a *sweet* map for knowing what can be changed and how.
 
-And now, if you go back, I'll close our configuration, refresh, we'll have a different set of fields and they're going to look different too, bam, discovered, February 1860, and species count, is, actually if you guessed it is ... binary. Why? Because scientist are nerds so they like the puzzle.
+Under `list`, then `fields`, it shows details about all the columns used for the table.
+For example, under `name`, you can see `type => string`. Actually, `dataType` is
+the really important one.
 
-Now the list view and the search view share a lot of stuff. So if we do a search right now for "quo", you can see that I have the results and it obviously gonna use the exact same fields up here. Now under search, there is actually a fields ... option that you can do but this isn't what fields should be displayed, it's what fields should be used in the search, so I can restrict it to ID and name. By default it actually tries to search ... across all of the fields, except for those one's that don't make sense, and you can see that inside of our query here.
+Here's the deal: each field that's rendered in the table has a different *data type*,
+like `string`, `float`, `date`, `email` and a bunch others. EasyAdminBundle guesses
+a type, and it affects how the data for that field is rendered. We can change the
+type... and *anything* else you see here.
 
-Word's doing a search across slug ... name slug and fun fact ... and there's a couple extra queries here because of pagination. So because we just changed the configuration to just ID and name, this is matching fun fact. Now we've got no results. Okay let's go look at the user entity. Same thing, it's guessing some really nice defaults. I'll open up our easy admin bundle configuration again, and we'll open up the list fields, and there's all the fields we can see there.
+## Controller Fields
 
-Now I want to talk more about that type. So I'll open up "isScientist" and you can see this type is set to "boolean", and it's data-type ... is set to toggle. So if we go to the documentation, and I'll go back to the main page ... we'll click "list, search, and shows views configuration". Now, a little bit down the page, it starts talking about how to customize the properties that are displayed. What I want to look at here is, first, all the different options that you have for those, like: property, label, CSS class, template, which we'll talk about later, and really important, the type, which controls that data-type. And there are a bunch of built in ones, including all of the doctrine field types are built in, but also there a couple of special ones to easy admin, like toggle, which we noticed is being used for the "isScientist" field. The toggle is pretty rad because it lets you do this thing, where you can actually toggle and it sends "Ajax" request to turn that on and off.
+How? Under `Genus` and `list`, add `fields`. Now, list the exact fields that you want
+to display, like `id`, `name` and `isPublished`. These 3 fields were already shown
+before.
 
-All right, so let's customize this one a bit. Down here under user, remember we are customizing the list view, so let's say, "list, fields, ID, email". And then we're going to customize the "isScientist" field. Right now it's a toggle, so we'll say, "label: Is Scientist?". And as cool as that toggle type is, we're actually going to change the type to, "boolean", which is one of the doctrine types. And then we'll say, "firstName, lastName, and avatarUri". So when we refresh now ... our scientist field is not a togglable field anymore. It is a boolean so it does show us, like, the nice yes and no.
+Let's also show `firstDiscoveredAt`... but! I want to tweak it a little. Just like
+with actions, there is an "expanded" config format. Add `{ }` with `property: firstDiscoveredAt`.
 
-Inside of our configuration, to see how that affects things, back under list ... fields ... "isScientist", now you can see that its data-type is set to "boolean", and it's using a different template to render it, which we will talk about. So that's the biggest thing with ... so let's play a little bit more.
+Now... what configuration can we put here? Because this is a `date` field, it has
+a `format` option. Set it to `M Y`. And, *all* fields have a `label` option. Use
+"Discovered".
 
-Obviously these are all the property names on the user entity. Actually, they don't have to be proper names. Just like with some of these form components, as long as there's a "Getter method", you can use it. So for example, you may get full name method. Which means here, we can actually trick things by removing "firstName, lastName", and instead just having, "FullName" ... and that is going to work perfectly.
+Keep going! Add `funFact` and then one more expanded property: `property: speciesCount`.
+This is an `integer` type, which also has a `format` option. For fun, set it to
+`%b` - binary format! Yea know because, scientists are nerds and like puzzles.
 
-Next, we can leverage a couple of these built in types from the easy admin bundle. These built in types are usually a little more interesting than the core doctrine types. For example, there's one called "email". Well, we have an email field so let's use that. Say. "property: email, type: email". And while we're here, there's another one called, "URL", and we have an "avatarURI", which really would be best shown as a picture, but just to show this off let's say, "property: avatarURI, type: URL". Now go back, refresh ... and nice. So you can see, this is now a "mailto" link, and this is actually a link that opens up in a new tab.
+***TIP
+The `format` option for number fields is passed to the `sprintf` function.
+***
 
-Now as I mentioned, so this is an image it would really be best to show that as an image. So I actually want to show you an example of that, but we're going to do it over in the Genus note section. So once again, it guesses some things pretty well but maybe this isn't good enough so we want to customize it. So we'll go up to Genus note, under the list section we'll add the fields and we'll keep ID with the username ... username field ...
+If your head is starting to spin with all of these types and options that I'm pulling
+out of the air, don't worry! Almost *all* of the options - like `label` - are shared
+across all the types. There are very few type-specific options like `format`.
 
-Now one of these fields is called the user avatar file name, and you can see its just "leanna.jpeg" and "ryan.jpeg". I want that to show up as an image. So for that one we're actually going to use, "property: userAvatarFilename" and, "label: user avatar"... and then we're going to set the type to image. And before we try that, we'll also add, "createdAt", and we'll actually add, "genus". Now Genus is actually going to be ... that property points to the Genus object, you can see here it say Genus object. So that's gonna use the two-string method to actually print out what genus that is.
+And more importantly, in a few minutes, we'll look at a list of *all* of the valid
+types and their options.
 
-So refresh ... and it mostly works. You can see, we see Genus here, even with a link to go view that genus, which is cool, but our avatar link is broken. And if you right link and say, "Copy link address", because this is actually a link ... right click and hit open image in new tab you're gonna see the problem. It's letting me do just, "localhost:8000/leanna.jpeg". Now in our simple system ... those images are actually stored in "web/images" directory, there's the leanna.jpeg and ryan.jpeg ... in a more complex system you might store them in an uploads directory or up on "S3". But the point is, we need to correct the path to those images.
+Ok! Close the profiler tab and refresh. Bam! The table has our 6 columns!
 
-SO the way to do that is by adding another option on the end that is special to the image-type, called, "base_path" ... we'll do "/images/" and that also can be an absolute URL. So now when we refresh ... that shows up, and, of course it's even got a nice little light-box for us. Cute!
+## Customizing the Search View
 
-So next up, lets talk about a few last things about the list view, like searching and ordering.
+Try out the search again: look for "quo". Ok nice! Without any work, the search
+view re-uses the `fields` config from list.
 
+You *can* add a `fields` key under `search`, but it means something different. Add
+`fields: [id, name]`. Out-of-the-box, the bundle searches *every* field for the
+search string. You can see that in the queries. But now, it *only* searches `id`
+and `name`.
 
-
+Next, let's dive into some of the more interesting field types and their config.
