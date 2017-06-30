@@ -63,7 +63,7 @@ Under `GenusNote`, add a `label: 'Genus Notes'`:
 
 [[[ code('d09c8cd546') ]]]
 
-But more importantly, add `list`, then `title: 'List of Notes'`:
+But more importantly, add `list`, then `title: 'List of notes'`:
 
 [[[ code('43c12dec1f') ]]]
 
