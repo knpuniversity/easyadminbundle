@@ -24,7 +24,7 @@ We *only* need to say `show`, we don't need to re-list all the actions. That's b
 the, `actions` configuration is a *merge*: it takes all of the original actions and
 *adds* whatever we have here.
 
-## Adding __toString Methods
+## Adding __toString() Methods
 
 So... how would we *remove* an action? We'll get there! But first, if you click,
 "Show"... wow. Geez. Dang! The page is *very* broken:
