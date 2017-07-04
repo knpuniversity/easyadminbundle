@@ -82,9 +82,10 @@ and autoconfigure `services.yml` goodness. So... we don't need to configure anyt
 Let's go. Refresh... and hold your breath.
 
 Haha, it *kind* of worked! Delete *is* gone... but so is everything else. And you
-may have noticed why. We *did* chnage the `_list_item_actions` variable... but we
+may have noticed why. We *did* change the `_list_item_actions` variable... but we
 forgot to call the parent block. Add `{{ parent() }}`.
 
 Try it again. Got it! The delete icon is only there when the item is *not* published.
 This was a *tricky* example... which is why we did it! But usually, customizing things
-is easier.
+is easier. Technically, the user could still go directly to the URL to delete the
+`Genus`, but we'll see how to close that down later.

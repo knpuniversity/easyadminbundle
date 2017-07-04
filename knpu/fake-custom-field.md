@@ -1,37 +1,37 @@
 # Form Theming For a Completely Custom Field
 
 Let's look at one more way to make a *ridiculously* custom field. Right now, we're
-using the `CollectionType`... which works... but is totally ugly. And the only reason
-it even works is that we did a lot of work in a previous tutorial to get the relationship
+using the `CollectionType`... which works... but is totally ugly. And the *only* reason
+it works is that we did a lot of work in a previous tutorial to get the relationship
 setup properly.
 
 And even if you *can* get the `CollectionType` working, you may want to add more
 bells and whistles to the interface. So here's the plan: we're not going to use
 the `CollectionType`... at all. Instead, we'll write our own HTML and JavaScript
-to create our *own* widget, which will use AJAX to delete and add new entires. Actually,
+to create our *own* widget, which will use AJAX to delete and add new entries. Actually,
 we won't do all of that right now - but I'll show you how to get thing setup so
-you can get back to writing your custom code.
+you can get back to writing that custom code.
 
 ## Configuring a Fake Field
 
 Back in `config.yml`, find the `genusScientists` field, change its type to `text`
-and delete the 4 options. Whaaaat? Won't the break like crazy!? The `genusScientists`
-field holds an array of `GenusScientist` objects... not just some text!
+and delete the 4 options. Whaaaat? Won't this break like crazy!? The `genusScientists`
+field holds a collection of `GenusScientist` objects... not just some text!
 
 Totally! Except that we're going to add one magic config: `mapped: false`.
 
 As *soon* as I do that, this is no longer a real field. I mean, when the form renders,
 it will *not* call `getGenusScientists()`. And when we submit, it will *not* call
 `setGenusScientists()`. In fact, you could even change the field name to something
-totally fake... and it would work fine! This field *will* live on the form... but
+totally fake... and it would work fine! This field *will* live in the form... but
 it doesn't read or set data on your entity. It's simply a way for us to "sneak" a
 fake field into our form.
 
 Like we did in the last chapter, add a CSS class to the field: `js-scientists-field`.
-This time I'll use the `attr` option under `type_options`... but not for any particular
-reason.
+This time I'll use the standard `attr` option under `type_options`... but not for
+any particular reason.
 
-Let's go see what the form looks like! Yep, it's just a normal, empty text field:
+Let's go see what this looks like! Yep, it's just a normal, empty text field:
 empty because it's not bound to our entity... at all - so it has no data.
 
 ## Form Theme for One Field
@@ -39,7 +39,7 @@ empty because it's not bound to our entity... at all - so it has no data.
 Here's the goal: I want to replace this text field with our own Twig code, where
 we can build whatever crazy genus scientist-managing widget we want! How? The answer
 is to work with the form system: create a custom form theme that *just* overrides
-the widget for this *one* form.
+the widget for this *one* field.
 
 To find out how, click the clipboard icon to get into the form profiler. Under
 `genusScientists`, open up the view variables. See this one called `block_prefixes`?
@@ -65,7 +65,7 @@ the difference is just whether the labels are next to, or above the fields. By
 default, `horizontal` is used. When you add your own custom form theme, you need
 to include `horizontal` or `vertical`... to keep using it.
 
-Ok... let kick the tires! Close the profiler and refresh. Ahhhhhhh!
+Ok... let's kick the tires! Close the profiler and refresh. Ahhhhhhh!
 
 > Unrecognized option "form_themes" under "easy_admin.design"
 
@@ -78,7 +78,7 @@ are endless.
 
 ## Rendering the Genus Scientists
 
-Let's see a quick example... to get the creative juices flowing! Let's create a
+Let's see a quick example to get the creative juices flowing! Let's create a
 table that lists all of the genus scientists. Inside a `tbody`, we're ready to
 loop over the scientists! But... uh... how can I get them? What variables do I
 have access to right here?
@@ -87,21 +87,21 @@ Go back to the form profiler, find `genusScientists` and look again at the view 
 These are all the variables that we have access to from within our form theme. But because
 we set the field to `mapped` false... um... we actually don't have access to our
 `Genus` object! That's  a problem. But! Because we're inside EasyAdminBundle, it
-gives us a special `easyadmin` variable... with an `item` key that's our `Genus`!
+gives us a special `easyadmin` variable... with an `item` key equal to our `Genus`!
 Phew!
 
-Ok! in the table, loop `for genusScientist in easyadmin.item.genusScientists`. Add
+Ok! In the table, loop: `for genusScientist in easyadmin.item.genusScientists`. Add
 the tr and print out a few fields: `genusScientist.user` and `genusScientist.yearsStudied`.
 Let's also add a fake delete link with a class and a `data-url` attribute. But leave
-it blank. In your app, you might create a delete endpoint and use the `path()` function
-to put that URL here so you can read it in JavaScript.
+it blank. In your app, you might create a delete AJAX endpoint and use the `path()`
+function to put that URL here so you can read it in JavaScript.
 
-Cool! To make this a *bit* more realistic, open the `custom_backend.js` file. Let's
-find those `.js-delete-scientist` elements and on, click, call a function. Add the
-normal `e.preventDefault()` and... an `alert('todo')`. The rest, is homework!
+Cool! To make this a *bit* more realistic, open `custom_backend.js`. Let's find those
+`.js-delete-scientist` elements and, on click, call a function. Add the normal
+`e.preventDefault()` and... an `alert('todo')`. The rest, is homework!
 
-But let's try it first. There it us! A nice table with a delete icon. There's more
-work to do, but you can do it! This is just normal coding: create a delete endpoint,
+Let's try t! There it us! A nice table with a delete icon. There's more work to do,
+but you can totally do it! This is just normal coding: create a delete endpoint,
 call it via JavaScript and celebrate!
 
 With form stuff behind us, let's turn to adding custom *actions*, like, a publish

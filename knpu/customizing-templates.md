@@ -16,7 +16,7 @@ because it's *filled* with blocks. So instead of *completely* replacing the layo
 you could extend this and override only the blocks you need. We won't do that for the
 layout, but we will for `list.html.twig`.
 
-This is responsible for `list` view we've been working on. And not surprisingly,
+This is responsible for the `list` view we've been working on. And not surprisingly,
 there are also new, show and edit templates.
 
 But *most* of the templates start with ``field_``... interesting. Remember how each

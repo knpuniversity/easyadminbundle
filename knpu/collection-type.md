@@ -4,7 +4,7 @@ The form system does a pretty good job guessing the correct field types... but n
 is perfect. For example, the `genusScientists` field is *not* setup correctly. Click
 the clipboard icon to open the form profiler.
 
-Yep, `genusScientist` is currently an `EntityType` with `multiple` set to true. Thanks
+Yep, `genusScientists` is currently an `EntityType` with `multiple` set to true. Thanks
 to EasyAdminBundle, it renders this as a cool, tag-like, auto-complete box. Fancy!
 
 *But*... that's not going to work here: the `GenusScientist` entity has an extra
@@ -24,7 +24,7 @@ Let's see what happens! Woh! Ignore how *ugly* it is for a minute. It *does* wor
 We can remove items and add new ones.
 
 But it looks weird. When we created this form for our custom admin area - we *hid*
-the user field swhen editing... which looks really odd now. Open the `GenusScientistEmbeddedForm`.
+the user field when editing... which looks really odd now. Open the `GenusScientistEmbeddedForm`.
 We used a form event to accomplish this: if the `GenusScientist` had an id, we unset
 the `user` field. Comment that out for now and refresh. Cool: this section *at least*
 makes more sense now.
@@ -41,7 +41,7 @@ relationships to play well with the CollectionType. Honestly, the CollectionType
 is both the best and worst form type: you can do some really complex stuff... but
 it requires some seriously tough setup. You need to worry about the owning and the
 inverse sides of the relationship, and things called `orphanRemoval` and cascading.
-There is some significant Doctrine magic going on behind the scenes to get it working.s
+There is some significant Doctrine magic going on behind the scenes to get it working.
 
 So in a few minutes, we're going to look at a more custom alternative to using the
 collection type.
