@@ -9,7 +9,7 @@ And even if you *can* get the `CollectionType` working, you may want to add more
 bells and whistles to the interface. So here's the plan: we're not going to use
 the `CollectionType`... at all. Instead, we'll write our own HTML and JavaScript
 to create our *own* widget, which will use AJAX to delete and add new entries. Actually,
-we won't do all of that right now - but I'll show you how to get thing setup so
+we won't do all of that right now - but I'll show you how to get things setup so
 you can get back to writing that custom code.
 
 ## Configuring a Fake Field
@@ -100,7 +100,7 @@ Cool! To make this a *bit* more realistic, open `custom_backend.js`. Let's find 
 `.js-delete-scientist` elements and, on click, call a function. Add the normal
 `e.preventDefault()` and... an `alert('todo')`. The rest, is homework!
 
-Let's try t! There it us! A nice table with a delete icon. There's more work to do,
+Let's try it! There it us! A nice table with a delete icon. There's more work to do,
 but you can totally do it! This is just normal coding: create a delete endpoint,
 call it via JavaScript and celebrate!
 
