@@ -47,17 +47,36 @@ take a while... and we've got baking to do! So instead, we'll turn to EasyAdminB
 
 Google for EasyAdminBundle and find its GitHub page. Ah, it's made by our friend Javier!
 Hi Javier! Let's get this thing installed. Copy the `composer require` line, go back
-to your terminal, open a new tab, and paste.
+to your terminal, open a new tab, and paste:
+
+```terminal
+composer require javiereguiluz/easyadmin-bundle
+```
 
 While Jordi is downloading that package, let's keep busy!
 
-Copy the new bundle line, find `app/AppKernel.php`, and put it here! Unlike most
-bundles, this bundle actually gives us a new *route*, which we need to import. Copy 
-the routing import lines, find our `app/config/routing.yml` and paste anywhere.
+Copy the new bundle line, find `app/AppKernel.php`, and put it here!
+
+[[[ code('3d0f3f125b') ]]]
+
+Unlike most bundles, this bundle actually gives us a new *route*, which we need
+to import. Copy  the routing import lines, find our `app/config/routing.yml` and
+paste anywhere:
+
+[[[ code('d0c7fb3804') ]]]
 
 Since we already have some pages that live under `/admin`, let's change the prefix
-to `/easyadmin`. *Finally*, one last step: run the `assets:install` command. This
-should run automatically after Composer is finished... but just in case, run it again.
+to `/easyadmin`:
+
+[[[ code('ec6ff21bca') ]]]
+
+*Finally*, one last step: run the `assets:install` command. This should run automatically
+after Composer is finished... but just in case, run it again:
+
+```terminal
+php bin/console assets:install --symlink
+```
+
 This bundle comes with some CSS and JavaScript, and we need to make sure it's available.
 
 ## Setting up your First Admin
@@ -72,7 +91,9 @@ zero configuration. In the docs, it shows an example of this minimal config. Cop
 that, find `config.yml`, scroll to the bottom, and paste. Change these
 to our entity names: `AppBundle\Entity\Genus`, `AppBundle\Entity\GenusNote`,
 `AppBundle\Entity\SubFamily`, skip `GenusScientist` - we'll embed that inside one
-of the other forms, and add `AppBundle\Entity\User`.
+of the other forms, and add `AppBundle\Entity\User`:
+
+[[[ code('2834bccd32') ]]]
 
 We have arrived... at the moment of truth. Head back to your browser and refresh
 Ah, hah! Yes! A full CRUD for each entity: edit, delete, add, list, show, search,
