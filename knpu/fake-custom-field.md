@@ -1,28 +1,108 @@
-# Fake Custom Field
+# Form Theming For a Completely Custom Field
 
-Let's look at one more way to really, really custom stuff. So down here, this is our collection type, which is ugly, but it works. But the only reason it works is that in a previous tutorial, we did a lot of work with our relationships to make sure this was set up correctly.
+Let's look at one more way to make a *ridiculously* custom field. Right now, we're
+using the `CollectionType`... which works... but is totally ugly. And the only reason
+it even works is that we did a lot of work in a previous tutorial to get the relationship
+setup properly.
 
-If you're having a hard time figuring out how to get your collection type to work or even if you can, if this interface is just not good enough for you, then write your own. What I'm going to do is I want to basically not use this field at all. Instead, write my own html JavaScript to basically create my own widget, which uses ajax to delete and maybe even add new genus scientist entries. Now we're not going to do all of that now but I'm going to show you the set up so that you can start writing your custom code.
+And even if you *can* get the `CollectionType` working, you may want to add more
+bells and whistles to the interface. So here's the plan: we're not going to use
+the `CollectionType`... at all. Instead, we'll write our own HTML and JavaScript
+to create our *own* widget, which will use AJAX to delete and add new entires. Actually,
+we won't do all of that right now - but I'll show you how to get thing setup so
+you can get back to writing your custom code.
 
-So inside of our config dot yml, here's our genus scientist field. It's under the genus entity, it's under form, it's under fields. Right now it's the collection type. I'm going to change that to text. But as you'll see in a second, that really doesn't matter. I'm now going to delete all these options below, and I'm going to add a very special one call mapped, false. As soon as I do that, this is no longer a real field. It doesn't call get genus scientist when you render it, and it doesn't call set genus scientist when we set it. In fact, you could change that property to be anything. Even a property that doesn't exist because it's simply not a really field anymore. It's not mapped to your entity.
+## Configuring a Fake Field
 
-It's just a way for us to sneak a fake field into easy admin bundle. Then below, let's also add a class. We'll say add a class called JS dash scientist, scientist field. Cool. If we just do this, that field is going to be rendered as an empty test field. Empty because it's not bound to our entity at all. So how can we take control? I want to be able to put my own code right where this text box is. The answer is work with the form system. In other words, we're going to create a custom form theme. With a custom form theme, that just overrides the widget for this one field on this one form. How do we do that? Well I want you clipboard and open the profiler for the form component.
+Back in `config.yml`, find the `genusScientists` field, change its type to `text`
+and delete the 4 options. Whaaaat? Won't the break like crazy!? The `genusScientists`
+field holds an array of `GenusScientist` objects... not just some text!
 
-Then go down to genus scientist, then open up the view variables, and find one called block prefixes. This is the key for knowing what block you should create a form theme to override this one field. For example, we could override text underscore widget, or form underscore widget, or underscore genus, underscore genus scientist, underscore widget if we wanted to override just this one field on this one form. So, that is actually the key. So I'm gonna copy this key here, and then we're going to create a new custom form theme. So in app, resources, views, we'll do an easy admin, let's create a new file called underscore form, underscore theme, dot html twig. And we're going to create that lock, underscore genus, underscore genus scientist, underscore widget so that we can customize just the widget part of that form.
+Totally! Except that we're going to add one magic config: `mapped: false`.
 
-And are you feeling powerful yet? If you're not, you will in a second. Because now that they have this, we need to point easy admin bundle ... Easy admin bundle needs to use our form theme. In previous tutorials, we've learned how to add custom form themes to our entire application but in this case, we really only want this inside of our easy admin area.
+As *soon* as I do that, this is no longer a real field. I mean, when the form renders,
+it will *not* call `getGenusScientists()`. And when we submit, it will *not* call
+`setGenusScientists()`. In fact, you could even change the field name to something
+totally fake... and it would work fine! This field *will* live on the form... but
+it doesn't read or set data on your entity. It's simply a way for us to "sneak" a
+fake field into our form.
 
-So inside config dot yml, at the top, under the design section, it actually has a way to do this. We're going to say form themes, and we're actually going to add two. We're going to say a horizontal, and then we're going to list the [inaudible 00:04:48]. Easy underscore admin slash underscore form, underscore theme dot html dot twig.
+Like we did in the last chapter, add a CSS class to the field: `js-scientists-field`.
+This time I'll use the `attr` option under `type_options`... but not for any particular
+reason.
 
-So easy admin bundle actually ships with two different custom form themes, horizontal and vertical. The difference between them being how the labels and widgets are stacked. When you add your own custom form theme, you need to remember to put horizontal or vertical as the first item, or else you'll lose the base form theme from easy admin bundle.
+Let's go see what the form looks like! Yep, it's just a normal, empty text field:
+empty because it's not bound to our entity... at all - so it has no data.
 
-All right, that's it. Let's try it. Close the profiler, refresh, boom, explosion. Unrecognized option form themes under easy admin dot design. Because, it is form theme. Thank you validation. Check this out, we've got it. We just added a fake field that we can now fully control. Which means, we can put anything here. We can just put an empty div and then via JavaScript, add a react application to it. The possibilities are endless.
+## Form Theme for One Field
 
-So let me give you just a simple example to get the mind working. Lets at least create a table where we list all the genus scientists. So I'll say, table, t body, and here I'm going to loop over all of genus scientist inside of the genus. The question is, what variables do I have access to right here? If you go back to your form theme, your form profiler, you go to genus scientists, if you look at view variables, these are all the variables that we actually have access to from within our form theme. Now because we set this to mapped false, we actually don't have access to our genus object, which is a problem. But when you're inside admin bundle, they actually give you special easy admin variable, which has an item key, which is the genus. In other words, we can use this is the admin dot item dot genus scientist variable to get what we need.
+Here's the goal: I want to replace this text field with our own Twig code, where
+we can build whatever crazy genus scientist-managing widget we want! How? The answer
+is to work with the form system: create a custom form theme that *just* overrides
+the widget for this *one* form.
 
-So let's loop for genus scientist, in easy admin dot item dot genus scientists. Just like that. We'll create a TR, and we'll just print out a couple fields here, genus scientist, dot user, year studied, and year studied. We'll also add kind of a fake link here. It'll be like a delete link. We'd say JS delete scientist, we set a data URL or we can use a path function to maybe a delete end point that we created, inside here we'll say and times.
+To find out how, click the clipboard icon to get into the form profiler. Under
+`genusScientists`, open up the view variables. See this one called `block_prefixes`?
+This is the *key* for knowing the name of the block you should create in a form
+theme to customize this field. For example, to customize the `widget` for this
+field, we could create a block called `form_widget`, `text_widget` or `_genus_genusScientists_widget`.
+The last block would *only* affect this one field.
 
-And that's it. Then, just to take the example a little bit further, inside of our web JS directory, we already have that custom backend JS, and you can get much fancier with your JavaScript, but you can also keep it very simple. We can attach a click listener to that function, prevent the default and for now we'll just put an alert with a to do on there.
+Copy that name. Then, in `app/Resources/views/easy_admin`, create a new file called
+`_form_theme.html.twig`. Add the block: `_genus_genusScientists_widget` with its
+`endblock`.
 
-So, let's go back, refresh, try that, and there it is. Our little table down here, complete with fake delete icon. So there's still more work to do but now, you can do it. It's just coding. Create some end points and write some JavaScript. Put a react widget in there if you want to. It's up to you.
+Are you feeling powerful yet? If not, you will soon. Before we start writing our
+awesome code, we need to tell Symfony to use this form theme. In previous tutorials,
+we learned how to add a custom form theme to our entire app... but in this case,
+we really only need this inside of our easy admin area.
 
+EasyAdminBundle gives us a way to do this. In `config.yml`, under `design`, add
+`form_theme`. We're actually going to add two: `horizontal` and `easy_admin/_form_theme.html.twig`.
+
+EasyAdminBundle actually ships with two custom form themes: `horizontal` and `vertical`...
+the difference is just whether the labels are next to, or above the fields. By
+default, `horizontal` is used. When you add your own custom form theme, you need
+to include `horizontal` or `vertical`... to keep using it.
+
+Ok... let kick the tires! Close the profiler and refresh. Ahhhhhhh!
+
+> Unrecognized option "form_themes" under "easy_admin.design"
+
+Ok, my bad. It's `form_theme`: thank you validation.
+
+Now... we've got it! Our text shows up where the field should be. We can put anything
+here: like some HTML or an empty div that JavaScript fills in. Heck, we could create
+a React or Vue.js app and point it at this div. It's simple... but the possibilities
+are endless.
+
+## Rendering the Genus Scientists
+
+Let's see a quick example... to get the creative juices flowing! Let's create a
+table that lists all of the genus scientists. Inside a `tbody`, we're ready to
+loop over the scientists! But... uh... how can I get them? What variables do I
+have access to right here?
+
+Go back to the form profiler, find `genusScientists` and look again at the view variables.
+These are all the variables that we have access to from within our form theme. But because
+we set the field to `mapped` false... um... we actually don't have access to our
+`Genus` object! That's  a problem. But! Because we're inside EasyAdminBundle, it
+gives us a special `easyadmin` variable... with an `item` key that's our `Genus`!
+Phew!
+
+Ok! in the table, loop `for genusScientist in easyadmin.item.genusScientists`. Add
+the tr and print out a few fields: `genusScientist.user` and `genusScientist.yearsStudied`.
+Let's also add a fake delete link with a class and a `data-url` attribute. But leave
+it blank. In your app, you might create a delete endpoint and use the `path()` function
+to put that URL here so you can read it in JavaScript.
+
+Cool! To make this a *bit* more realistic, open the `custom_backend.js` file. Let's
+find those `.js-delete-scientist` elements and on, click, call a function. Add the
+normal `e.preventDefault()` and... an `alert('todo')`. The rest, is homework!
+
+But let's try it first. There it us! A nice table with a delete icon. There's more
+work to do, but you can do it! This is just normal coding: create a delete endpoint,
+call it via JavaScript and celebrate!
+
+With form stuff behind us, let's turn to adding custom *actions*, like, a publish
+button.

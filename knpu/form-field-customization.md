@@ -1,26 +1,74 @@
 # Form Field Customization
 
-We can now pretty much do anything to the list page, or the show page, or the edit page. What we haven't talked about much yet are the forms. It's time to talk about the two views we haven't talked about yet, edit and new. These two views share some of the same configuration of fees of keys as list and search, for example, not surprisingly you have a title and a help key that you can add under your edit or new views. The most important thing you're going to do though under your edit or new views, are customize these fields in the form.
+We can pretty much do anything to the list page. But we have *totally* ignored
+the two most important views: edit and new. Basically, we've ignored all the forms!
 
-Obviously, Easy Admin Bundle builds the form for you and our job is to extend it to be exactly how we want it. The way we do that is via a fields config. For example, under genus, if I wanted to customize what fields are shown in this form, I'm actually going to say, "Form and fields." Then I'm going to list the fields that I want here. ID, name, species count, fun fact, he's accomplished, first discovered at, sub family, and genus scientist. All fields that are on my genus. Now there are a few important things going on here.
+Ok, the `edit` and `new` views have *some* of the same configuration as `list`
+and `search`... like `title` and `help`. They also both have a `fields` key...
+but it's quite different than `fields` under `edit` and `new`.
 
-First, let's refresh and, yes, you can see that working. Behind the scene's Symphony is creating the form for us. It's using Symphony's form system and it's simply creating with this simple configuration it's simply creating these eight fields. It's allowing the core of Symphony to guess their field types intelligently. That's why out of the box we don't need any more configuration than this. The second thing is you might have expected me to have said, "Edit here." Since we are on the edit view.
+Start simple: for `Genus`, I want to control which fields are shown on the form:
+I don't want to show *every* field. But instead of adding an `edit`
+or `new` key, add `form`, `fields` below that, and the fields we want: `id`, `name`,
+`speciesCount`, `funFact`, `isPublished`, `firstDiscoveredAt`, `subFamily` and
+`genusScientists`.
 
-After all we've had the search view, the list view, I have never talked about a form view. Well here's the deal, since the edit and new views are so similar Easy Admin Bundle allows you to have a sudo view called form. Any configuration under form will apply to your new view and your edit view, and then you can actually continue customizing things under the specific views. For example, let's say that on the new field, on a new view we do not want the ID field so we can add, [JAD 00:03:37] minus ID.
+Before we talk about this, try it! Yes! Behind the scenes, EasyAdminBundle uses
+Symfony's form system... it just creates a normal form object by using our config.
+Right now, it's adding these 8 fields with no special config. Then, the form system
+is *guessing* which field *types* to use.
 
-Let's say under the edit we actually want to have a slug field, so we'll say, "Slug." Okay, so we're refreshing edit right now, there's no slug field, and now we have a slug field. Notice it does go on the bottom, we're going to fix that later, but by default all the fields on the form are added and then additional fields down here are added at the bottom. Our new view does not have the ID. Just like before when we were listing the fields, there's this idea of a field type. I'm actually going to go under my new configuration.
+That's great... but why did we put `fields` under `form`, instead of `edit` or
+`new`? Where the heck did `form` come from? First, there is *not* a `form` view.
+But, since `edit` and `new` are *so* similar, EasyAdminBundle allows us to configure
+a "fake" view called `form`. Any config under `form` will automatically be used for
+`new` and `edit`. Then, you can keep customizing. Under `new` and `fields`, we can
+*remove* the id field with `-id`.
 
-Go to fields and we can look at any these and see what their type is, field type, [interjure 00:04:41]. Or field type entity, these are using the Symphony field types, so if you go to Symphony's form documentation you guys are familiar with all the built in field types. Text type, text area type, and the entity type that you just saw. Now when you use these types at Symphony you usually reference them by their entire class name. Entity type [con con 00:05:05] class, with Easy Admin Bundle you can actually use the short string name and that's going to map to that type.
+And under `edit`, to include the `slug` field - which is *not* under `form`, just
+add `slug`.
 
-The configuration we can just say, entity if we want to configure this but behind the scene's it's actually mapping to the entity type. Let me show you an example, in genus you see fun factors just a text field, but probably that should be a text area field. It's no problem we're just going to the expanded version of the configuration, say, "Property fun facts." Then we say, "Type text area." You can just imagine what that does inside the form, it sets this to the text area type, field type. Perfect. The other that you do inside your forms when you add a field is that there are field options.
+Ok, refresh the edit page. Yep! *Now* we have a `slug` field... but it's all the
+way at the bottom. This is because the fields from `form` are added first, and *then*
+any `edit` fields are added. We'll fix the order later.
 
-For example, one of the field options is called disabled. If we wanted to make the ID field disabled because that's a just read only field. We can once again expand the configuration. I can use multiple lines this time to say, "Property ID." Then type, underscore options, and that's going to be an array and we'll say, "Disabled, true." I'll do the same thing down here for slug. In fact, I also have one new key, which is unique to Easy Admin Bundle called help. Unique armor generated value. Let's go actually back to edit a genus so we can see what that looks like with the slug field.
+And the `new` view does *not* have `id`.
 
-Edit, got it, disabled ID field, and disabled the slug field with the help underneath. The cool part about Easy Admin Bundles is that if you're comfortable with the form system there's not much new to learn. You're just customizing your form fields in [yamol 00:07:10] instead of in your form type class. Since we can just keep customizing things, like to the first to discovered app, which is a date type. We inset its type options to widget single text and that will now be a text field with, if your browser supports it, a level drop down, down here.
+## Customizing Field Types, Options
 
-Of course, there are other options to control what that format looks like. Now there's one customer field that this bundle adds. I'm actually going to go all the way to the top, go back to the main Easy Admin Bundle rotation page and go to edit and new view configuration. Down here customize the form fields, talks about some of the stuff that we're talking about now. What I'm really interested in is the auto complete type, Easy Admin Auto Complete. This works just like the entity type but it gives you Ajax Auto Completion, which is really nice.
+Go back into the EasyAdminBundle profiler. Under `new` and then `fields`, we can
+see each field *and* its `fieldType`. That corresponds to the Symfony *form* type
+that's being used for this field. Open up Symfony's form documentation and scroll
+down to the built-in fields list.
 
-In fact necessary when you're dealing with a drop down with a lot of options. Right now if you check out sub family this is just a normal entity type. You could verify by going into our Easy Admin Bundle configuration. Now one nice thing that this bundle does for even these simple types is it turns them into a kind of fancy select box. You can search inside of here for things. This works as long as your drop down list is short, but if there were hundreds or thousands of sub families then all those would be loaded on page load. This page would get really, really slow.
+Yes, we know these: `TextType`, `TextareaType`, `EntityType`, etc. When you use these
+in a normal form class, you reference them by their full class name - like
+`EntityType::class`. EasyAdminBundle re-uses these form types... but lets us use
+a shorter string name... like just `entity`.
 
-To fix that, we're going to use that, we're going to expand our configuration and set the type to Easy Admin underscore auto complete. That's all we need to do. It's going to automatically look at that sub family field to know what entity to query from. Down here as we type watch my web debugged toolbar, you see the Ajax column that just took place to a new end point to auto complete those. Got it. All right next let's keep going and configuring some types further.
+The most *important* way to customize a field is to change its type. For example,
+see `funFact`? It's just a text field... but sometimes, fun facts are *so* fun...
+a mere text box cannot contain them. No problem. Just like we did under `list`, we
+can *expand* each field: set `property: funFact`, then `type: textarea`. You can
+picture what this is doing internally: EasyAdminBundle now calls
+`$builder->add('funFact', TextareaType::class)`.
 
+It even works! From working with forms, we also know that `$builder->add()` has
+a *third* argument: an options array. And yep, those are added here too. One normal
+form option is called `disabled`. Let's use that on the `id` field. Change it to
+use the expanded configuration - I'll even get fancy with multiple lines. Then, add
+`type_options` set to an array with `disabled: true`.
+
+Do the same thing below on the `slug` field. Oh, and EasyAdminBundle also has one
+special config key called `help: Unique auto-generated value`.
+
+Find your browser and go edit a genus. Yea... `id` is disabled... and so is `slug`.
+*And*, we have a super cool help message below!
+
+The cool thing about EasyAdminBundle is that if you're comfortable with the form
+system... well... there's not much new to learn. You're simply customizing your
+form fields in YAML instead of in PHP. 
+
+For example, the `firstDiscoveredAt` field is a `DateType`. And that means, under
+`type_options`, we could set `widget` to `single_text` to render that in one text
+field. If your browser supports it, you'll see a cute calendar widget.

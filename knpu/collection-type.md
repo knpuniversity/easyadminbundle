@@ -1,26 +1,72 @@
-# Collection Type
+# CollectionType Field
 
-The form uses field type guessing to guess default types from most of our field. And usually it's right, but it's not always right. Genus scientist as an example of when it's not right. For example, if I ... I'll open the clipboard icon down here to go to the form profiler.
+The form system does a pretty good job guessing the correct field types... but nobody
+is perfect. For example, the `genusScientists` field is *not* setup correctly. Click
+the clipboard icon to open the form profiler.
 
-If you go down to the genus scientist, you can see it guess this as an entity type with multiple true. So in easy admin bundle, it's this cool kind of auto complete thing, and in normal [inaudible 00:00:57] of this would be for example, check boxes. Well that's not right because genus scientist is a one to many to a genus scientist entity, and that actually has an extra field on it called year study.
+Yep, `genusScientist` is currently an `EntityType` with `multiple` set to true. Thanks
+to EasyAdminBundle, it renders this as a cool, tag-like, auto-complete box. Fancy!
 
-In Symfony's years, we actually went to a lot of work to create a collection type, where we actually see embedded genus scientist forms in here where we can select the user and enter the number of years studied. So we've already done all of that set up and all that work, and now we just need to update our form to actually use it.
+*But*... that's not going to work here: the `GenusScientist` entity has an extra
+field called `yearsStudied`. When you link a `Genus` and a `User`, we need to allow
+the admin to *also* fill in how many *years* the `User` has studied the `Genus`.
 
-In other words, if you look at genus form type, this is the form that we're using in our custom admin section. And we've set up the genus scientist as a collection type. So since we've already done all that work, we can just reflect that in our section here. I'll use the expanded syntax for the genus scientist property. I'll set type to collection, and I'll set type options to the four options that we see here. So that's app bundle slash form slash genus scientist, embedded form, allow delete true, allow add true, and by reference false.
+In the Symfony series, we did a *lot* of work to create a `CollectionType` field that
+used `GenusScientistEmbeddedForm`. Thanks to that, in the admin, we just need to
+update the form to look like this.
 
-And now when I refresh, it works. We can remove items, we can add new items, and life is good. Well, there are a couple problems with this form. One is that when we created this form for our custom admin area, we actually hid the user field in edit, which looks really funny now. So I'm actually going to go into genus scientist embedded form, and we used a form event for that, so when the genus scientist had an ID, we unset the user field. I'm gonna uncomment that now, refresh this form so it makes a little bit more sense.
+Change `genusScientists` to use the expanded syntax. From here, you can guess what's
+next! Set `type: collection` and then add `type_options` with the 4 options you
+see here: `entry_type: AppBundle\Form\GenusScientistEmbeddedForm`, `allow_delete: true`,
+`allow_add: true`, `by_reference: false`.
 
-Now two important things about this. First is, it's ugly. So you're probably going to need to create a custom form theme for the collection type and render this in a more intelligent way. We're going to do something similar to that in a few minutes.
+Let's see what happens! Woh! Ignore how *ugly* it is for a minute. It *does* work!
+We can remove items and add new ones.
 
-Second, this only works because we've done all the work of setting up our relationships correctly. The collection type in symfony is simultaneous the best form type and the worst form type. Because it allows you to do really complex stuff like this, but only if you have all of your relationships set up correctly. You need to worry about the owning and the inverse side of relationships and things called orphan removal and cascading. There's some complex doctrine things behind this to get it to work.
+But it looks weird. When we created this form for our custom admin area - we *hid*
+the user field swhen editing... which looks really odd now. Open the `GenusScientistEmbeddedForm`.
+We used a form event to accomplish this: if the `GenusScientist` had an id, we unset
+the `user` field. Comment that out for now and refresh. Cool: this section *at least*
+makes more sense now.
 
-So in a few minutes, I'm going to show you a more custom alternative option to using the collection type if you have this situation and this isn't working for you. But first, I'm going to show you one more thing with normal forms. And that's on our user field. So I'm going to go to user entity, I'll edit a user, and so far, we haven't done any configuration here. So it's just guessing everything.
+## The CollectionType Problems
 
-In config dot yml, down under the user, I'm going to add our form config, fields, and then I'm going to add email. Let's take control of this. Is scientist ... and then I'm actually going to customize email and is scientist to start. And notice we have first name and we have last name in the form originally. That's because we have first name and last name properties inside of our user. Similar to what we did with the list view, if we want to, instead of having a first name and a last name, we can actually have a full name field. We don't have a full name property, but we do have a get full name function. And as long as we have a set full name function, then we can add it to our form as if it were a field. This is not special to the easy admin bundle, this is just how symfony forms system works.
+But... there are *still* some problems! First, it's *ugly*! I know this is just an
+admin area... but wow! If you want to use the `CollectionType`, you'll probably need
+to create a custom form theme for this *one* field and render things in a more intelligent
+way. We'll do something similar in a few minutes.
 
-Now this example might be a little bit dangerous. I'll add some config that will split the names up. Take everything before the first space as the first name, everything after as the last name, and then we'll call a set first name and set last name. Probably not a perfect algorithm, but you guys get the idea.
+Second... this only works because we already did a lot of hard work setting up the
+relationships to play well with the CollectionType. Honestly, the CollectionType
+is both the best and worst form type: you can do some really complex stuff... but
+it requires some seriously tough setup. You need to worry about the owning and the
+inverse sides of the relationship, and things called `orphanRemoval` and cascading.
+There is some significant Doctrine magic going on behind the scenes to get it working.s
 
-So now we have a get full name and a set full name in that config. We're actually going to set that as a property. Property full name, type text, in help first then last. Now continue by adding avatar uri, and university name. Beautiful.
+So in a few minutes, we're going to look at a more custom alternative to using the
+collection type.
 
-Refresh that, and now we've got it. And it even submits.
+## Virtual Form Field
 
+But first, I want to show you one more thing. Go to the `User` section and edit a
+User. We haven't touched *any* of this config yet. In `config.yml`, under `User`,
+add `form` then `fields`. Let's include `email` and `isScientist`. 
+
+Right now, the form has `firstName` and `lastName` fields... which makes sense: there
+are `firstName` and `lastName` properties in `User`. But just like we did earlier
+under the `list` view, instead of having `firstName` and `lastName`, we could actually
+have, just `fullName`. And nope... there is *not* a `fullName` property. But as long
+as we create a `setFullName()` method, we can *totally* add it to the form. Actually,
+this isn't special to `EasyAdminBundle`, it's just how the form system works!
+
+Now... this example is a little crazy. This code will take everything *before* the
+first space as the first name, and everything after as the last name. Totally imperfect,
+but you guys get the idea.
+
+And now that we have `getFullName()` and `setFullName()`, add that as a field:
+`property: fullName`, `type: text` and a help message.
+
+Keep going to add `avatarUri` and `universityName`.
+
+Try it out! Yes! It looks great... *and*... it even submits! Next up, let's add a
+field that needs custom JavaScript to work.

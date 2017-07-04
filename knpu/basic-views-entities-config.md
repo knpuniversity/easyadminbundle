@@ -61,7 +61,7 @@ config keys.
 In addition to `title`, one other key that *every* view has is `help`. First, set
 this below the `Genus` section: "Genuses are not covered by warranty". Notice, this
 is directly under the *entity* config, not under a specific view. Thanks to this,
-it will *all* to *all* views for this entity. And... yep! It's at the top of the search
+it will apply to *all* views for this entity. And... yep! It's at the top of the search
 page, on list and on edit.
 
 In the spirit of EasyAdminBundle, you can override this for each view below. For

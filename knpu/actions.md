@@ -29,7 +29,7 @@ So... how would we *remove* an action? We'll get there! But first, if you click,
 
 > Object of class GenusNote could not be converted to string.
 
-In a *lot* of places, EasyAdminBundle tries to covert your entity objects into
+In a *lot* of places, EasyAdminBundle tries to convert your entity objects into
 strings... ya know, so it can print them in a list or create a drop-down menu.
 To get this working, we need to add `__toString()` methods to each entity. Let's do
 that real quick!

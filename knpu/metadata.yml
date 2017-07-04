@@ -7,7 +7,10 @@ chapters:
     - more-field-types
     - dql-filtering
     - customizing-templates
+    - remove-delete-action-link
+    - template-single-field
     - form-field-customization
+    - autocomplete-field
     - collection-type
     - custom-js-field
     - fake-custom-field

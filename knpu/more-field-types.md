@@ -26,13 +26,11 @@ And as *cool* as the toggle field is, for the great sake of learning, change it 
 `boolean`. Then add, `firstName`, `lastName`, and `avatarUri`.
 
 Try that! Ok! The `isScientist` field is now a "less-cool" Yes/No label. Open
-up the `EasyAdminBundle` config to see the difference. under list... fields... `isScientist`,
+up the `EasyAdminBundle` config to see the difference. Under list... fields... `isScientist`,
 yep! `dataType` is now boolean... *and* it's using a different template to render it.
 More on that later.
 
 ## Virtual Fields
-
----> HEREEREEERERER
 
 Back in the config, obviously, these are all property names on the `User` entity.
 But... that's not required. As long as there is a "getter" method, you can
@@ -79,5 +77,5 @@ You can of course also use an absolute URL.
 
 Try it! There it is! And it's even got a fancy lightbox. 
 
-Next up, let's finish talking about the list view by taking control of filtering
+Next up, let's finish talking about the list view by taking crazy control of filtering
 and ordering.

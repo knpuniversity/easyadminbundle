@@ -1,12 +1,78 @@
-# DQL Filtering
+# DQL Filtering & Sorting
 
-The last cool thing about the list view and search view is all about sorting and DQL filtering. So obviously, as you probably noticed, when you click one of the genuses, it automatically sorts by ID, but the cool thing is you can sort by any field out of the box. Then when you go back to genuses, it filters by ID. So obviously, that's something that we can change. And you can probably almost guess how. We're going to go under genus, we're gonna go under list, and then we're going to add sort name. So that is the new default way to sort things.
+What else could we *possibly* configure with the list view? How about sorting, or
+*filtering* list via DQL. OoooOOooo.
 
-Easy enough. You can actually get a little fancier with this. For example, genus notes. Let's say that we actually want to sort by the genuses name, which is a related entity. You can do that. Again, under genus note, under list, we'll say sort, and this time we'll actually control the direction as well, we'll stay genus.name and we'll sort ascending. So we want to basically sort by the genus property.name, so it's property and we'll sort ascending. So if we go back to the genus note section, now you can see it's sorting by that field, which is pretty freaking cool. That only works one level deep, genus.name, you can't reach across multiple entities.
+## Configuring Sort
 
-Now of course, bundle tries to allow you to sort by every field, user avatar probably doesn't make sense, so you can also disable it on a field by field basis. So at the end, we can go to our configuration and say sort of all false. All right. Easy enough. Let's talk about DQL filtering. Now first thing is, so far, it looks like you're limited to one entity section per entity. But that's actually not true. For example, I'm going to create a new section down here called genus hoard. You see, we're going to set it's class to an app bundle/entity/genus, same as above. You see, some of the scientists are worried about some of the genuses becoming too large, and posing a threat to humanity. So they want a new genus hoard section where they can keep track of all the genuses that have a lot of species in them. It's scary stuff, so we'll add a label of hoard of genuses. Then we'll add a scary icon, which by the way, you can do on a Mac by holding control command space bar and we'll add our scary guy right there.
+First, sorting... which we get for free. Already, the genuses are sorted by id,
+but we can click any column to sort by that. But this isn't sticky: when you
+come back to the genus list page, it's back to filtering by id.
 
-So that has nothing to do with filtering, it's just a cool thing you can do. All of a sudden, we have a new section called hoard of genuses, which is actually a list of genuses. Of course, this is still showing everything not very scary, so we want to filter this, only show some genuses. So now we can start customizing the list view just for this section. I'll say list, we use a new option call DQL filter, which is pretty awesome. In here, we're going to pretend like we're building a query in doctrine, and we can say things like entity.species count is greater than or equal to 50,000. The rule obviously inside this is that you're alias for your entity will always be called entity. Then we refresh our ten results go to about seven results. Cool.
+Sorting by *name* would be a bit more awesome. And you can probably *guess* what
+the config looks like to do this. Under `Genus` and `list`, add `sort: name`. This
+is the *new* default field for sorting.
 
-And just have a DQ opp, you can get more complicated than this. We can also say and entity.is published equals true. And now things are truly scary. It's really focused, we'll start by species count and we'll add help message, run for your life. And we need a couple more scary icons, I think down here. Perfect. So our seven options are now going to go a little lower to just these three options, with the most species counts that are published. Whew. As mentioned earlier, search shares a lot of things from list, so if we search for eo right now, you actually see it matches two of those three entities. Because it is actually inheriting the DQL filter from list. If you want to change that, like for example, we want to show also published entities when we're searching, that's fine. Go under list, set the DQL filter, and we'll just do the same DQL filter without the species count part, or is is published part, refresh and we got five.
+## Sorting via Relations
 
+Oh, but we can get fancier. Under `GenusNote`, what if I told you I wanted to sort
+by the name of the `Genus` it's related to? Yea, that would mean sorting *across*
+a relation. But that's *totally* possible: `sort: ['genus.name', 'ASC']`. This also
+controls the direction. It sorts descending by default.
+
+Try it! Nice! This works... just don't get *too* confident and try to do this across
+*multiple* relationships... that's not going to work.
+
+## Disabling Sort Fields
+
+The ability to sort via *any* field with no setup is great! Though... sometimes
+it doesn't make sense - like with the "User avatar" field. To tighten things up,
+you can disable sorting. Find that field's `list` config and add a new option at
+the end: `sortable: false`.
+
+And... gone!
+
+## DQL Filtering
+
+Ok, let's turn to something fun: DQL filtering. Like, what if we want to *hide*
+some genuses entirely from the list and search page?
+
+But first, so far, it *seems* like we're limited to one entity section per entity.
+That's a lie! Let me show you: add a new section under `entities` called
+`GenusHorde` - I just made that up. Below, set its class to `AppBundle\Entity\Genus`.
+
+You see, some scientists are worried that certain genuses are becoming too
+large... and threaten the survival of mankind. They want a new `GenusHorde` section
+where they can keep track of all of the genuses that have a lot of species. It's
+scary stuff, so we'll add a label: `HORDE of Genuses` with a scary icon.
+
+***TIP
+Fun fact! You can press `control+command+space` to open up the icon menu on a Mac.
+***
+
+And all of a sudden... ah! We have a new "Horde of Genuses" section! Run!!!
+
+Of course, this still shows *all* genuses. I want to filter this to *only*
+list genuses that have a *lot* of species. Start by adding a `list` key and a new,
+awe-inspiring option: `dql_filter`. For the value, pretend that you're building a
+query in Doctrine. So, `entity.speciedCount >= 50000`. The alias will *always* be
+`entity`.
+
+Try it! Ten down to... only 7 menacing genuses!
+
+And just like any query, you can get more complex. How about: `AND entity.isPublished = true`.
+And to *really* focus on the genuses that are certain to overtake humanity, sort
+it by `speciesCount` and give the section a helpful message: `Run for your life!!!`
+Add scary icons for emphasis.
+
+Ok... refresh! Ah... now only *three* genuses are threatening mankind.
+
+Oh, and search automatically re-uses the `dql_filter` from list: these are 2 results
+from the possible 3. And like always, you can override this. Under `search`, set the
+`dql_filter` to the same value, but without the `isPublished` check.
+
+Try that. Boom! 3 more genuses that - when published - will spell certain doom for
+all.
+
+Next! We'll save humanity by learning how to override the many templates that
+EasyAdminBundle uses.
