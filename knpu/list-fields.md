@@ -26,22 +26,31 @@ type... and *anything* else you see here.
 ## Controller Fields
 
 How? Under `Genus` and `list`, add `fields`. Now, list the exact fields that you want
-to display, like `id`, `name` and `isPublished`. These 3 fields were already shown
-before.
+to display, like `id`, `name` and `isPublished`:
+
+[[[ code('0d291d3896') ]]]
+
+These 3 fields were already shown before.
 
 Let's also show `firstDiscoveredAt`... but! I want to tweak it a little. Just like
 with actions, there is an "expanded" config format. Add `{ }` with `property: firstDiscoveredAt`.
 
 Now... what configuration can we put here? Because this is a `date` field, it has
 a `format` option. Set it to `M Y`. And, *all* fields have a `label` option. Use
-"Discovered".
+"Discovered":
+
+[[[ code('d3d746d3a4') ]]]
 
 Keep going! Add `funFact` and then one more expanded property: `property: speciesCount`.
 This is an `integer` type, which also has a `format` option. For fun, set it to
-`%b` - binary format! Yea know because, scientists are nerds and like puzzles.
+`%b` - binary format!
+
+[[[ code('1ab8498c63') ]]]
+
+Yea know because, scientists are nerds and like puzzles.
 
 ***TIP
-The `format` option for number fields is passed to the `sprintf` function.
+The `format` option for number fields is passed to the `sprintf()` function.
 ***
 
 If your head is starting to spin with all of these types and options that I'm pulling
@@ -59,8 +68,11 @@ Try out the search again: look for "quo". Ok nice! Without any work, the search
 view re-uses the `fields` config from list.
 
 You *can* add a `fields` key under `search`, but it means something different. Add
-`fields: [id, name]`. Out-of-the-box, the bundle searches *every* field for the
-search string. You can see that in the queries. But now, it *only* searches `id`
-and `name`.
+`fields: [id, name]`:
+
+[[[ code('c8ccad2547') ]]]
+
+Out-of-the-box, the bundle searches *every* field for the search string. You can see
+that in the queries. But now, it *only* searches `id` and `name`.
 
 Next, let's dive into some of the more interesting field types and their config.
