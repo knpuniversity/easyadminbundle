@@ -32,7 +32,7 @@ a "fake" view called `form`. Any config under `form` will automatically be used 
 And under `edit`, to include the `slug` field - which is *not* under `form`, just
 add `slug`:
 
-[[[ code('23ee23ec25') ]]]
+[[[ code('6ca34410af') ]]]
 
 Ok, refresh the edit page. Yep! *Now* we have a `slug` field... but it's all the
 way at the bottom. This is because the fields from `form` are added first, and *then*
