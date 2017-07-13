@@ -16,7 +16,7 @@ The first step should feel very natural. We already know how to add actions, rem
 actions and customize how they look. Under `Genus`, add a new `show` key and `actions`.
 Use the expanded configuration, with `name: genus_feed` and `type: route`.
 
-There are two different custom actions "types": `route` and `action`. Route is simple:
+There are two different custom action "types": `route` and `action`. Route is simple:
 it creates a new link to the `genus_feed` route. And you can use any of the normal
 action-configuring options, like `label`, `css_class: 'btn btn-info` or an `icon`.
 
