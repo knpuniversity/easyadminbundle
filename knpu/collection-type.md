@@ -8,17 +8,26 @@ Yep, `genusScientists` is currently an `EntityType` with `multiple` set to true.
 to EasyAdminBundle, it renders this as a cool, tag-like, auto-complete box. Fancy!
 
 *But*... that's not going to work here: the `GenusScientist` entity has an extra
-field called `yearsStudied`. When you link a `Genus` and a `User`, we need to allow
-the admin to *also* fill in how many *years* the `User` has studied the `Genus`.
+field called `yearsStudied`:
 
-In the Symfony series, we did a *lot* of work to create a `CollectionType` field that
-used `GenusScientistEmbeddedForm`. Thanks to that, in the admin, we just need to
-update the form to look like this.
+[[[ code('706315b531') ]]]
+
+When you link a `Genus` and a `User`, we need to allow the admin to *also* fill in how
+many *years* the `User` has studied the `Genus`.
+
+In the [Symfony series][collections], we did a *lot* of work to create a `CollectionType`
+field that used `GenusScientistEmbeddedForm`:
+
+[[[ code('c67b26f216') ]]]
+
+Thanks to that, in the admin, we just need to update the form to look like this.
 
 Change `genusScientists` to use the expanded syntax. From here, you can guess what's
 next! Set `type: collection` and then add `type_options` with the 4 options you
 see here: `entry_type: AppBundle\Form\GenusScientistEmbeddedForm`, `allow_delete: true`,
-`allow_add: true`, `by_reference: false`.
+`allow_add: true`, `by_reference: false`:
+
+[[[ code('461e032355') ]]]
 
 Let's see what happens! Woh! Ignore how *ugly* it is for a minute. It *does* work!
 We can remove items and add new ones.
@@ -26,8 +35,11 @@ We can remove items and add new ones.
 But it looks weird. When we created this form for our custom admin area - we *hid*
 the user field when editing... which looks really odd now. Open the `GenusScientistEmbeddedForm`.
 We used a form event to accomplish this: if the `GenusScientist` had an id, we unset
-the `user` field. Comment that out for now and refresh. Cool: this section *at least*
-makes more sense now.
+the `user` field. Comment that out for now and refresh:
+
+[[[ code('af5c1c753f') ]]]
+
+Cool: this section *at least* makes more sense now.
 
 ## The CollectionType Problems
 
@@ -50,23 +62,35 @@ collection type.
 
 But first, I want to show you one more thing. Go to the `User` section and edit a
 User. We haven't touched *any* of this config yet. In `config.yml`, under `User`,
-add `form` then `fields`. Let's include `email` and `isScientist`. 
+add `form` then `fields`. Let's include `email` and `isScientist`:
+
+[[[ code('5475004698') ]]]
 
 Right now, the form has `firstName` and `lastName` fields... which makes sense: there
 are `firstName` and `lastName` properties in `User`. But just like we did earlier
 under the `list` view, instead of having `firstName` and `lastName`, we could actually
 have, just `fullName`. And nope... there is *not* a `fullName` property. But as long
-as we create a `setFullName()` method, we can *totally* add it to the form. Actually,
-this isn't special to `EasyAdminBundle`, it's just how the form system works!
+as we create a `setFullName()` method, we can *totally* add it to the form:
+
+[[[ code('195266d3d0') ]]]
+
+Actually, this isn't special to `EasyAdminBundle`, it's just how the form system works!
 
 Now... this example is a little crazy. This code will take everything *before* the
 first space as the first name, and everything after as the last name. Totally imperfect,
 but you guys get the idea.
 
 And now that we have `getFullName()` and `setFullName()`, add that as a field:
-`property: fullName`, `type: text` and a help message.
+`property: fullName`, `type: text` and a help message:
 
-Keep going to add `avatarUri` and `universityName`.
+[[[ code('cb42509ad9') ]]]
+
+Keep going to add `avatarUri` and `universityName`:
+
+[[[ code('db7f5afe3f') ]]]
 
 Try it out! Yes! It looks great... *and*... it even submits! Next up, let's add a
 field that needs custom JavaScript to work.
+
+
+[collections]: https://knpuniversity.com/screencast/collections
