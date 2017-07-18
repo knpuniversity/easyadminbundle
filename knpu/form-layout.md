@@ -4,7 +4,7 @@ We've talked a lot about customizing the forms... which mostly means using the c
 to change the field types or adding a custom form theme to control how the individual
 fields look.
 
-But, what about the form *layout*? Like, what I wanted to put the email & full
+But, what about the form *layout*? Like, what if I wanted to put the email & full
 name fields in a section that floats to the left, and these other two fields in
 a section that floats to the right?
 

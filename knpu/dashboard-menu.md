@@ -12,7 +12,7 @@ each section's configuration. These could have been anything.
 
 Thanks to this, the `User` link will move from the bottom all the way to the top.
 There are a *lot* of other customizations you can make to the menu... but before
-we get there, I want to a dashboard! Yea know, an admin homepage full of important-looking
+we get there, I want a dashboard! Yea know, an admin homepage full of important-looking
 graphs!
 
 ## Adding a Dashboard
@@ -36,7 +36,7 @@ section is... so Genus.
 
 ## Adding the Dashboard Menu Link
 
-but... add a new menu item and use the *expanded* config format with `label: Dashboard`,
+But... add a new menu item and use the *expanded* config format with `label: Dashboard`,
 `route: admin_dashboard` and - here is the key - `default: true`.
 
 Thanks to `default: true`, when you click on the AquaNote logo to go to the admin

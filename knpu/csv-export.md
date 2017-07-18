@@ -5,7 +5,7 @@ When we started this tutorial, we kept getting the same question:
 > Ryan, would you rather have rollerblades for feet or chopsticks for hands
 > for the rest of your life?
 
-I don't know the answer, but [Eddie from Southern Rail](https://twitter.com/SouthernRailUK/status/884781072906690561?ref_src=twsrc%5Etfw&ref_url=http%3A%2F%2Fwww.getsurrey.co.uk%2Fnews%2Fsurrey-news%2Feddie-southern-rail-work-experience-13322307)
+I don't know the answer, but [Eddie from Southern Rail](https://twitter.com/SouthernRailUK/status/884781072906690561)
 can definitely answer this.
 
 We also got this question:
@@ -86,7 +86,7 @@ error. But... just in case.
 Now, to the *real* work. To add an export for genus, we have two options. First,
 in `AdminController`, we *could* create a `public function exportGenusAction`. Remember,
 whenever EasyAdminBundle calls *any* of our actions - even custom actions - it
-always looks for that special named method: `export<EntityName>Action`. *Or*, we
+always looks for that specially named method: `export<EntityName>Action`. *Or*, we
 can be a bit more organized, and create a custom controller for each entity. That's
 what we've done already. So, in `GenusController`, add `public function exportAction()`.
 
@@ -105,7 +105,7 @@ the export link, we kept the existing query parameters. That means we should hav
 a `sortDirection` parameter... which is a nice way of making the export order match
 the list order.
 
-To create the query builder, we can actually use a protected functions on the
+To create the query builder, we can actually use a protected function on the
 base class called `createListQueryBuilder()`. Pass this the entity class, either
 `Genus::class` or `$this->entity['class']`... in case you want to make this method
 reusable across multiple entities.
@@ -113,7 +113,7 @@ reusable across multiple entities.
 Next, pass the sort direction and then the sort field: `$this->request->query->get('sortField')`.
 Finally, pass in the `dql_filter` option: `$this->entity['list']['dql_filter']`.
 
-This is kind of cool. We're use the `entity` configuration array - which is always
+This is kind of cool. We're using the `entity` configuration array - which is always
 full of goodies - to actually read the `list` key and the `dql_filter` key below
 it. If we have a DQL filter on this entity, the CSV export will know about it!
 
@@ -141,7 +141,7 @@ and pass it the `$queryBuilder`, `Genus::class`, and `genuses.csv` - the filenam
 Deep breath... refresh! It downloaded! Ha! In my terminal. I'll:
 
 ```terminal-
-cat ~/Downloads/genus.csv
+cat ~/Downloads/genuses.csv
 ```
 
 There it is!

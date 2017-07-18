@@ -6,7 +6,7 @@ see a *lot* in here! Whenever EasyAdminBundle does, well, pretty much anything..
 it dispatches an event: `PRE_UPDATE`, `POST_UPDATE`, `POST_EDIT`, `PRE_SHOW`, `POST_SHOW`...
 yes we get the idea already!
 
-And this means that we can use standard Symfony event subscribes to totally kick
+And this means that we can use standard Symfony event subscribers to totally kick
 EasyAdminBundle's butt!
 
 ## Creating an Event Subscriber
@@ -18,7 +18,7 @@ I'll go to the Code->Generate menu - or command+N on a Mac - and choose
 
 EasyAdminBundle dispatches a *lot* of events... but fortunately, they all live as
 constants on a helper class called `EasyAdminEvents`. We want to use `PRE_UPDATE`.
-Set that to execute a new method `onPreUpdate` that we'll create in a minute.
+Set that to execute a new method `onPreUpdate` that we will create in a minute.
 
 But first, I'll hold command and click into that class. Dude, this is cool: this
 puts *all* of the possible hook points right in front of us. There are a few different

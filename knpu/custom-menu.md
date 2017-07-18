@@ -56,7 +56,7 @@ This isn't anything special, we're just taking advantage of how the query parame
 work in EasyAdminBundle.
 
 And while we're here, it might also be nice to add a link to the front-end of our
-app. This is nothing special: add a new link that points to the `app_genus_list`
+app. This is also nothing special: add a new link that points to the `app_genus_list`
 route called "Open front-end". 
 
 Refresh! And try that link. Nice!
@@ -74,7 +74,7 @@ Yep, instead of `entity` or `route` keys, you can skip all of that and just add
 ## Re-organizing the Config
 
 Ok team, our admin menu is complete! The *last* thing I want to show you isn't
-anything special to this bundle: it's just a nice way to organize anys configuration.
+anything special to this bundle: it's just a nice way to organize any configuration.
 In fact, this trick will become the standard way to organize things in Symfony 4.
 
 Right now, well, our admin configuration goes from line 81 of `config.yml` to line
@@ -96,3 +96,5 @@ can really override everything. Ultimately, customizing things will *still* be a
 
 All right guys, thank you *so* much for joining me! And a *huge* thanks to my co-author
 [Andrew](https://github.com/ifdattic) for doing all the *actual* hard work.
+
+Ok, seeya next time!

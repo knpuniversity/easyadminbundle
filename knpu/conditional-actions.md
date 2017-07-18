@@ -79,9 +79,9 @@ page. Oh no! It looks like we need to repeat all of this for the *show* template
 
 ## Controlling the Actions in the show Template
 
-But don't worry! With all our knowledge, this is should be quick and painless.
+But don't worry! With all our knowledge, this should be quick and painless.
 
-Inside of the bundle, find the show template. And inside, search for "actions".
+Inside of the bundle, find the show template. And inside it, search for "actions".
 Here we go: block `item_actions`. To control the actions, we can do a very similar
 thing as the list template. In fact, copy the list template, and paste it as
 `show.html.twig`. Because it's in the right location, it should automatically
@@ -107,8 +107,7 @@ and that's another difference between show and list. Since this template is for 
 page that represents one entity, the variable is not called `item`, it's called
 `entity`.
 
-As crazy as that looks, it should do it! Hold you breath, rub your lucky rabbit's
-foot, do a dance, and refresh!
+As crazy as that looks, it should do it! Hold you breath, do a dance, and refresh!
 
 Hey! No edit button! Go back to `security.yml` and re-add `ROLE_SUPER_ADMIN`.
 
