@@ -1,26 +1,116 @@
 # Conditional Actions
 
-New challenge. I only want this edit button to be visible and accessible for a user if I have the role super admin. This turns out to be a somewhat complicated thing to do because there are two sides to it. First, we need to block access to that action, so that someone can't be clever and hack to URL. Second, we want to actually hide the link so that it doesn't confuse our users.
+Ok, new challenge! I *only* want this edit button to be visible and accessible if
+the user has `ROLE_SUPER_ADMIN`. This turns out to be a bit complicated... in part
+because there are two sides to it.
 
-Let's first lock down the actual controller. That one's a little bit easier because we can do it via events. What we basically want to do is disallow people to get to this edit action for a user unless they have the role super admin, which means we could, for example, override the edit actions that have a user controller or we can hook into the pre-edit event, which is what I'm going to do.
+First, we need truly block *access* to that action... so that a clever user can't
+just hack the URL and start editing! And second, we need to actually hide the link...
+so that our less-than-super-admin users don't get confused.
 
-Let's subscribe to another event. Easy admin events, pre-edit on pre-edit. Once again, I'll hit option enter as a shortcut to create that method for me. We don't know what the event looks like, so let's dump it. Prefect. Now, as soon as I hit edit, we hit that dump and in this case the subject is actually an array, but inside it actually has a class key, which has the user in it, so we can use that to figure out if the event that's being dispatched is for the user class.
+## Preventing Action Access by Role
 
-In other words, we can say, config equals event arrow get subject and if config class is equal to our user class, so user [inaudible 00:02:09] class, then we want to check security. I'm going to call a new method I'm going to create in a second called, deny access unless super admin and down at the bottom, let's create a private function, deny access unless super admin and inside here, we just need to check to see if the user has the super admin roll. To do that, we'll need the authorization checker service, so I'll type in authorization checker interface. Hit option enter, just as a shortcut to set that on a property. Then down below, we can say, if not, this error authorization checker error is granted, role super admin, then throw access denied exception.
+First, let's lock down the actual controller action. How? Now we know two ways:
+by overriding the `editAction()` in `UserController` and adding a security check
+*or* by adding a `PRE_EDIT` event listener. Let's use events!
 
-Make sure you get the one from the security component. Whoops, that's throw new access not exception. In a controller when you call deny access unless granted, this is the exception that's thrown behind the scenes. So we're just doing the same thing that's normally done in a controller.
+Subscribe to a *second* event: `EasyAdminEvents::PRE_EDIT` set to `onPreEdit`. Once
+again, I'll hit alt+enter as a shortcut to create that method for me. And just like
+before... we don't really know what the `$event` looks like. So, dump it!
 
-And that's it. This service is all wired so it should pass as the authorization checker automatically. So when we refresh, we are denied. Because our user does not have the role super admin role, just role admin and role user. To make sure the logic is correct, we can go into app config security dot yml, and temporarily, we'll give role admin, role super admin. So then I should have role super admin. Refresh, and I'm in. Great.
+Now, as *soon* as I hit edit... we see the dump! Check this out: this time, the
+`subject` property is actually an *array*. But, it has a `class` key set to the
+`User` class. We can use *that* to make sure we only run our code when we're editing
+a user.
 
-So, next step. I'll comment out that role super admin for now. On the list page, we need to hide the edit link, unless I have the roll. This is the tricky part. There's no official good hook inside of easy admin bundle to conditionally hide or show actions. However, earlier, when we overrode the list template, we were already taking control of the actions by sending them through a new filter admin actions filter that we created. That's being run by our easy admin extension.
+In other words, `$config = $event->getSubject()` and `if $config['class']` is equal
+to our `User` class, then we want to check security. Let's call a new method... that
+we'll create in a moment: `$this->denyAccessUnlessSuperAdmin()`.
 
-So we've already created our own hook that's able to dynamically remove actions. So inside of here, we can do the same logic. And just like inside of our event subscriber, we're going to need to check to see if the user has role super admin. So I'm going to create public function construct, and then we're gonna inject the authorization checker interface again. Set that on a new property, and then down below, we can do something similar to before. We can say if item instance of user, this time, and not this authorization checker arrow is granted role super admin, then we know that we want unset the edit action.
+At the bottom, add that: `private function denyAccessUnlessSuperAdmin()`. Now...
+we just need to check to see if the current user has `ROLE_SUPER_ADMIN`. How? Via
+the "authorization checker" service. To get it, type-hint a new argument with
+`AuthorizationCheckerInterface`. Hit alt+enter to create and set that property.
 
-So not the easiest thing ever, but it does get the job done. Except there's one problem, and that is if you use the show template, there's also an edit button right here. Which means we kind of need to do this same thing over again for the show template, not just the list template.
+Then, back down below, `if (!$this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')`,
+then throw a new `AccessDeniedException()`. Make sure you use the class from the Security
+component. Oh, and don't forget the `new`!
 
-So here's what we'll do. Inside of the bundle, I'm going to find the show template. And I'll search in here for actions. Here we go, we can find block item actions. And so we can do a very similar thing to the list template. So actually copy the list template, and paste it to show. Because it's in the right location, it should automatically override the default line. And then we'll extend the base one. Now before, I overrode list item actions and then called the parent function. That actually won't work here. The difference is that the variable, this case it's called underscore show actions, is actually set right inside the block. For list, it was set above the block. That means if we override it and then call the parent block, it's going to reoverride it to the original value.
+See, normally, in a controller, we call `$this->denyAccessUnlessGranted()`. When we
+do that, *this* is actually the exception that is thrown behind the scenes. In other
+words, we're *really* doing the *same* thing that we normally do in a controller.
 
-No problem, means that we just need to override the entire block. So I'll copy that, go to our show dot [inaudible 00:07:32], and we're going to paste that there. Then we just need to set our filter. Set underscore show actions equals underscore show actions, pipe filter, admin actions. In this case, remember we need to pass it the actual entity object. That's another difference in the show template. In this case, it's not called ... because we're dealing with a single entity, it's not called item anymore, it's actually called entity.
+And... we're done! The service is set to be autowired, so Symfony will know to pass
+us the authorization checker automatically. Refresh!
 
-So that, crazy as it looks, should do it. Let's give it a try. And it works. No edit button. Let's go back to security dot yml, put back my role super admin, refresh, and we got it. Edit button's back, and we can even use it. So that's one of the tougher things to do, but we nailed it.
+Great news! Access denied! Woohoo! I've never been so happy to get kicked out of
+something. Our user does *not* have `ROLE_SUPER_ADMIN` - just `ROLE_ADMIN` and `ROLE_USER`.
+To double-check our logic, open `app/config/security.yml`, and, temporarily, for
+anyone who has `ROLE_ADMIN`, also give them `ROLE_SUPER_ADMIN`. Now we should have
+access. Try it again!
 
+Access granted! Comment-out that `ROLE_SUPER_ADMIN`.
+
+## Hiding the Edit Button
+
+Time for step 2! On the list page, we need to hide the edit link, unless I have
+the role. This is trickier: there's no official hook inside of EasyAdminBundle to
+conditionally hide or show actions. But don't worry! Earlier, we overrode the list
+template so that we could control *exactly* what actions are displayed. Our new
+`filter_admin_actions` filter lives in `EasyAdminExtension`. And we added logic
+there to hide the delete action for any published genuses.
+
+In other words, we added our *own* hook to control which actions are displayed.
+We rock!
+
+To hide the edit action, we'll need the authorization checker again. No problem!
+Add `public function __construct()` with one argument: `AuthorizationCheckerInterface`.
+Set that on a new property.
+
+Then, down below, we'll add some familiar code: if `$item instanceof User` and
+`!$this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')`, then unset the
+`edit` action.
+
+Phew! It's not the easiest thing ever... EasyAdminBundle... but it *does* get the
+job done!
+
+Except for one... *minor* problem... there is *also* an edit button on the show
+page. Oh no! It looks like we need to repeat all of this for the *show* template!
+
+## Controlling the Actions in the show Template
+
+But don't worry! With all our knowledge, this is should be quick and painless.
+
+Inside of the bundle, find the show template. And inside, search for "actions".
+Here we go: block `item_actions`. To control the actions, we can do a very similar
+thing as the list template. In fact, copy the list template, and paste it as
+`show.html.twig`. Because it's in the right location, it should automatically
+override the one from the bundle.
+
+Extend that base `show.html.twig` template.
+
+Before, we overrode the `_list_item_actions` variable and then called the `parent()`
+function to render the parent block.
+
+But... that actually won't work here! Bananas! Why not? In this case, the variable
+we need to override is called `_show_actions`. And... well... it's set right inside
+the block. That's different from `list.html.twig`, where the variable was set *above*
+the block. This means that if we override `_show_actions` and then call the parent
+block, the parent block will re-override our value! Lame!!!
+
+No worries, it just means that we need to override the *entire* block, and avoid
+calling parent. Copy the block and, in `show.html.twig`, paste.
+
+Next, add our filter: `set _show_actions = _show_actions|filter_admin_actions`.
+Remember, we need to pass the entity object as an argument to `filter_admin_actions`...
+and that's another difference between show and list. Since this template is for a
+page that represents one entity, the variable is not called `item`, it's called
+`entity`.
+
+As crazy as that looks, it should do it! Hold you breath, rub your lucky rabbit's
+foot, do a dance, and refresh!
+
+Hey! No edit button! Go back to `security.yml` and re-add `ROLE_SUPER_ADMIN`.
+
+Refresh now. Edit button is back. And we can even use it. One of the least-easy
+things in EasyAdminBundle is now done!

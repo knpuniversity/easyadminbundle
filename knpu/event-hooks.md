@@ -1,14 +1,82 @@
 # Event Hooks
 
-There's one other major way that Easy Admin Bundle allows us to hook into stuff. Now go back to the advent [inaudible 00:00:06] side of the bundle and the search for event. You'll see there's a lot in here. Whenever it does almost anything, Easy Admin Bundle dispatches an event and you can see it's dispatching a pre-update, a post update, a post edit, a pre-show, a post show and so on. Which means we can use standard Symphony event subscribers to easily hook into Easy Admin Bundle. I really like this way of doing it.
+There's one other *major* way to hook into things with EasyAdminBundle... and it's
+my favorite! Go back to the base `AdminController` and search for "event". You'll
+see a *lot* in here! Whenever EasyAdminBundle does, well, pretty much anything...
+it dispatches an event: `PRE_UPDATE`, `POST_UPDATE`, `POST_EDIT`, `PRE_SHOW`, `POST_SHOW`...
+yes we get the idea already!
 
-Let's go into our create a new event subscriber. I'll create an event directory, so it doesn't matter where it lives, then how about an Easy Admin Subscriber. Subscribers always implement event subscriber interface. I'll go to cogenerate or command N, go to Implement Methods to add the one necessary, one required get subscriber events object. Now all events inside of Easy Admin Bundle, live on a helper class called Easy Admin Events. You can see those as constants on that class. What we're going to use is pre-update. I'll set that through [inaudible 00:01:23] in on three update method.
+And this means that we can use standard Symfony event subscribes to totally kick
+EasyAdminBundle's butt!
 
-I'm on hold command and actually click into that class right now. This is a really cool way of seeing all the events that you can do inside of the bundle. There's a couple different categories of them. Most of the events are either events where you're kind of customizing the action or the view and the other category here is where we're actually customizing the entity. That's important because the data that you're going to be passed is going to be slightly different and we'll see that. Now we need to create the on pre-update method and [inaudible 00:02:10] I'll use the option enter shortcut to say create method. The important thing is that you have a generic event argument.
+## Creating an Event Subscriber
 
-We don't know what data that has on it, so I'll dump and dive that. Now I'm using Symphony three point three with the new service configuration. My event subscribers is going to be automatically loaded as a service and tagged as an event subscriber, so we don't actually need to do anything inside the services [inaudible 00:02:35] YML. We just go edit our user, submit and we got it. For this particular event, the important thing is that we have a subject property on the generic event, which contains our user. The way to get at that is via event, arrow get subject. Remember though, this pre-update is going to be called for every single entity. We don't necessarily know that this is a user. First you're going to check for that. If entity, instance of user, then we know that we can do stuff.
+Create a new `Event` directory... though, this could live anywhere. Then, how about,
+`EasyAdminSubscriber`. Event subscribers always implement `EventSubscriberInterface`.
+I'll go to the Code->Generate menu - or command+N on a Mac - and choose
+"Implement Methods" to add the one required method: `getSubscribedEvents()`.
 
-Now what are we actually going to do? The user class in addition to having an updated at field, which we're already setting in the controller, it also has a last updated by, which is a user object. That's what I want to set inside of here. That means we're going to need to get access to the currently logged in user. To do that, we're going to use the [inaudible 00:03:58] injection. Up at the top. Prepare to construct function. In order to get the user, we're going need the token storage interface. Now watch out there's two of them and unfortunately it's practically impossible to know which one's which. That's not the right one. You've got to be kidding me. Let's us know which one's which. Then token storage, alt enter, actually hit initialize fields on that.
+EasyAdminBundle dispatches a *lot* of events... but fortunately, they all live as
+constants on a helper class called `EasyAdminEvents`. We want to use `PRE_UPDATE`.
+Set that to execute a new method `onPreUpdate` that we'll create in a minute.
 
-That's a gotcha. There are two token storage interfaces. This is not the correct one. That is really something we need to fix because I'm going to fix that by saying token storage interface. That's a little easier up here to see we want the one from core authentication. Down here we can get the user by saying equals this arrow, token storage arrow kit user. Get token. Arrow get user. If the user is not an instance of our user class, that might mean that they're actually not logged in and we'll say user equals no. Entity arrow set last updated by user. Perfect. Thanks to auto wiring instead of our service dot YML file, we don't actually need to do anything in that file. This will be automatically passed to us. We can just go back, refresh. No errors. Let's go look at our [inaudible 00:06:29] and there is our last updated by. Pretty cool way of doing it.
+But first, I'll hold command and click into that class. Dude, this is cool: this
+puts *all* of the possible hook points right in front of us. There are a few different
+categories: most events are either for customizing the actions and views or for
+hooking into the entity saving process.
 
+That difference is important, because our subscriber method will be passed *slightly*
+different information based on which event it's listening to.
+
+Back in our subscriber, we need to create `onPreUpdate()`. That's easy, but it's
+Friday and I'm *so* lazy. So I'll hit the alt+enter shortcut and choose "Create Method".
+Thank you PhpStorm Symfony plugin!
+
+Notice that it added a `GenericEvent` argument. In EasyAdminBundle, *every* event
+passes you this same object... just with different data. So, you kind of need to
+dump it to see what you have access to.
+
+Since we're using Symfony 3.3 and the new service configuration, my event subscriber
+will automatically be loaded as a service and tagged as an event subscriber. If that
+just blew your mind, check out our Symfony 3.3 series!
+
+This means we can just... try it! Edit a user and submit. Bam!
+
+## Fetching Info off the Event
+
+For this event, the important thing is that we have a `subject` property on `GenericEvent`...
+which holds the `User` object. We can get this via `$event->getSubject()`.
+
+Remember though, this `PRE_UPDATE` event will be fired for *every* entity - not just
+`User`. So, we need to check for that: if `$entity instanceof User`, then we know
+it's safe to work our magic.
+
+Since we already took care of setting the `updatedAt` in the controller, let's do
+something different. The `User` class *also* has a `lastUpdatedBy` field, which should
+be a `User` object. Let's set that here.
+
+That means we need to get the currently-logged-in `User` object. To get that from
+inside a service, we need to use another service. At the top, add a constructor.
+Then, type-hint the first argument with `TokenStorageInterface`. Watch out: there are
+two of them... and oof, it's impossible to know which is which. Choose either of
+them for now. Then, name the argument and hit alt+enter to create and set a new
+property.
+
+Back on top... this is not the right `use` statement. I'll re-add `TokenStorageInterface`:
+make sure you choose the one from `Security\Core\Authentication`.
+
+In our method, fetch the user with `$user = $this->tokenStorage->getToken()->getUser()`.
+And if the `User` is *not* an `instanceof` our `User` class, that means the user
+isn't actually logged in. In that case, set `$user = null`.
+
+Then, `$entity->setLastUpdatedBy($user)`.
+
+Woohoo! Thanks to the new auto-wiring stuff in Symfony 3.3, we don't need to configure
+*anything* in `services.yml`. Yep, with some help from the type-hint, Symfony already
+knows what to pass to our `$tokenStorage` argument.
+
+So go back, refresh and... no errors! It's always creepy when things work on the
+first try. Go to the show page for the User id 20. Last updated by is set!
+
+Next, we're going to hook into the bundle further and learn how to completely disable
+actions based on security permissions.

@@ -1,20 +1,115 @@
-# Form Layout
+# Tweaking the Form Layout
 
-I'm good a lot about the different ways to customize the form, which, for the most part, just means using the form type, using our configuration to change the different field types. And, of course, you can add a custom form theme and have full control over how things are rendered. But, what about the form layout? What I want to have the e-mail in the full name field, maybe if a section floated to the left and these other two fields in a section floated to the right? That's not really part of the form component that's typically something that you put inside your template, but, of course, the template is inside of Easy Admin bundle.
+We've talked a lot about customizing the forms... which mostly means using the config
+to change the field types or adding a custom form theme to control how the individual
+fields look.
 
-So, there are two way to do this. There are two ways to really take control of the layout of your form. The first one is just working within the template override system. For example, if you look inside the bundle, we can find "new.html.twig", the template rendered for the new form. And, below you can actually see there is a block called "entity_form". And, to render the form, it just literally calls the form function. In other words, there is no form layout at all by default. It's just printing all the fields. And, we can override this template, override just the entity form block, and then we could render the form however we want. And, since we can render each template on an entity by entity basis, we could have different form templates for the different entities.
+But, what about the form *layout*? Like, what I wanted to put the email & full
+name fields in a section that floats to the left, and these other two fields in
+a section that floats to the right?
 
-But, there is an easier way that works for about 90 percent of the use cases. And that is via configuration. Easy Admin Bundle comes with a number of different ways to add dividers and sections and groups inside of your form layout. So, for example, let's start with user. Let's do a little bit of reorganization here. Let's put full name on top and then I'm going to add a new type called "divider". We'll put the "avatorUri" after the divider. We'll put another divider. We can put e-mail, another divider, and then "isScientest" and then "universityName". So, this is basically a fake form field. In fact, in the bundle itself, it is literally a form field. You can see there is a couple of fake form fields, called section, group, and divider. We're going to show all three of these. They're not real form fields. They're basically a way for us to add some extra layout to our form. And, when we try that out, you see it give us a divider. So, nothing too fancy, but it gives us a little bit of control over our form.
+Well... that's not really part of the form component: we usually do this by adding
+markup to our template. But of course, the template lives inside EasyAdminBundle!
 
-So, the next way is to divide things into sections by using the type section. For example, we'll start here by saying "type: section, label: 'User Details'". And, then, inside of this, we'll have the full name, we'll keep a divider, we'll keep "AvatorUri". Then, down here ... We'll remove that and let's make this a proper section as well. Put this into its own expanded configuration, "label: contact information". And, then, like a lot of other places, you can use icons, help message, and CSS class. Now, the e-mail will be in that section. Let me do the same thing down here. I'm going to actually change this to the last divider as well to "type: section, label: Education". So, let's see how that looks. Perfect. See how things are grouped inside of these sections and it looks a little bit more organized. Really, if you want to go to the last, and get things really organized, you're going to want to use groups, which is where you can actually sort things, and float things in different ways.
+In turns out, there are two great ways to control your form's layout. First..., well,
+you could just override the template and go *crazy*! For example, inside the bundle,
+find `new.html.twig`. It has a block called `entity_form`. And, to render the form,
+it just calls the `form()` function. This means that there's no form layout at *all*
+by default: it just barfs out all the fields.
 
-So, to see an example of that, let's actually to our Genus form. And, first, if you scroll all the way back up to our Genus area. You remember that we organize most things under "form", and then we just made a couple modifications under "new". We removed the ID field and we added the slug field. So, all the fields are added from "form" first, and, then, if there is any new fields down here under "new" or "edit", those are added. Which means, in "edit", our "slug" ends up being last on the form. And, there's not really a good way to control that. This gets even a little bit more problematic when you want to start organizing things and do sections or groups. So, the way to get around this is to add all of your fields on "form", and, then "new" and "id" only take away fields. So, we'll take this entire slug field, in fact we'll move "edit" entirely. And, we'll put it up here after "id".
+But... that's awesome! Because we could override this template, replace *just* the
+`entity_form` block, and go bonkers by rendering the form *however* we need. And
+since we can override each template on an entity-by-entity basis... well... suddenly
+it's super easy to customize the exact form layout for each section.
 
-Now, if we want to keep that off of our new field, we just do "'-slug'". So, it's going to be the same thing as before, but now we actually have control over where our slug field is rendered. Perfect. So, the last [inaudible 00:07:02] is the group. For example, I'm actually going to take "id" and "slug" and I'm going to put these at the end of our form temporarily. In the top, I'm going to start a new group. So, "type: group, CSS_class: 'col-sm-6'". And, label is basic information, "label: 'Basic Information'". So, this is a nice way just to group things into a div, which you can give a header and a CSS class. And, by using the float classes from bootstrap, we can actually start organizing things. So, now "name" and "SpeciesCount" is going to be inside of that. That I'll actually move. Fun fact, it is published down. And, I'll put those two into a new section, so you can mix and match these. I'll label these as "optional".
+## Form Layout Config Customizations
 
-So, these will ... Fun fact, "isPublished" will be inside of the basic information group. But, they'll be in a section inside of that group. I'll put "genusScientists", since it's a pretty big thing, into its own group. So, again, "type: group, CSS_class: col-sm-6, label: 'studied by ... '". So, that we can float them. So, finally, down here for these kind of read-only fields, put these in their own group as well. And, I'll use the longer form of this one. "type: group", same CSS class, "CSS_class: col-sm-6". "Label: Identification". Give it an icon, a help message for administrators, and then pop those two field below there. I used some line breaks to add some natural separations, so you can kind of feel that here's one group and here's another group and then here's our last group down here.
+Phew! But... there is an *even* easier way that works for about 90% of the use-cases.
+And that is... of course... with configuration. EasyAdminBundle comes with a bunch
+of different ways to add dividers, sections and groups inside the form.
 
-So, let's try that. Refresh. And, there we go. Now, these sections and groups start to feel really good, basic information, you have a subdivider here for the optional things, and a "Studied By ..." is over here. Now, notice "Identification" is actually floating under "Studied By ..." because this is "cal-6", "cal-6", and this is "cal-6". Sometimes, based on your layout, you might actually want to force "Identification" to go onto its own line. So, basically, you want to have a clear, after these first two groups.
+So, let's do it! Start with `User`. Let's reorganize things: put `fullName` on top,
+then add a new type called `divider`. Put `avatarUri` after the divider, then another
+divider, `email`, divider, `isScientist` and `universityName`.
 
-To do that on the group, you can add a special CSS class, called "new-row". And, this time, it floats down there. So, groups are a really, really good way to take control over how things are rendered. Behind the scenes, you can see there are a normal field group. You can take exact control of what classes you want on there. And, it even gives you a nice header. So, not much you can't do.
+On a technical level... this is kind of geeky cool: `divider` is a *fake* form field!
+I mean, in the bundle itself, it is *literally* a form field. And you can see a
+few others, like `section` and `group`. We'll use all three.
 
+Try out the page! Hello divider! It's nothing too fancy, but it's nice.
+
+## Adding a Section
+
+To go further, we can divide things into sections by using `type: section`. For
+example, start here by saying `type: section, label: 'User Details'`. And then,
+inside, we'll have `fullName`, keep the `divider`, keep `avatarUri`, but replace
+the next `divider` with the expanded syntax: `type: section, label: 'Contact Information'`.
+And like many other places, you can add an `icon`, a `help` message and a `css_class`.
+
+With `email` in its own section, change the last divider to `type: section, label: Education`.
+
+Ok, let's see how this looks!
+
+Not bad! Each field appears inside whatever section is above it.
+
+## Reorganizing all Fields under form
+
+The last organizational trick is the *group*, which gives you *mad* control over
+the width and float of a bunch of fields.
+
+To see an example, go up to the `Genus` form.
+
+And first, remember how we organized most fields under the `form` key... but then
+tweaked a few final things under `new` and `edit`? Well, when EasyAdminBundle reads
+this, all of the fields under `form` are added first... and *then* any extra fields
+under `new` or `edit` are added. That means, in `edit`, our `slug` field is printed
+*last* on the form. And... there's not really a good way to control that. This gets
+even a little bit more problematic when you want to organize fields into sections
+or groups. How could you organize the `slug` field into the same section as `name`?
+Right now, you can't!
+
+For that reason, it's best to configure *all* of your fields under `form`. Then,
+use `new` and `edit` *only* to *remove* fields you don't want. Copy the `slug`
+field and remove `edit` entirely. Then, under `form`, paste this near the top.
+
+To keep `slug` off of the `new` form, just add `-slug`. The end result is the same,
+but with complete control over the field order.
+
+## Adding Form Groups
+
+Ok, back to adding *groups*. First, move `id` and `slug` to the end of the form.
+Then, on top, add a new group: `type: group, css_class: 'col-sm-6', label: 'Basic Information'`.
+You can picture what this is doing: adding a div with `col-sm-6`, putting a header
+inside of it, and then printing any fields below that, but in the div.
+
+And that's huge! Because thanks to the `col-sm-6` CSS class, we can really start
+organizing how things look.
+
+Move `funFact` and `isPublished` a bit further down. Then, after `subFamily`, add
+a `section` labeled `Optional`. Yep, you can totally mix-and-match groups and sections.
+
+At this point, `funFact` and `isPublished` *will* still be in the group, but they'll
+also be in a section within that group. And since `genusScientists` is pretty big,
+let's put that in their own group with `css_class: col-sm-6` and `label: Studied by...`.
+
+Finally, at the bottom, add one more group. I'll use the expanded format this
+time: `css_class: col-sm-6` and `label: Identification`. And yep, groups can have
+`icon` and `help` keys.
+
+Phew! While I did this, I added some line breaks *just* so that this all looks a
+bit more clear: here's one group, here's a second group, the last group is at the
+bottom.
+
+But what does it actually *look* like? Let's find out! Refresh!
+
+Oh, this feels good. The `Basic Information` group is on the left with the Optional
+section at the bottom. The other two groups float to the right.
+
+Now, sometimes, you might want to force the "Identification" group to go onto its
+own line. Basically, you want to add a CSS "clear" after the first two groups.
+
+To do that, on the group, add a special CSS class, called `new-row`.
+
+And *now* it floats to the next line. So, groups are a really, really neat way
+to control how things are rendered. It adds some nice markup, and we can add whatever
+classes we need. So, there's not much you can't do.

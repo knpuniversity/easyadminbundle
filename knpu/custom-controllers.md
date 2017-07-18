@@ -1,20 +1,95 @@
-# Custom Controllers
+# Override Controllers
 
-Now when we submit our form, obviously easy admin bundle's taken care of everything for us. Which sometimes can be a problem because sometimes we need to hook in, and maybe do some custom processing right before an entity is created or right before it's updated. For example, if you look at the user field, user entity it actually has an updated app field. Now of course, we could use a doctor and life cycle call back, or a doctor and events to accept that automatically whenever the user entity is created.
+When we submit a form, obviously, EasyAdminBundle is taking care of *everything*:
+handling validation, saving and adding a flash message. That's the best thing ever!
+Until... I need to hook into that process... then suddenly, it's the *worst* thing
+ever! What if I need to do some custom processing right before an entity is created
+or updated?
 
-But I want to see if we can do it through easy admin bundle. What I mean is whenever we submit the user form for an update, I want to set that update at that field. There a couple of ways to do things like this depending on what you like in your situation. The easiest one is via the controller. Check this out. If you open up the easy admin controller and search for, protected function, there are a ton of methods that we can override beyond just the actions. Like create new entity, and pre persist entity, and pre update entity.
+There are 2 main ways to hook into EasyAdminBundle...and I want you to know both.
+Open the `User` entity. It has an `updatedAt` field. To set this, we could use Doctrine
+lifecycle callbacks or a Doctrine event subscriber.
 
-Meaning if we override pre update entity that methods going to be called every single time any entity is updated. There are a number of other interesting things that you can override. Cool, so very simple if we just override this inside of our controller then it's going to be called and we can update the updated app. Now let's go a step further, because if we do that this pre update entity is going to be called for every single entity in the system. But we really only want it called for the user entity.
+But, I want to see if we can set this instead, by hooking into EasyAdminBundle. In
+other words, when the user submits the form for an update, we need to run some code.
 
-Once again easy admin bundle has our back here. First inside the base controller I search for pre update entity in here, let's search our pre update. I'm actually going to see something up here called, this arrow execute dynamic method, pre updates, some weird code then entity. This is a really common thing that the admin bundle does. Whenever it calls almost any method inside of here, in fact you can even see, create edit form up here. It allows you to override that method for a specific entity by saying, for example, "Pre update user entity, or create user edit form."
+## The protected AdminController Methods
 
-If here we created a protected function, pre update user entity, it would call that only for our user entity and that gives you a lot of power. The way that I like to do it is to create a custom controller class for each individual entity. Check this out. Inside easy admin I'm going to copy admin controller and name it to user controller. Then I'm just going to empty out that function. Inside the [algo 00:03:23] code generates go to override methods, and we override pre update entity. Don't forget to update your class name to user controller.
+The first way to do this is by adding some code to the controller. Check this
+out: open up the base `AdminController` from the bundle and search for `protected function`.
+Woh... There are a *ton* of methods that we can override, beyond just the actions.
+Like, `createNewEntity()`, `perPersistEntity()` and `preUpdateEntity()`.
 
-We're going to configure things so that user controller is used only for the user entity. Which means that we can safely assume that this is going to be a user entity and we can make our code really simple here by saying, "Entity arrow set updated [app 00:03:47] new / date time." How does easy admin bundle know to use this controller only for the user entity? That happens inside of our configed dot [yml 00:04:04] down at the bottom where we have our user after a class I'll add controller. At bundle / controller / easy admin / user controller.
+If we override `preUpdateEntity()` in *our* controller, that will be called right
+before *any* entity is updated. There are a few other cool things that you can override
+too.
 
-Just like that we have one controller just for doing things with our user entity. Let's try that out. Let's go find a user. If we look at user ID 20 right now, see it update now as [nul 00:04:37], so let's edit them. Makes them change, go back and updated app is set. Now that we know this is possible if you look at our admin controller it's actually a little sloppy because this change [public 00:05:03] status action, this is something that is only meant to work for the genus class. In fact, it's hard coded for the genus class right now.
+## Per-Entity Override Methods
 
-Having an insight of admin controller is fine but it's only really needed for the genus controller. I'm going to also create a genus controller, so I'm going to copy and make a [chart 00:05:29] to genus controller. Before I fill in this logic I'm actually going to convert this admin controller to a base class for all of our admin controllers. We're not going to have anything in here for now but we will later. The genus controller, I'll rename the class and then we'll extend admin controller, and get rid of the old used statement. The user controller will do the same thing.
+Ok, easy! Just add `preUpdateEntity()` to our `AdminController`, right? Yep... but
+we can do better! If we override `preUpdateEntity()`, it will be called whenever
+*any* entity is updated. But we really *only* want it to be called for the `User`
+entity.
 
-Extend the admin controller and we can get rid of some old used statements. Now the user controller just has the stuff that needs genus controller has just the stuff it needs, and if we need to over right something for all of our entities we can do it inside of admin controller. Of course, the last step is to remember to go into our configuration, all the way up on top, we'll set our controller to app bundle / controller / easy admin / genus controller. Now we're set up to do some really, really cool stuff.
+Once again, EasyAdminBundle has our back. Inside the base controller, search for
+`preUpdate`. Check this out: right before saving, it calls some `executeDynamicMethod`
+function and passes it `preUpdate`, a weird `<EntityName>` string, then `Entity`.
 
+Actually, the bundle does this type of thing all over the place. Like above, when
+it calls `createEditForm()`. Whenever you see this, it means that bundle will *first*
+look for an entity-specific version of the method - like `preUpdateUserEntity()` -
+and call it. If that doesn't exist, it will call the normal `preUpdateEntity()`.
+
+This is *huge*: it means that each entity class can have its *own* set of hook
+methods in our `AdminController`!
+
+## One Controller per Entity
+
+And now that I've told you that... we're going to do something completely different.
+Instead of having one controller - `AdminController` - full of entity-specific hook
+methods like `preUpdateUserEntity` or `createGenusEditForm` - I prefer to create
+a custom controller class for each entity.
+
+Try this: in the `EasyAdmin` directory, copy `AdminController` and rename it to
+`UserController`. Then, remove the function. Use the Code -> Generate menu - or
+Command + N on a mac - to override the `preUpdateEntity()` method. And don't forget
+to update your class name to `UserController`.
+
+We're going to configure things so that this `UserController` is used *only* for
+the `User` admin section. And that means we can safely assume that the `$entity` argument
+will *always* be a `User` object.
+
+And that makes life easy: `$entity->setUpdatedAt(new \DateTime())`.
+
+But how does `EasyAdminBundle` know to use this controller *only* for the `User` entity?
+That happens in `config.yml`. Down at the bottom, under `User`, add
+`controller: AppBundle\Controller\EasyAdmin\UserController`.
+
+And *just* like that! We have one controller that's used for *just* our `User`.
+
+Try it out! Let's go find a user... how about id 20. Right now, its `updateAt` is
+null. Edit it... make some changes... and save! Go back to show and... we got it!
+
+## Organizing into a Base AdminContorller
+
+This little trick unlocks a lot of hook points. But if you look at `AdminController`,
+it's a little messy. Because, `changePublishedStatusAction()` is *only* meant to
+be used for the `Genus` class. But *technically*, this controller is being used
+by *all* entities, except `User`.
+
+So let's copy `AdminController` and make a new `GenusController`! Empty `AdminController`
+completely. Then, make sure you rename the new controller class to `GenusController`.
+
+But before we set this up in config, change the extends to `extends AdminController`,
+and remove the now-unused `use` statement. Repeat that in `UserController`. Yep,
+now *all* of our sections share a common base `AdminController` class. And even
+though it's empty now, this could be *really* handy later if we ever need to add
+a hook that affects *everything*.
+
+Love it! `UserController` has only the stuff it needs, `GenusController` holds
+only things that relate to `Genus`, and if we need to override something for all
+entities, we can do that inside `AdminController`.
+
+Don't forget to go back to your config to tell the bundle about the `GenusController`.
+All the way on top, set the `Genus` controller to `AppBundle\Controller\EasyAdmin\GenusController`.
+Now we're setup to do some really, really cool stuff.
