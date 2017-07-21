@@ -21,25 +21,39 @@ library called Snarkdown. You type some markdown, and Snarkdown shows you a prev
 So how can we transform our boring `textarea` field to include this?
 
 In `config.yml`, under `Genus`, find the `funFact` field and add a `css_class` option
-set to `js-markdown-input`. This will be our new best friend. Because now that the
-element has this CSS class, we can write JavaScript to do *whatever* insane crazy
-things we want!
+set to `js-markdown-input`:
+
+[[[ code('536645eb68') ]]]
+
+This will be our new best friend. Because now that the element has this CSS class,
+we can write JavaScript to do *whatever* insane crazy things we want!
 
 How do we include JavaScript on the page? We already know how! Up at the top, under
 `design` and `assets`, add `js`. Let's add 2 JavaScript files. First, include the
-Snarkdown library: we could also download it locally. And include a new
-`js/custom_backend.js` file.
+Snarkdown library:
+
+[[[ code('4b076dc68b') ]]]
+
+We could also download it locally. And include a new `js/custom_backend.js` file:
+
+[[[ code('28329e8445') ]]]
 
 To save some time, if you downloaded the code that came with this tutorial, you'll
 have a `tutorial/` directory with a `custom_backend.js` file inside. Copy that, go
-into `web/js` and paste. It's pretty simple: inside a `$(document).ready()` block,
-it finds all the `js-markdown-input` classes, gets their `.form-control` element,
-adds a new `markdown-preview` div and then processes that through Snarkdown. Basically,
+into `web/js` and paste:
+
+[[[ code('e6fc36af13') ]]]
+
+It's pretty simple: inside a `$(document).ready()` block, it finds all the
+`js-markdown-input` classes, gets their `.form-control` element, adds a new
+`markdown-preview` div and then processes that through Snarkdown. Basically,
 it creates an element that will show the preview version of our Markdown.
 
 In that same `tutorial/` directory, there's also a `custom_backend.css` file. Just
 copy its contents. Open our `custom_backend.css` file and paste at the bottom... to
-make things *just* a little prettier.
+make things *just* a little prettier:
+
+[[[ code('2d6045d8b3') ]]]
 
 I think we're ready! Refresh the page. Bam! There's our preview below the field.
 We can add some bold... and use some ticks. We rock!
