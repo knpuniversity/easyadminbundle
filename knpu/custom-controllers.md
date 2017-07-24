@@ -7,8 +7,11 @@ ever! What if I need to do some custom processing right before an entity is crea
 or updated?
 
 There are 2 main ways to hook into EasyAdminBundle...and I want you to know both.
-Open the `User` entity. It has an `updatedAt` field. To set this, we could use Doctrine
-lifecycle callbacks or a Doctrine event subscriber.
+Open the `User` entity. It has an `updatedAt` field:
+
+[[[ code('7c98cd8455') ]]]
+
+To set this, we could use Doctrine lifecycle callbacks or a Doctrine event subscriber.
 
 But, I want to see if we can set this instead, by hooking into EasyAdminBundle. In
 other words, when the user submits the form for an update, we need to run some code.
@@ -51,38 +54,62 @@ methods like `preUpdateUserEntity` or `createGenusEditForm` - I prefer to create
 a custom controller class for each entity.
 
 Try this: in the `EasyAdmin` directory, copy `AdminController` and rename it to
-`UserController`. Then, remove the function. Use the Code -> Generate menu - or
-Command + N on a mac - to override the `preUpdateEntity()` method. And don't forget
-to update your class name to `UserController`.
+`UserController`. Then, remove the function. Use the "Code"->"Generate menu" - or
+`Command`+`N` on a Mac - to override the `preUpdateEntity()` method. And don't forget
+to update your class name to `UserController`:
+
+[[[ code('c424264a23') ]]]
 
 We're going to configure things so that this `UserController` is used *only* for
 the `User` admin section. And that means we can safely assume that the `$entity` argument
-will *always* be a `User` object.
+will *always* be a `User` object:
 
-And that makes life easy: `$entity->setUpdatedAt(new \DateTime())`.
+[[[ code('53f4c69c04') ]]]
+
+And that makes life easy: `$entity->setUpdatedAt(new \DateTime())`:
+
+[[[ code('1befa70885') ]]]
 
 But how does `EasyAdminBundle` know to use this controller *only* for the `User` entity?
 That happens in `config.yml`. Down at the bottom, under `User`, add
-`controller: AppBundle\Controller\EasyAdmin\UserController`.
+`controller: AppBundle\Controller\EasyAdmin\UserController`:
+
+[[[ code('500b550dbd') ]]]
 
 And *just* like that! We have one controller that's used for *just* our `User`.
 
-Try it out! Let's go find a user... how about id 20. Right now, its `updateAt` is
+Try it out! Let's go find a user... how about ID 20. Right now, its `updateAt` is
 null. Edit it... make some changes... and save! Go back to show and... we got it!
 
 ## Organizing into a Base AdminContorller
 
 This little trick unlocks a lot of hook points. But if you look at `AdminController`,
 it's a little messy. Because, `changePublishedStatusAction()` is *only* meant to
-be used for the `Genus` class. But *technically*, this controller is being used
-by *all* entities, except `User`.
+be used for the `Genus` class:
+
+[[[ code('3f7e8d477f') ]]]
+
+But *technically*, this controller is being used by *all* entities, except `User`.
 
 So let's copy `AdminController` and make a new `GenusController`! Empty `AdminController`
-completely. Then, make sure you rename the new controller class to `GenusController`.
+completely:
+
+[[[ code('ec7826414c') ]]]
+
+Then, make sure you rename the new controller class to `GenusController`:
+
+[[[ code('06c46e0d55') ]]]
 
 But before we set this up in config, change the extends to `extends AdminController`,
-and remove the now-unused `use` statement. Repeat that in `UserController`. Yep,
-now *all* of our sections share a common base `AdminController` class. And even
+and remove the now-unused `use` statement:
+
+[[[ code('b15abb7f94') ]]]
+
+Repeat that in `UserController`:
+
+[[[ code('718d275403') ]]]
+
+Yep, now *all* of our sections share a common base `AdminController` class. And even
 though it's empty now, this could be *really* handy later if we ever need to add
 a hook that affects *everything*.
 
@@ -91,5 +118,8 @@ only things that relate to `Genus`, and if we need to override something for all
 entities, we can do that inside `AdminController`.
 
 Don't forget to go back to your config to tell the bundle about the `GenusController`.
-All the way on top, set the `Genus` controller to `AppBundle\Controller\EasyAdmin\GenusController`.
+All the way on top, set the `Genus` controller to `AppBundle\Controller\EasyAdmin\GenusController`:
+
+[[[ code('c8fe579596') ]]]
+
 Now we're setup to do some really, really cool stuff.
