@@ -190,7 +190,7 @@ and pass it the `$queryBuilder`, `Genus::class`, and `genuses.csv` - the filenam
 
 Deep breath... refresh! It downloaded! Ha! In my terminal. I'll:
 
-```terminal-
+```terminal
 cat ~/Downloads/genuses.csv
 ```
 
