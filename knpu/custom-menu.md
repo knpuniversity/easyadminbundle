@@ -11,7 +11,7 @@ and a few other places. But under `menu`, it *just* changes the menu text.
 Do the same thing for `GenusNote`, with `label: Notes`, and also for sub families:
 `entity: SubFamily, label: Sub-Families`.
 
-Keep going! At this point, it should be *no* surprise that we can control the *icon*
+At this point, it should be *no* surprise that we can control the *icon*
 for each menu. Like, `icon: user`, `icon: sticky-note` and `icon: ''`.
 
 Before configuring anything, each item has a little arrow icon. With empty quotes,
