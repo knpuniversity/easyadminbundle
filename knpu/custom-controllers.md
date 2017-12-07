@@ -21,7 +21,7 @@ other words, when the user submits the form for an update, we need to run some c
 The first way to do this is by adding some code to the controller. Check this
 out: open up the base `AdminController` from the bundle and search for `protected function`.
 Woh... There are a *ton* of methods that we can override, beyond just the actions.
-Like, `createNewEntity()`, `perPersistEntity()` and `preUpdateEntity()`.
+Like, `createNewEntity()`, `prePersistEntity()` and `preUpdateEntity()`.
 
 If we override `preUpdateEntity()` in *our* controller, that will be called right
 before *any* entity is updated. There are a few other cool things that you can override
