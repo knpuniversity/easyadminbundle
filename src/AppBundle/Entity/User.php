@@ -86,7 +86,7 @@ class User implements UserInterface
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="last_updated_by_id", referencedColumnName="id", nullable=true)
      */
     private $lastUpdatedBy;
