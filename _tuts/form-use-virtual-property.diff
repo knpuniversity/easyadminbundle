@@ -14,7 +14,7 @@ index b68418a..05b4601 100644
 +                    - avatarUri
 +                    - universityName
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index c5345f0..4c78e05 100644
+index a04bf38..3e6f778 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -223,6 +223,16 @@ class User implements UserInterface

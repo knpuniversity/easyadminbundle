@@ -57,10 +57,11 @@ index 998f6ae..a658e2b 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1197,6 +1197,92 @@
+@@ -1196,6 +1196,92 @@
+             ],
              "time": "2015-11-10T17:04:01+00:00"
          },
-         {
++        {
 +            "name": "javiereguiluz/easyadmin-bundle",
 +            "version": "v1.16.9",
 +            "source": {
@@ -146,14 +147,14 @@ index 998f6ae..a658e2b 100644
 +            ],
 +            "time": "2017-04-08T18:35:00+00:00"
 +        },
-+        {
+         {
              "name": "jdorn/sql-formatter",
              "version": "v1.2.17",
-             "source": {
-@@ -1555,6 +1641,75 @@
+@@ -1554,6 +1640,75 @@
+             ],
              "time": "2017-05-04T11:12:50+00:00"
          },
-         {
++        {
 +            "name": "pagerfanta/pagerfanta",
 +            "version": "v1.0.5",
 +            "source": {
@@ -222,14 +223,14 @@ index 998f6ae..a658e2b 100644
 +            ],
 +            "time": "2017-03-20T13:46:15+00:00"
 +        },
-+        {
+         {
              "name": "paragonie/random_compat",
              "version": "v2.0.10",
-             "source": {
-@@ -2733,6 +2888,58 @@
+@@ -2732,6 +2887,58 @@
+             ],
              "time": "2017-06-06T04:00:14+00:00"
          },
-         {
++        {
 +            "name": "twig/extensions",
 +            "version": "v1.4.1",
 +            "source": {
@@ -281,7 +282,6 @@ index 998f6ae..a658e2b 100644
 +            ],
 +            "time": "2016-10-25T17:34:14+00:00"
 +        },
-+        {
+         {
              "name": "twig/twig",
              "version": "v2.4.3",
-             "source": {

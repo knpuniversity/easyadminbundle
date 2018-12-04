@@ -55,7 +55,7 @@ index 95e9de7..c625b9b 100644
      }
  }
 diff --git a/src/AppBundle/Entity/User.php b/src/AppBundle/Entity/User.php
-index a9efeba..c5345f0 100644
+index 0f7c73f..a04bf38 100644
 --- a/src/AppBundle/Entity/User.php
 +++ b/src/AppBundle/Entity/User.php
 @@ -231,6 +231,11 @@ class User implements UserInterface
