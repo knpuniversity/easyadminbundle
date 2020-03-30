@@ -45,11 +45,11 @@ index f39f7b1..9948f2c 100644
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index 998f6ae..a658e2b 100644
+index bc67565..91a5dba 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
-         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
 -    "content-hash": "0dc7fd018b8439ffed59e5e6e912a3bd",
@@ -57,7 +57,7 @@ index 998f6ae..a658e2b 100644
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1196,6 +1196,92 @@
+@@ -1503,6 +1503,92 @@
              ],
              "time": "2015-11-10T17:04:01+00:00"
          },
@@ -150,7 +150,7 @@ index 998f6ae..a658e2b 100644
          {
              "name": "jdorn/sql-formatter",
              "version": "v1.2.17",
-@@ -1554,6 +1640,75 @@
+@@ -1861,6 +1947,75 @@
              ],
              "time": "2017-05-04T11:12:50+00:00"
          },
@@ -226,7 +226,7 @@ index 998f6ae..a658e2b 100644
          {
              "name": "paragonie/random_compat",
              "version": "v2.0.10",
-@@ -2732,6 +2887,58 @@
+@@ -3039,6 +3194,58 @@
              ],
              "time": "2017-06-06T04:00:14+00:00"
          },
