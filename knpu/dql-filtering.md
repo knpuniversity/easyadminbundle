@@ -56,7 +56,7 @@ large... and threaten the survival of mankind. They want a new `GenusHorde` sect
 where they can keep track of all of the genuses that have a lot of species. It's
 scary stuff, so we'll add a label: `HORDE of Genuses` with a scary icon:
 
-[[[ code('5b61d6e61b') ]]]
+[[[ code('723e0404e4') ]]]
 
 ***TIP
 Fun fact! You can press `Control`+`Command`+`Space` to open up the icon menu on a Mac.
@@ -69,7 +69,7 @@ list genuses that have a *lot* of species. Start by adding a `list` key and a ne
 awe-inspiring option: `dql_filter`. For the value, pretend that you're building a
 query in Doctrine. So, `entity.speciedCount >= 50000`:
 
-[[[ code('996f5d8cd0') ]]]
+[[[ code('86c9a03ba0') ]]]
 
 The alias will *always* be `entity`.
 
@@ -77,13 +77,13 @@ Try it! Ten down to... only 7 menacing genuses!
 
 And just like any query, you can get more complex. How about: `AND entity.isPublished = true`:
 
-[[[ code('aa3d310904') ]]]
+[[[ code('2fa5782012') ]]]
 
 And to *really* focus on the genuses that are certain to overtake humanity, sort
 it by `speciesCount` and give the section a helpful message: `Run for your life!!!`
 Add scary icons for emphasis:
 
-[[[ code('7afc6ee2cf') ]]]
+[[[ code('47f1d38cf2') ]]]
 
 Ok... refresh! Ah... now only *three* genuses are threatening mankind.
 
@@ -91,7 +91,7 @@ Oh, and search automatically re-uses the `dql_filter` from list: these are 2 res
 from the possible 3. And like always, you can override this. Under `search`, set the
 `dql_filter` to the same value, but without the `isPublished` check:
 
-[[[ code('9600f606db') ]]]
+[[[ code('b4e0c5c65a') ]]]
 
 Try that. Boom! 3 more genuses that - when published - will spell certain doom for
 all.
