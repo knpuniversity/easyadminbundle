@@ -31,33 +31,33 @@ index e88b48e..26e8209 100644
 +    type: annotation
 +    prefix: /easyadmin
 diff --git a/composer.json b/composer.json
-index 26f882d..614ecbe 100644
+index 2def3a5..0b7d23f 100644
 --- a/composer.json
 +++ b/composer.json
-@@ -27,7 +27,8 @@
-         "incenteev/composer-parameter-handler": "^2.0",
+@@ -28,7 +28,8 @@
          "knplabs/knp-markdown-bundle": "^1.4",
          "doctrine/doctrine-migrations-bundle": "^1.1",
--        "stof/doctrine-extensions-bundle": "^1.2"
-+        "stof/doctrine-extensions-bundle": "^1.2",
+         "stof/doctrine-extensions-bundle": "^1.2",
+-        "composer/package-versions-deprecated": "^1.11"
++        "composer/package-versions-deprecated": "^1.11",
 +        "javiereguiluz/easyadmin-bundle": "^1.16"
      },
      "require-dev": {
          "sensio/generator-bundle": "^3.0",
 diff --git a/composer.lock b/composer.lock
-index fcc7ebe..3222e7d 100644
+index 1cbdb48..145e41d 100644
 --- a/composer.lock
 +++ b/composer.lock
 @@ -4,7 +4,7 @@
          "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
          "This file is @generated automatically"
      ],
--    "content-hash": "9ad3829488feb8152ccce23326e4147a",
-+    "content-hash": "fbabb295d8912743a03f32bb30d6f29f",
+-    "content-hash": "2f829e9fbc28495184f3c72ac35e23f5",
++    "content-hash": "f7f85646785e4422fa8b2d8bd60a1971",
      "packages": [
          {
              "name": "behat/transliterator",
-@@ -1536,6 +1536,92 @@
+@@ -1609,6 +1609,92 @@
              ],
              "time": "2020-03-17T21:10:00+00:00"
          },
@@ -150,7 +150,7 @@ index fcc7ebe..3222e7d 100644
          {
              "name": "jdorn/sql-formatter",
              "version": "v1.2.17",
-@@ -1895,6 +1981,75 @@
+@@ -1918,6 +2004,75 @@
              ],
              "time": "2017-05-04T11:12:50+00:00"
          },
@@ -226,7 +226,7 @@ index fcc7ebe..3222e7d 100644
          {
              "name": "paragonie/random_compat",
              "version": "v9.99.99",
-@@ -3234,6 +3389,61 @@
+@@ -3257,6 +3412,61 @@
              ],
              "time": "2018-08-01T14:04:47+00:00"
          },
