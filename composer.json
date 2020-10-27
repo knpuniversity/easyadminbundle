@@ -27,7 +27,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-markdown-bundle": "^1.4",
         "doctrine/doctrine-migrations-bundle": "^1.1",
-        "stof/doctrine-extensions-bundle": "^1.2"
+        "stof/doctrine-extensions-bundle": "^1.2",
+        "composer/package-versions-deprecated": "^1.11"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
